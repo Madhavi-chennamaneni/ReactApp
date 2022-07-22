@@ -1,3 +1,4 @@
+
 import logo from './logo.svg';
 import './App.css';
 import camera from './Camera';
@@ -16,11 +17,19 @@ function App() {
   const [Gotres, setGotres] = useState(false);
   const [ResData, setResData] = useState("");
   // camera.startCamera();
+<<<<<<< HEAD
 
   function isAuthorizedUser(email) {
     //if(email == "madhavi.c@gradious.com"){
     setLoginStatus(true);
     //}
+=======
+  
+  function isAuthorizedUser(email) {
+    if (email == "madhavi.c@gradious.com") {
+      setLoginStatus(true);
+    }
+>>>>>>> 3c0826b1b0f17786511933e9de58f9dc9641b860
   }
   useEffect(() => {
 
@@ -51,6 +60,7 @@ function App() {
       isAuthorizedUser(responsePayload.email);
 
     }
+<<<<<<< HEAD
 
 
 
@@ -67,6 +77,8 @@ function App() {
     // return () => clearInterval(intervalId);
 
 
+=======
+>>>>>>> 3c0826b1b0f17786511933e9de58f9dc9641b860
   }, []);
 
   const getApiData = () => {
@@ -78,7 +90,9 @@ function App() {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result)
+          console.log(result.body)
+          setGotres(true);
+          setResData(result.body)
         },
         (error) => {
           console.log(error)
@@ -90,16 +104,30 @@ function App() {
     <div className="App">
       {!Loginstatus && <div id="buttonDiv"></div>}
 
+<<<<<<< HEAD
       {Loginstatus && <Header />}
+=======
+      {Loginstatus && <Header />} 
+>>>>>>> 3c0826b1b0f17786511933e9de58f9dc9641b860
       <div className='Content'>
         {Loginstatus && <Problems />}
         {Loginstatus && <CodeEditor />}
         {Loginstatus && <OutputWindow />}
       </div>
+<<<<<<< HEAD
 
       {Gotres && <p>ResData</p>}
       {Loginstatus && <Footer />}
 
+=======
+      {Loginstatus && <Footer />}
+
+      {Loginstatus && <Footer />}
+
+      <button onClick={() => getApiData()}> get result</button>
+
+      {Gotres && <p>ResData</p>}
+>>>>>>> 3c0826b1b0f17786511933e9de58f9dc9641b860
     </div>
   );
 }
