@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from 'react'
 
-function Footer()
-{
-
-    return(
-
-<footer class="footer">
-<div class="container">
-  <small class="text-muted">
-    <span> &copy; Copyright 2022 <a href="">Gradious</a></span>
-  </small>
-</div>
-</footer>
-
-
-    )
+const Footer = () => {
+  return (
+    <footer>
+      <span className='bottom'> &copy; Copyrights 
+        <a href=""> Gradious </a> 
+      </span> 
+    </footer>
+  )
 }
 
 export default Footer;

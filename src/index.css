@@ -58,5 +58,56 @@ code {
 .outputHead{
   background-color: #000;
   color: #fff;
-  margin-top:-3px
+  margin-top: 0PX;
+  padding: 5px 0;
+}
+
+.logo
+{
+    height: 50px;
+    border-radius: 25px; 
+    margin: 10px;   
+}
+
+.nav-item
+{
+    display: inline-flex;
+    position: absolute;
+    left: 5px;
+}
+
+.navItem
+{
+    background-color: gray;
+    height: 65px;
+}
+
+.logout 
+{
+  display: inline-flex;
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+footer
+{
+    background-color: gray;
+    text-align: center;
+    position: relative;
+    height: 50px;
+    width: 100%;
+    top: 15px;
+}
+
+.bottom
+{
+    position: absolute;
+    top: 15px;
+}
+
+a{
+    text-decoration: none;
 }

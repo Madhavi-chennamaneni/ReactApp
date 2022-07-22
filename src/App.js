@@ -16,18 +16,11 @@ function App() {
   const [Gotres, setGotres] = useState(false);
   const [ResData, setResData] = useState("");
   // camera.startCamera();
-<<<<<<< HEAD
 
   function isAuthorizedUser(email) {
     //if(email == "madhavi.c@gradious.com"){
     setLoginStatus(true);
     //}
-=======
-  function isAuthorizedUser(email) {
-    if (email == "madhavi.c@gradious.com") {
-      setLoginStatus(true);
-    }
->>>>>>> cfad9b41495dac7cb024e81f25d82e4496e9c5ca
   }
   useEffect(() => {
 
@@ -58,7 +51,6 @@ function App() {
       isAuthorizedUser(responsePayload.email);
 
     }
-<<<<<<< HEAD
 
 
 
@@ -75,8 +67,6 @@ function App() {
     // return () => clearInterval(intervalId);
 
 
-=======
->>>>>>> cfad9b41495dac7cb024e81f25d82e4496e9c5ca
   }, []);
 
   const getApiData = () => {
@@ -101,21 +91,14 @@ function App() {
       {!Loginstatus && <div id="buttonDiv"></div>}
 
       {Loginstatus && <Header />}
-<<<<<<< HEAD
       <div className='Content'>
         {Loginstatus && <Problems />}
         {Loginstatus && <CodeEditor />}
         {Loginstatus && <OutputWindow />}
       </div>
-      {Loginstatus && <Footer />}
-=======
-
-      {Loginstatus && <Footer />}
-
-      <button onClick={() => getApiData()}> get result</button>
 
       {Gotres && <p>ResData</p>}
->>>>>>> cfad9b41495dac7cb024e81f25d82e4496e9c5ca
+      {Loginstatus && <Footer />}
 
     </div>
   );
