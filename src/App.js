@@ -3,17 +3,21 @@ import './App.css';
 import camera from './Camera';
 import React, { useState, useEffect } from "react";
 import Header from './Header';
+import Problems from './Problems';
+import CodeEditor from './CodeEditor'
+import OutputWindow from './OutputWindow'
 import Footer from './Footer';
 
+
 function App() {
-const [Loginstatus,setLoginStatus]=useState(false);
+  const [Loginstatus, setLoginStatus] = useState(false);
 
   // camera.startCamera();
 
-  function isAuthorizedUser(email){
-    if(email == "madhavi.c@gradious.com"){
-      setLoginStatus(true);
-    }
+  function isAuthorizedUser(email) {
+    //if(email == "madhavi.c@gradious.com"){
+    setLoginStatus(true);
+    //}
   }
 
 
@@ -50,7 +54,7 @@ const [Loginstatus,setLoginStatus]=useState(false);
 
     }
 
-    
+
 
 
 
@@ -64,18 +68,22 @@ const [Loginstatus,setLoginStatus]=useState(false);
     // }, 5000);
     // return () => clearInterval(intervalId);
 
-    
+
   }, []);
 
 
 
   return (
     <div className="App">
-    {!Loginstatus&& <div id="buttonDiv"></div>}
+      {!Loginstatus && <div id="buttonDiv"></div>}
 
-   {Loginstatus && <Header/>} 
-      
-   {Loginstatus && <Footer/>} 
+      {Loginstatus && <Header />}
+      <div className='Content'>
+        {Loginstatus && <Problems />}
+        {Loginstatus && <CodeEditor />}
+        {Loginstatus && <OutputWindow />}
+      </div>
+      {Loginstatus && <Footer />}
 
     </div>
   );
