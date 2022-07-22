@@ -57,7 +57,9 @@ function App() {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result)
+          console.log(result.body)
+          setGotres(true);
+          setResData(result.body)
         },
         (error) => {
           console.log(error)
@@ -74,8 +76,6 @@ function App() {
       {Loginstatus && <Footer />}
 
       <button onClick={() => getApiData()}> get result</button>
-
-      {Gotres && <p>ResData</p>}
 
     </div>
   );
