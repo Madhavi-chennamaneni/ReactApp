@@ -7,20 +7,28 @@ import Problems from './Problems';
 import CodeEditor from './CodeEditor'
 import OutputWindow from './OutputWindow'
 import Footer from './Footer';
+import axios from 'axios';
 
 
 function App() {
   const [Loginstatus, setLoginStatus] = useState(false);
 
+  const [Gotres, setGotres] = useState(false);
+  const [ResData, setResData] = useState("");
   // camera.startCamera();
+<<<<<<< HEAD
 
   function isAuthorizedUser(email) {
     //if(email == "madhavi.c@gradious.com"){
     setLoginStatus(true);
     //}
+=======
+  function isAuthorizedUser(email) {
+    if (email == "madhavi.c@gradious.com") {
+      setLoginStatus(true);
+    }
+>>>>>>> cfad9b41495dac7cb024e81f25d82e4496e9c5ca
   }
-
-
   useEffect(() => {
 
     /* global google*/
@@ -34,10 +42,7 @@ function App() {
       { theme: "outline", size: "large" }  // customization attributes
     );
     google.accounts.id.prompt(); // also display the One Tap dialog
-
-
     function handleCredentialResponse(response) {
-
       console.log("Encoded JWT ID token: " + response.credential);
       /*global jwt_decode*/
       const responsePayload = jwt_decode(response.credential);
@@ -53,6 +58,7 @@ function App() {
       isAuthorizedUser(responsePayload.email);
 
     }
+<<<<<<< HEAD
 
 
 
@@ -69,21 +75,47 @@ function App() {
     // return () => clearInterval(intervalId);
 
 
+=======
+>>>>>>> cfad9b41495dac7cb024e81f25d82e4496e9c5ca
   }, []);
 
-
+  const getApiData = () => {
+    const requestOptions = {
+      method: 'POST',
+      body: JSON.stringify({ "code": "public class TestClass {public static void main(String[] args) {System.out.println(1+2);System.out.println(9+9);}}" })
+    };
+    fetch("https://pk8eaiaa0h.execute-api.ap-south-1.amazonaws.com/beta", requestOptions)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(result)
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+  };
 
   return (
     <div className="App">
       {!Loginstatus && <div id="buttonDiv"></div>}
 
       {Loginstatus && <Header />}
+<<<<<<< HEAD
       <div className='Content'>
         {Loginstatus && <Problems />}
         {Loginstatus && <CodeEditor />}
         {Loginstatus && <OutputWindow />}
       </div>
       {Loginstatus && <Footer />}
+=======
+
+      {Loginstatus && <Footer />}
+
+      <button onClick={() => getApiData()}> get result</button>
+
+      {Gotres && <p>ResData</p>}
+>>>>>>> cfad9b41495dac7cb024e81f25d82e4496e9c5ca
 
     </div>
   );

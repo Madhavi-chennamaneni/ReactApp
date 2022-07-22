@@ -4,7 +4,11 @@
   "private": true,
   "main": "public/main.js",
   "dependencies": {
+<<<<<<< HEAD
     "@monaco-editor/react": "^4.4.5",
+=======
+    "@electron/remote": "^2.0.8",
+>>>>>>> cfad9b41495dac7cb024e81f25d82e4496e9c5ca
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
