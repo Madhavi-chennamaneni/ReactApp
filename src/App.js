@@ -1,10 +1,15 @@
+
 import logo from './logo.svg';
 import './App.css';
 import camera from './Camera';
 import React, { useState, useEffect } from "react";
 import Header from './Header';
+import Problems from './Problems';
+import CodeEditor from './CodeEditor'
+import OutputWindow from './OutputWindow'
 import Footer from './Footer';
 import axios from 'axios';
+
 
 function App() {
   const [Loginstatus, setLoginStatus] = useState(false);
@@ -12,6 +17,7 @@ function App() {
   const [Gotres, setGotres] = useState(false);
   const [ResData, setResData] = useState("");
   // camera.startCamera();
+  
   function isAuthorizedUser(email) {
     if (email == "madhavi.c@gradious.com") {
       setLoginStatus(true);
@@ -71,12 +77,19 @@ function App() {
     <div className="App">
       {!Loginstatus && <div id="buttonDiv"></div>}
 
-      {Loginstatus && <Header />}
+      {Loginstatus && <Header />} 
+      <div className='Content'>
+        {Loginstatus && <Problems />}
+        {Loginstatus && <CodeEditor />}
+        {Loginstatus && <OutputWindow />}
+      </div>
+      {Loginstatus && <Footer />}
 
       {Loginstatus && <Footer />}
 
       <button onClick={() => getApiData()}> get result</button>
 
+      {Gotres && <p>ResData</p>}
     </div>
   );
 }
