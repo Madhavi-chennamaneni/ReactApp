@@ -5,13 +5,19 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/ext-language_tools";
-
-function onChange(newValue) {
-  console.log("change", newValue);
-}
+import { propTypes } from "react-ace-editor";
 
 
-const CodeEditor = () => {
+
+
+const CodeEditor = (Props) => {
+
+  function onChange(newValue) {
+    console.log("change", newValue);
+    Props.codeChange(newValue)
+  }
+
+
   return (
     <div className="codeEditor">
       <div className="selector">
@@ -37,11 +43,12 @@ const CodeEditor = () => {
         height="100vh"
         mode="java"
         theme="github"
+        value={Props.UserCode}
         onChange={onChange}
         name="UNIQUE_ID_OF_DIV"
         editorProps={{ $blockScrolling: true }}
       />,
-      <button className="runBtn">Run Code</button>
+      <button className="runBtn" onClick={Props.getOutput}>Run Code</button>
     </div>
   );
 };
