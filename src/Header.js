@@ -4,7 +4,7 @@ import './index.css';
 
 const Header = () => {
   return (
-    <nav className='navItem'>
+    <nav className='navHeader'>
       <div className='nav-item'>
         <img className='logo' src={pic} alt="Gradious" />
         <h2>Gradious</h2>

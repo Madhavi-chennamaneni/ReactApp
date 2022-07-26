@@ -8,23 +8,22 @@ import CodeEditor from './CodeEditor'
 import OutputWindow from './OutputWindow'
 import Footer from './Footer';
 import axios from 'axios';
-
+import Split from 'react-split';
 
 function App() {
   const [Loginstatus, setLoginStatus] = useState(false);
   const [Gotres, setGotres] = useState(false);
-  var [UserCode,SetUserCode]=useState(``);
-  var [CodeOutput,SetCodeOutput]=useState(``);
+  var [UserCode, SetUserCode] = useState(``);
+  var [CodeOutput, SetCodeOutput] = useState(``);
 
-  function codeChange(NewValue)
-  {
+  function codeChange(NewValue) {
     SetUserCode(NewValue)
   }
   // camera.startCamera();
   function isAuthorizedUser(email) {
-    if (email == "msparth89@gmail.com") {
+    //if (email == "msparth89@gmail.com") {
       setLoginStatus(true);
-    }
+    //}
   }
   useEffect(() => {
 
@@ -67,26 +66,25 @@ function App() {
   }, []);
 
 
-function getOutput()
-{
-  var code=UserCode.split("\n")
-  for(var i=0;i<code.length;i++)
-  {
-    code[i]=code[i].trim();
-    code[i]=code[i].replace('//start here',"")
+  function getOutput() {
+    var code = UserCode.split("\n")
+    for (var i = 0; i < code.length; i++) {
+      code[i] = code[i].trim();
+      code[i] = code[i].replace('//start here', "")
+    }
+    code = code.join('');
+    getApiData(code)
+
   }
-  code=code.join('');
-  getApiData(code)
 
-}
-
-   const  getApiData = async (code) => {
+  const getApiData = async (code) => {
 
     const requestOptions = {
       method: 'POST',
-      headers:{
-      'Content-Type': 'text/plain'},
-      body:JSON.stringify({ "code": code})
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      body: JSON.stringify({ "code": code })
     };
     await fetch("https://pk8eaiaa0h.execute-api.ap-south-1.amazonaws.com/beta", requestOptions)
       .then(res => res.json())
@@ -105,14 +103,12 @@ function getOutput()
       {!Loginstatus && <div id="buttonDiv"></div>}
 
       {Loginstatus && <Header />}
- 
-      <div className='Content'>
-        {Loginstatus && <Problems />}
-        {Loginstatus && <CodeEditor UserCode={UserCode} codeChange={codeChange} getOutput={getOutput}/>}
-        {Loginstatus && <OutputWindow CodeOutput={CodeOutput}/>}
-      </div>
-      {Loginstatus && <Footer />}
 
+      {Loginstatus && <Split direction="horizontal" className='main-container'>
+        {Loginstatus && <Problems />}
+        {Loginstatus && <CodeEditor UserCode={UserCode} codeChange={codeChange} getOutput={getOutput} />}
+        {Loginstatus && <OutputWindow CodeOutput={CodeOutput} />}
+      </Split>}
       {Loginstatus && <Footer />}
 
     </div>
