@@ -1,4 +1,3 @@
-
 import logo from './logo.svg';
 import './App.css';
 import camera from './Camera';
@@ -13,15 +12,19 @@ import axios from 'axios';
 
 function App() {
   const [Loginstatus, setLoginStatus] = useState(false);
-
   const [Gotres, setGotres] = useState(false);
-  const [ResData, setResData] = useState("");
-  // camera.startCamera();
+  var [UserCode,SetUserCode]=useState(``);
+  var [CodeOutput,SetCodeOutput]=useState(``);
 
+  function codeChange(NewValue)
+  {
+    SetUserCode(NewValue)
+  }
+  // camera.startCamera();
   function isAuthorizedUser(email) {
-    //if(email == "madhavi.c@gradious.com"){
-    setLoginStatus(true);
-    //}
+    if (email == "msparth89@gmail.com") {
+      setLoginStatus(true);
+    }
   }
   useEffect(() => {
 
@@ -51,24 +54,48 @@ function App() {
 
       isAuthorizedUser(responsePayload.email);
 
+      SetUserCode(`public class TestClass
+      {
+          public static void main(String[] args) 
+          { 
+          //start here
+          
+          }
+      }`)
+
     }
   }, []);
 
-  const getApiData = () => {
+
+function getOutput()
+{
+  var code=UserCode.split("\n")
+  for(var i=0;i<code.length;i++)
+  {
+    code[i]=code[i].trim();
+    code[i]=code[i].replace('//start here',"")
+  }
+  code=code.join('');
+  getApiData(code)
+
+}
+
+   const  getApiData = async (code) => {
+
     const requestOptions = {
       method: 'POST',
-      body: JSON.stringify({ "code": "public class TestClass {public static void main(String[] args) {System.out.println(1+2);System.out.println(9+9);}}" })
+      headers:{
+      'Content-Type': 'text/plain'},
+      body:JSON.stringify({ "code": code})
     };
-    fetch("https://pk8eaiaa0h.execute-api.ap-south-1.amazonaws.com/beta", requestOptions)
+    await fetch("https://pk8eaiaa0h.execute-api.ap-south-1.amazonaws.com/beta", requestOptions)
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result.body)
-          setGotres(true);
-          setResData(result.body)
+          SetCodeOutput(JSON.parse(result.body).message)
         },
         (error) => {
-          console.log(error)
+          SetCodeOutput(error.message)
         }
       )
   };
@@ -77,14 +104,15 @@ function App() {
     <div className="App">
       {!Loginstatus && <div id="buttonDiv"></div>}
 
-      {Loginstatus && <Header />} 
+      {Loginstatus && <Header />}
+ 
       <div className='Content'>
         {Loginstatus && <Problems />}
-        {Loginstatus && <CodeEditor />}
-        {Loginstatus && <OutputWindow />}
+        {Loginstatus && <CodeEditor UserCode={UserCode} codeChange={codeChange} getOutput={getOutput}/>}
+        {Loginstatus && <OutputWindow CodeOutput={CodeOutput}/>}
       </div>
+      {Loginstatus && <Footer />}
 
-      {Gotres && <p>ResData</p>}
       {Loginstatus && <Footer />}
 
     </div>
