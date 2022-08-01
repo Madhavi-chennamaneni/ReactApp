@@ -1,16 +1,85 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter',sans-serif;
+  font-size: 'normal';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* Login page */
+.form{
+  width: 500px;
+  background:  #F8F9FA;
+  border-radius: 10px; 
+  margin-left:425px;
+  padding-bottom: 10px;
+  box-shadow:0 6px 16px 0 rgb(0 0 0 / 20%);
+}
+.tabs{
+  display: flex;
+  justify-content: center;
+  margin-top:100px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.tab{
+  background:   #F8F9FA;
+  padding: 15px 20px;
+  flex-grow: 1;
+}
+.active{
+  background:#fff;
+  box-shadow:2px 0px 5px 0px #888888;
+  padding: 15px 20px;
+  flex-grow: 1;
+}
+.signInForm,.signUpForm{
+  margin: 30px 0;
+}
+
+input[type='text'],input[type='email'],input[type='number']{
+  width:75%;
+  margin: 5px 10px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  background: #f3f7f7;
+  border: inset ;
+  outline: none;
+}
+.signupBtn{
+  width: 200px;
+  font-weight: 200;
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin: 10px 8px; 
+  padding: 8px 20px;
+  background: #28A745;
+  border-radius: 20px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+#signInBtn{
+  padding:10px ;
+  border-radius: 10px;
+  font-weight: 200;
+  font-size: 20px;
+  background: #4285F4;
+  color: #eee;
+  border: none;
+}
+
+/* header */
 
 .logo {
   height: 50px;
@@ -30,7 +99,7 @@ nav {
 
 .navHeader {
   display: block;
-  background-color: gray;
+  background-color: rgb(145,144,144);
   height: 65px;
   width: 100%;
 }
@@ -44,19 +113,38 @@ nav {
   font-size: larger;
 }
 
+body{
+  width: 100%;
+  margin: 0;
+  background: #fff;
+}
 
 .main-container {
-  min-height: 100vh;
   display: flex;
-  margin-top: 10px;
+  margin: 10px 8px 0;
 }
 
 .problem {
+  min-width: 10%;
   width: 100%;
-  height: 100vh;
-  padding-bottom: 110px;
-  background-color: aliceblue;
+  background-color: #F8F9FA;
+  text-align: left;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 27px;
   overflow: hidden;
+  overflow-y: auto;
+  height: calc(100vh - 20vh)
+}
+
+.question {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
 }
 
 .selector {
@@ -64,43 +152,76 @@ nav {
   justify-content: space-between;
   margin: 10px;
   width: 100%;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
 }
-.selectLanguage{
+
+.selectLanguage {
   margin-right: 20px;
 }
 
 .codeEditor {
   width: 100%;
-  min-height: 100vh;
+  height: calc(100vh - 20vh);
   display: flex;
   flex-direction: column;
-  background: #000;
+  background: black;
   color: #fff;
+}
+
+.btnDiv{
+  display: flex;
+  justify-content: space-between;
 }
 
 .runBtn {
   width: 100px;
-  margin-top: 10px;
-  background: blue;
+  margin: 10px 8px;
+  align-items: center;
+  padding: 8px 12.5px;
+  background: #28A745;
+  border-radius: 20px;
   color: white;
-  padding: 10px;
   outline: none;
   border: none;
+  float: right;
+}
+
+.customInput{
+  margin: 10px 0;
 }
 
 .outputWindow {
-  min-height: 100vh;
-  padding-bottom: 90px;
-  background-color: lightblue;
-  color: #000;
+  min-width: 20%;
+  background-color: #F8F9FA;
+  color: #202020;
   text-align: left;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  height: calc(100vh - 20vh);
+  overflow-y: auto;
 }
 
 .outputHead {
-  background-color: #000;
+  background-color:rgb(145,144,144);
   color: #fff;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 27px;
   margin-top: 0PX;
   padding: 5px 0;
+}
+
+.output {
+  margin-left: 10px;
 }
 
 .split {
@@ -109,7 +230,7 @@ nav {
 }
 
 .gutter {
-  background-color: #eee;
+  background-color:#888888;
   background-repeat: no-repeat;
   background-position: 50%;
 }
@@ -121,12 +242,12 @@ nav {
 
 
 footer {
-  background-color: gray;
+  background-color: rgb(145,144,144);
   text-align: center;
-  position: relative;
+  position: fixed;
   height: 50px;
   width: 100%;
-  top: 15px;
+  bottom: 0;
 }
 
 .bottom {
