@@ -1,7 +1,8 @@
 import React from 'react';
-import LoginForm from './SigninForm'
+import SigninForm from './SigninForm'
 import SignupForm from './SignupForm';
 import { useState } from 'react';
+import './LoginPage.css'
 
 const LoginPage = () => {
     const [toggle, setToggle] = useState(1);
@@ -15,8 +16,8 @@ const LoginPage = () => {
                 <div className={toggle === 2 ? 'active' : 'tab'} onClick={() => handleClick(2)}>Sign Up</div>
             </div>
             <div className='formContent'>
-                <LoginForm toggle={toggle} />
-                <SignupForm toggle={toggle} />
+                {(toggle==1)&&<SigninForm  />}
+                {(toggle==2)&&<SignupForm  />}
             </div>
         </form>
     )

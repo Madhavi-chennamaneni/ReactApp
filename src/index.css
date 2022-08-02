@@ -1,4 +1,5 @@
-body {
+body 
+{
   margin: 0;
   font-family: 'Inter',sans-serif;
   font-size: 'normal';
@@ -7,116 +8,10 @@ body {
 
 }
 
-code {
+code 
+{
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-/* Login page */
-.form{
-  width: 500px;
-  background:  #F8F9FA;
-  border-radius: 10px; 
-  margin-left:425px;
-  padding-bottom: 10px;
-  box-shadow:0 6px 16px 0 rgb(0 0 0 / 20%);
-}
-.tabs{
-  display: flex;
-  justify-content: center;
-  margin-top:100px;
-  width: 100%;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 22px;
-}
-
-.tab{
-  background:   #F8F9FA;
-  padding: 15px 20px;
-  flex-grow: 1;
-}
-.active{
-  background:#fff;
-  box-shadow:2px 0px 5px 0px #888888;
-  padding: 15px 20px;
-  flex-grow: 1;
-}
-.signInForm,.signUpForm{
-  margin: 30px 0;
-}
-
-input[type='text'],input[type='email'],input[type='number']{
-  width:75%;
-  margin: 5px 10px;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 18px;
-  font-weight: 500;
-  background: #f3f7f7;
-  border: inset ;
-  outline: none;
-}
-.signupBtn{
-  width: 200px;
-  font-weight: 200;
-  font-size: 20px;
-  letter-spacing: 2px;
-  margin: 10px 8px; 
-  padding: 8px 20px;
-  background: #28A745;
-  border-radius: 20px;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-#signInBtn{
-  padding:10px ;
-  border-radius: 10px;
-  font-weight: 200;
-  font-size: 20px;
-  background: #4285F4;
-  color: #eee;
-  border: none;
-}
-
-/* header */
-
-.logo {
-  height: 50px;
-  border-radius: 25px;
-  margin: 10px;
-}
-
-nav {
-  width: 100%;
-}
-
-.nav-item {
-  display: inline-flex;
-  position: absolute;
-  left: 5px;
-}
-
-.navHeader {
-  display: block;
-  background-color: rgb(145,144,144);
-  height: 65px;
-  width: 100%;
-}
-
-.logout {
-  display: inline-flex;
-  position: absolute;
-  right: 10px;
-  top: 20px;
-  font-weight: bolder;
-  font-size: larger;
-}
-
-body{
-  width: 100%;
-  margin: 0;
-  background: #fff;
 }
 
 .main-container {
@@ -238,23 +133,4 @@ body{
 .gutter.gutter-horizontal {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
   cursor: col-resize;
-}
-
-
-footer {
-  background-color: rgb(145,144,144);
-  text-align: center;
-  position: fixed;
-  height: 50px;
-  width: 100%;
-  bottom: 0;
-}
-
-.bottom {
-  position: absolute;
-  top: 15px;
-}
-
-a {
-  text-decoration: none;
 }

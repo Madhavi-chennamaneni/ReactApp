@@ -1,15 +1,14 @@
-import logo from './logo.svg';
+import {httpCall } from './util';
 import './App.css';
 import camera from './Camera';
 import React, { useState, useEffect } from "react";
-import Header from './Header';
-import Problems from './Problems';
-import CodeEditor from './CodeEditor';
-import OutputWindow from './OutputWindow';
-import Footer from './Footer';
+import Header from './Components/Header/Header';
+import LoginPage from './Components/LoginPage/LoginPage';
+import Footer from './Components/Footer/Footer'
 import axios from 'axios';
-import Split from 'react-split';
-import { executeUserCode,buildCodeForJava,httpCall } from './util';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate,useNavigate} from "react-router-dom";
+import CodeSection from './Components/CodeSection/CodeSection';
+import Home from './Components/Home/Home';
 //import executeCode from './util';
 
 function App() {
@@ -17,14 +16,20 @@ function App() {
   const [Gotres, setGotres] = useState(false);
   var [UserCode, setUserCode] = useState(``);
   var [CodeOutput, setCodeOutput] = useState(``);
-
-  function codeChange(NewValue) {
-    setUserCode(NewValue);
-  }
+  // const navigate=useNavigate()
+  // function codeChange(NewValue) {
+  //   setUserCode(NewValue);
+  // }
   // camera.startCamera();
   function isAuthorizedUser(email) {
     //if (email == "msparth89@gmail.com") {
     setLoginStatus(true);
+    // {Loginstatus&& <Navigate replace to="/home"/>}
+    // if(Loginstatus){
+    //   navigate('/home')
+    // }
+   
+     <Navigate  replace to="/home" />
     //}
   }
   useEffect(() => {
@@ -34,7 +39,7 @@ function App() {
       callback: handleCredentialResponse
     });
     google.accounts.id.renderButton(
-      document.getElementById("buttonDiv"),
+      document.getElementById("signInBtn"),
       { theme: "outline", size: "large" }  // customization attributes
     );
     google.accounts.id.prompt(); // also display the One Tap dialog
@@ -51,6 +56,7 @@ function App() {
       //document.getElementById('profile').innerHTML = `<img src="${responsePayload.picture}" class="profile">`;
       console.log("Email: " + responsePayload.email);
       isAuthorizedUser(responsePayload.email);
+
     }
   }, []);
 
@@ -100,18 +106,19 @@ function App() {
         });
     }
 }
-
-
   return (
     <div className="App">
-      {!Loginstatus && <div id="buttonDiv"></div>}
-      {Loginstatus && <Header />}
-      {Loginstatus && <Split direction="horizontal" className='main-container'>
-        {Loginstatus && <Problems />}
-        {Loginstatus && <CodeEditor UserCode={UserCode} codeChange={codeChange} executeCode={executeCode} />}
-        {Loginstatus && <OutputWindow CodeOutput={CodeOutput} />}
-      </Split>}
-      {Loginstatus && <Footer />}
+      <Header />
+       {/* {!Loginstatus&& <Navigate replace to="/home"/>} */}
+      <Router>
+      {/* {!Loginstatus && <LoginPage/>} */}
+          <Routes>
+            <Route path="/" element={!Loginstatus && <LoginPage />} />         
+            <Route path="/home" element={ <Home/>}/>
+            <Route path="/codingsection" element={<CodeSection/>}/>
+          </Routes>
+      </Router>
+      <Footer />
     </div>
   );
 }
