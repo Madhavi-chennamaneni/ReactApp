@@ -5,6 +5,10 @@
   "main": "public/main.js",
   "dependencies": {
     "@electron/remote": "^2.0.8",
+    "@fortawesome/fontawesome-svg-core": "^6.1.2",
+    "@fortawesome/free-regular-svg-icons": "^6.1.2",
+    "@fortawesome/free-solid-svg-icons": "^6.1.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -14,9 +18,12 @@
     "react": "^18.2.0",
     "react-ace": "^10.1.0",
     "react-ace-editor": "^0.0.3",
+    "react-collapsed": "^3.3.2",
+    "react-data-table-component": "^7.5.2",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "usb-detection": "^4.14.1",
+    "react-split": "^2.0.14",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

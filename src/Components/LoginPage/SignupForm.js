@@ -1,9 +1,8 @@
 import React from 'react'
 
-const SignupForm = ({ toggle}) => {
+const SignupForm = () => {
     return (
         <div className='signUpForm'>
-            {toggle === 2 ? (
                 <form autoComplete='off'>
                     <input type='text' required placeholder='Enter your Name' autoFocus /><br />
                     <input type="email" required placeholder="Enter your email" /><br />
@@ -13,8 +12,6 @@ const SignupForm = ({ toggle}) => {
                     <button type="button" className="signupBtn">SignUp</button>
                     <hr />
                 </form>
-            ) : null}
-
         </div>
     )
 }

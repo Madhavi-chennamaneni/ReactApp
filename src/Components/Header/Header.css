@@ -1,0 +1,58 @@
+.logo 
+{
+  height: 26px;
+  margin: 10px;
+  position: relative;
+  padding-top: 3px;
+}
+
+.profile 
+{
+  border-radius: 50px; 
+  height: 50px;
+  position: absolute;
+  top: -7px;
+  right: 115px;
+}
+
+#name 
+{
+  color: black;
+  font-size: 20px;
+  font-weight: bolder;
+  position: relative;
+  right: 10px;
+  top: 0px;
+}
+
+.nav-item 
+{
+  display: inline-flex;
+  position: absolute;
+  left: 5px;
+}
+
+header
+{
+  background-color: #F8F9FA;
+  height: 50px;
+}
+
+.logout 
+{
+  display: inline-flex;
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  font-weight: 500;
+  font-size: 12px;
+  font-family: Inter;
+  font-style: normal;
+  font-size: larger;
+  color: gray;
+}
+
+.nav-link
+{
+  text-decoration: none;
+}
