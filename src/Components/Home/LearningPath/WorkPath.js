@@ -1,63 +1,62 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './WorkPath.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown'
-import { faFileCircleQuestion } from '@fortawesome/free-solid-svg-icons/faFileCircleQuestion'
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons/faChevronUp'
 import { faFileLines } from '@fortawesome/free-solid-svg-icons/faFileLines'
-import { faComments } from '@fortawesome/free-regular-svg-icons/faComments'
-import { faFile } from '@fortawesome/free-regular-svg-icons/faFile'
+import { isDOMComponent } from 'react-dom/test-utils'
+import OverDue from './OverDue'
+import WeekDue from './WeekDue';
+
+const currentDate = new Date();
+const currentWeek = Math.ceil((currentDate.getDate() + 6 - currentDate.getDay()) / 7);
+
+let first = currentDate.getDate() - currentDate.getDay() + 7; // First day is the day of the month - the day of the week
+let last = first + 6; // last day is the first day + 6
+
+let firstday = new Date(currentDate.setDate(first)).toDateString();
+let lastday = new Date(currentDate.setDate(last)).toDateString();
 
 export default function WorkPath() {
-  return (
-    <div className='card-4'>
-        <div className='card-5'>  <hr />
-            <button className='dropdown'> 
-                Work To Do 
-                <FontAwesomeIcon className='downIcon' icon={faChevronDown}/>
-            </button>
-            <div className='overdue'> 
-                Overdue 
-                <span class="badge"> 3 </span>
-            </div> <br /> <hr />
-            <div className=''>  
-                <FontAwesomeIcon className='file-qn' icon={faFileCircleQuestion}>  </FontAwesomeIcon>
-                <span className='file-qn-text'> JavaScript Quiz </span> <br />
-                <span className='file-qn-date'> Due Jul. 30 
-                    <li> 4 days to go </li> 
-                </span>
-                <FontAwesomeIcon className='file' icon={faFileLines}>  </FontAwesomeIcon>
-                <span className='file-text'> JavaScript Book Report </span> <br />
-                <span className='file-date'> Due Aug. 02
-                    <li> 6 days to go </li> 
-                </span>
-                <FontAwesomeIcon className='comment' icon={faComments}>  </FontAwesomeIcon>
-                <span className='comment-text'> JavaScript Class Discussion </span> <br />
-                <span className='comment-date'> Due Aug. 07
-                    <li> 10 days to go </li> 
-                </span>
-                <div className='due-date'>
-                    August 10 - February 18
-                </div> <br /> <br /> <br /> <br /> <br /> <br /> <hr />
+    const [isOpen, setIsOpen] = useState(true);
+    const [datas, setDatas] = useState([]);
+
+    useEffect(() => {
+        fetch(
+            "https://62eb6772705264f263d7de1e.mockapi.io/assignment")
+            .then((res) => res.json())
+            .then((json) => {
+                setDatas(json)
+            })
+           
+    }, [])
+   
+   
+    return (
+        <div className='card-4'>
+            <div className='card-5'>  <hr />
+                <button className='workToDoBtn'>
+                    Work To Do&nbsp;
+                    <FontAwesomeIcon className='Icon' icon={(isOpen === true) ? faChevronDown : faChevronUp} onClick={() => setIsOpen(!isOpen)} />
+                </button>
+                {(isOpen === true) ? (
+                    <>
+                        <div className='overDueSection'>
+                            <div className='overdueHead'>
+                                <h3 className='overDue'>Overdue</h3>
+                                <span class="badge">{datas.length} </span>
+                            </div><hr />
+                            <div className='DueList'>
+                                {datas.map(data => ((Math.ceil((new Date(data.dueDate).getDate() + 6 - new Date(data.dueDate).getDay()) / 7)) === currentWeek) ? (
+                                    <div className='overDueList'> <FontAwesomeIcon className='icon' icon={faFileLines} /><OverDue data={data}  /></div>
+                                ) : (<div className=''>
+                                    <h3>{firstday} - {lastday}</h3><hr />
+                                    <div className='overDueList'> <FontAwesomeIcon className='icon' icon={faFileLines} /><WeekDue data={data} /></div>
+                                </div>))}
+                            </div>
+                        </div>
+                    </>) : null}
             </div>
-            <div>
-                <FontAwesomeIcon className='file-qn-2' icon={faFileCircleQuestion}>  </FontAwesomeIcon>
-                <span className='file-qn-text'> Algebra and Fractions Pop Quiz </span> <br />
-                <span className='file-qn-date-2'> Due Aug. 12 
-                    <li className='li-2'> Grade 5 Mathematics </li> 
-                </span>
-                <FontAwesomeIcon className='file-2' icon={faFile}>  </FontAwesomeIcon>
-                <span className='file-text-2'> Class Feedback Survey </span> <br />
-                <span className='file-date-2'> Due Aug. 15
-                    <li className='li-2'> Classroom Announcements </li> 
-                </span>
-                <FontAwesomeIcon className='file-3' icon={faFileLines}>  </FontAwesomeIcon>
-                <span className='file-text-3'> Candiate History </span> <br />
-                <span className='file-date-3'> Due Aug. 15
-                    <li className='li-2'> Candiate History </li> 
-                </span>
-            </div> <br /> <br /> <br /> <br /> <br /> <br /> 
-            <a className='view-link' href="#"> View all work </a>  <hr className='last-hr' />
         </div>
-    </div>
-  )
+    )
 }

@@ -1,295 +1,74 @@
-main
-{
-    width: 100%;
-    height: 100%;
-}
-
-.card-4
-{
-    position: absolute;
-    top: 158px;
-    left: 855px;
-    width: 432px;
-    height: 565px;
+.card-4{
     background-color: #F8F9FA;
-    box-shadow: 0px 1px 0px #EFF0F1;
+    width: 30%;
+    overflow-y:scroll;
 }
+.card-5{
+    min-height:100vh;
+    background:#fff;
+    text-align: left;
+    margin:10px;
 
-.card-5
-{
-    position: absolute;
-    top: 8px;
-    left: 12px;
-    right: 14px;
-    bottom: 11px;
-    width: 409px;
-    height: 545px;
-    background-color: white;
-    box-shadow: 0px 1px 0px #EFF0F1;
 }
-
-.dropdown
-{
-    background-color: white;
+.workToDoBtn{
+    width: 100%;
     border: none;
-    font-family: Inter;
-    font-style: normal;
-    font-size: 20px;
-    font-weight: 700;
-    position: relative;
-    top: 1px;
-    left: -140px;
+    text-align: left;
+    padding: 10px 0 ;
+    font-family: 'Inter';
+    font-size: 24px;
+    font-weight: 750;
+    background:none;
+    margin-top: -10px;
+}
+.overdueHead{
+   display: flex;
+   justify-content: space-between;
 }
 
-.downIcon
-{
-    position: absolute;
-    left: 125px;
-}
-
-.overdue
-{
-    position: relative;
-    top: 15px;
-    left: -150px;
-    font-family: Inter;
-    font-style: normal;
-    font-size: 22px;
-    font-weight: 700;
-    /* width: 130px;
-    height: 20px; */
-}
-
-.file-qn
-{
-    font-size: 25px;
-    color: rgb(145, 144, 144);
-    position: absolute;
-    top: 113px;
-    left: 15px;
-}
-
-.file-qn-2
-{
-    font-size: 25px;
-    color: rgb(145, 144, 144);
-    position: relative;
-    top: 5px;
-    left: -175px;
-}
-
-.file
-{
-    font-size: 30px;
-    color: rgb(145, 144, 144);
-    position: absolute;
-    top: 158px;
-    left: 15px;
-}
-
-.file-2
-{
-    font-size: 30px;
-    color: rgb(145, 144, 144);
-    position: absolute;
-    top: 378px;
-    left: 15px;
-}
-
-.file-3
-{
-    font-size: 30px;
-    color: rgb(145, 144, 144);
-    position: absolute;
-    top: 433px;
-    left: 15px;
-}
-
-.comment
-{
-    font-size: 30px;
-    color: rgb(145, 144, 144);
-    position: absolute;
-    top: 210px;
-    left: 15px;
-}
-
-.file-qn-text
-{
-    font-family: Inter;
-    font-style: normal;
-    font-size: 18px;
+.overDue{
+    margin: 0;
+    padding: 0;
     font-weight: 600;
-    position: absolute;
-    left: 60px;
+    font-size: 24px;
 }
-
-.file-text
-{
-    font-family: Inter;
-    font-style: normal;
-    font-size: 18px;
-    font-weight: 600;
-    position: absolute;
-    top: 153px;
-    left: 60px;
-}
-
-.file-text-2
-{
-    font-family: Inter;
-    font-style: normal;
-    font-size: 18px;
-    font-weight: 600;
-    position: absolute;
-    top: 373px;
-    left: 60px;
-}
-
-.file-text-3
-{
-    font-family: Inter;
-    font-style: normal;
-    font-size: 18px;
-    font-weight: 600;
-    position: absolute;
-    top: 428px;
-    left: 60px;
-}
-
-.comment-text
-{
-    font-family: Inter;
-    font-style: normal;
-    font-size: 18px;
-    font-weight: 600;
-    position: absolute;
-    top: 208px;
-    left: 60px;
-}
-
-.file-qn-date
-{
-    font-family: Inter;
-    font-style: normal;
-    font-size: 18px;
-    font-weight: 500;
-    position: absolute;
-    top: 130px;
-    left: 45px;
-}
-
-.file-qn-date-2
-{
-    font-family: Inter;
-    font-style: normal;
-    font-size: 18px;
-    font-weight: 500;
-    position: relative;
-    top: -1px;
-    left: -97px;
-}
-
-.file-date
-{
-    font-family: Inter;
-    font-style: normal;
-    font-size: 18px;
-    font-weight: 500;
-    position: absolute;
-    top: 178px;
-    left: 50px;
-}
-
-.file-date-2
-{
-    font-family: Inter;
-    font-style: normal;
-    font-size: 18px;
-    font-weight: 500;
-    position: absolute;
-    top: 398px;
-    left: -3px;
-}
-
-.file-date-3
-{
-    font-family: Inter;
-    font-style: normal;
-    font-size: 18px;
-    font-weight: 500;
-    position: absolute;
-    top: 453px;
-    left: 33px;
-}
-
-.comment-date
-{
-    font-family: Inter;
-    font-style: normal;
-    font-size: 18px;
-    font-weight: 500;
-    position: absolute;
-    top: 235px;
-    left: 47px;
-}
-
-li
-{
-    position: relative;
-    top: -22px;
-    left: 140px;
-    /* width: 305px; */
-}
-
-.li-2
-{
-    position: relative;
-    top: -22px;
-    left: 170px;
-} 
-
-.due-date
-{
-    font-family: Inter;
-    font-style: normal;
-    font-size: 22px;
-    font-weight: 700;
-    position: absolute;
-    top: 265px;
-    left: 15px;
-}
-
-.view-link
-{
-    color: rgb(84, 84, 238);
-    font-family: Inter;
-    font-style: normal;
-    font-size: 18px;
-    font-weight: 500;
-    position: absolute;
-    bottom: 30px;
-    left: 15px;
-}
-
-.badge
-{
+.badge{
     background-color: rgb(184, 118, 32);
     color: white;
     text-align: center;
-    align-items: center;
-    justify-content: center;
+    margin-right: 10px;
+    padding: 3px;
     font-size: 18px;
     width: 25px;
     height: 25px;
     border-radius: 50px;
-    position: absolute;
-    right: -115px;
-    top: -0.3px;
+}
+.overDueList{
+    display: flex;
+}
+.icon{
+    font-size: 30px;
+    color: rgb(145, 144, 144);
+    margin-left: 20px;
 }
 
-.last-hr
-{
-    position: relative;
-    bottom: 25px;
+.exerciseName{
+    margin: 0;
+    padding: 0;
+    margin-left:20px;
+    font-family: 'Inter';
+    font-size: 24px;
+    font-weight: 700;
+}
+.dueDate{
+    display: flex;
+    margin-left: 20px;
+    margin-top: 5px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 18px;
+    font-weight: 500;
+}
+.remainingDay{
+    margin-left: 20px;
 }
