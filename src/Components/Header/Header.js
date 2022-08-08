@@ -12,7 +12,7 @@ const Header = (Props) => {
       <div className="logout">
         <span id="profile"></span> &nbsp;
         <span id="name"></span>
-      {localStorage.getItem("loggedin")&&  <a className="nav-link" onClick={()=>{localStorage.removeItem('loggedin');}} href="/">Logout</a>}
+      {(localStorage.getItem("loggedin")==="true")&&  <a className="nav-link" onClick={()=>{localStorage.setItem('loggedin',"false");}} href="/">Logout</a>}
       </div>
     </header>
   )

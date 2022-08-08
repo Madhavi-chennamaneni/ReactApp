@@ -26,18 +26,18 @@ function App() {
   function isAuthorizedUser(email) {
     //if (email == "msparth89@gmail.com") {
 
-      localStorage.setItem('loggedin', true);
+      localStorage.setItem('loggedin', "true");
     setLoginStatus(true);
     // {Loginstatus&& <Navigate replace to="/home"/>}
    // if(Loginstatus){
-      navigate('/home')
+      navigate('/home');
     //}
    
-    //  <Navigate  replace to="/home" />
+    //  <Navigate  replace to="/" />
     //}
   }
   useEffect(() => {
-    if(!localStorage.getItem("loggedin")){
+    if((localStorage.getItem("loggedin")==="false")||(localStorage.getItem("loggedin")===null)){
 
     /* global google*/
     google.accounts.id.initialize({
@@ -65,6 +65,9 @@ function App() {
     }
 
     }
+    // else{
+    //   navigate('/home');
+    // }
   }, []);
 
    async function executeCode(language,method,code)
@@ -115,10 +118,12 @@ function App() {
 }
   return (
     <div className="App">
-      <Header Loginstatus={Loginstatus}/>
-       {/* {!Loginstatus&& <Navigate replace to="/home"/>} */}
-    
-      {/* {!Loginstatus && <LoginPage/>} */}
+     <Header/>
+
+    { ((localStorage.getItem("loggedin")==="false")||(localStorage.getItem("loggedin")===null)) &&  <LoginPage />}
+
+<>
+      { (localStorage.getItem("loggedin")==="true") && 
           <Routes>
             <Route path="/" element={!Loginstatus && <LoginPage />} />         
             <Route path="/home" element={ <Home/>}/>
@@ -126,6 +131,9 @@ function App() {
             <Route path="/questions" element={<QuestionsEntry/>}/>
             <Route path="/uploads" element={<Uploads/>}/>
           </Routes>
+}
+</>
+   
 
       <Footer />
     </div>
