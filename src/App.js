@@ -9,6 +9,8 @@ import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate,useNavigate} from "react-router-dom";
 import CodeSection from './Components/CodeSection/CodeSection';
 import Home from './Components/Home/Home';
+import QuestionsEntry from  './QuestionsEntry'
+import Uploads from './uploads';
 //import executeCode from './util';
 
 function App() {
@@ -16,23 +18,27 @@ function App() {
   const [Gotres, setGotres] = useState(false);
   var [UserCode, setUserCode] = useState(``);
   var [CodeOutput, setCodeOutput] = useState(``);
-  // const navigate=useNavigate()
+  const navigate=useNavigate()
   // function codeChange(NewValue) {
   //   setUserCode(NewValue);
   // }
   // camera.startCamera();
   function isAuthorizedUser(email) {
     //if (email == "msparth89@gmail.com") {
+
+      localStorage.setItem('loggedin', true);
     setLoginStatus(true);
     // {Loginstatus&& <Navigate replace to="/home"/>}
-    // if(Loginstatus){
-    //   navigate('/home')
-    // }
+   // if(Loginstatus){
+      navigate('/home')
+    //}
    
-     <Navigate  replace to="/home" />
+    //  <Navigate  replace to="/home" />
     //}
   }
   useEffect(() => {
+    if(!localStorage.getItem("loggedin")){
+
     /* global google*/
     google.accounts.id.initialize({
       client_id: "197504797372-j73fmcvfadrrqokndu07vat9eobuh6sj.apps.googleusercontent.com",
@@ -56,6 +62,7 @@ function App() {
       //document.getElementById('profile').innerHTML = `<img src="${responsePayload.picture}" class="profile">`;
       console.log("Email: " + responsePayload.email);
       isAuthorizedUser(responsePayload.email);
+    }
 
     }
   }, []);
@@ -86,7 +93,7 @@ function App() {
           'Content-Type': 'text/plain',
       },
   };
-    if (language == "java") {
+    if (language === "java") {
         //var javacode = buildCodeForJava(code);
 
         payload.body=JSON.stringify({"code":buildCodeForJava(code)});
@@ -97,7 +104,7 @@ function App() {
         });
     }
 
-    if (language == "javascript") {
+    if (language === "javascript") {
      payload.body= JSON.stringify({ "code": code });
         return new Promise((resolve, reject) => {
             httpCall("http://localhost:3005/api/javascript", payload)
@@ -108,16 +115,18 @@ function App() {
 }
   return (
     <div className="App">
-      <Header />
+      <Header Loginstatus={Loginstatus}/>
        {/* {!Loginstatus&& <Navigate replace to="/home"/>} */}
-      <Router>
+    
       {/* {!Loginstatus && <LoginPage/>} */}
           <Routes>
             <Route path="/" element={!Loginstatus && <LoginPage />} />         
             <Route path="/home" element={ <Home/>}/>
             <Route path="/codingsection" element={<CodeSection/>}/>
+            <Route path="/questions" element={<QuestionsEntry/>}/>
+            <Route path="/uploads" element={<Uploads/>}/>
           </Routes>
-      </Router>
+
       <Footer />
     </div>
   );

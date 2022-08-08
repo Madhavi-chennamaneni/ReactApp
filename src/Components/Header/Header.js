@@ -2,7 +2,7 @@ import React from 'react';
 import pic from "./Images/logo.jpg";
 import './Header.css';
 
-const Header = () => {
+const Header = (Props) => {
   return (
     <header>
       <div className='nav-item'>
@@ -12,7 +12,7 @@ const Header = () => {
       <div className="logout">
         <span id="profile"></span> &nbsp;
         <span id="name"></span>
-        <a className="nav-link" href="/">Logout</a>
+      {localStorage.getItem("loggedin")&&  <a className="nav-link" onClick={()=>{localStorage.removeItem('loggedin');}} href="/">Logout</a>}
       </div>
     </header>
   )
