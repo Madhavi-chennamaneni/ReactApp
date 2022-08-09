@@ -1,8 +1,7 @@
 import React from "react";
-import { render } from "react-dom";
+// import { render } from "react-dom";
 import AceEditor from "react-ace";
 import { useState } from "react";
-
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/mode-javascript"
 import "ace-builds/src-noconflict/mode-python"
@@ -10,10 +9,7 @@ import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/theme-tomorrow_night"
 import "ace-builds/src-noconflict/theme-gruvbox_dark_hard";
 import "ace-builds/src-noconflict/ext-language_tools";
-import { propTypes } from "react-ace-editor";
-
-
-
+// import { propTypes } from "react-ace-editor";
 
 const CodeEditor = (Props) => {
 
@@ -60,8 +56,6 @@ const CodeEditor = (Props) => {
     }
   }
 
-
-
   return (
     <div className="codeEditor">
       <div className="selector">
@@ -99,4 +93,3 @@ const CodeEditor = (Props) => {
 };
 
 export default CodeEditor;
-

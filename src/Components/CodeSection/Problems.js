@@ -1,10 +1,12 @@
 import React from 'react'
 
-const Problems = () => {
+const Problems = ({data}) => {
   return (
     <div className='problem'>
-        <h2>Exercise 1</h2>
-        <p>Define a function called <code>sum</code> that takes two integers as arguments and returns their sum.</p>
+        <h2>Exercise {data.id}</h2>
+        <p>{data.problemstatement}</p>
+        <h2> Example I/O </h2>
+        <p> {data.exampleio} </p>
     </div>
   )
 }

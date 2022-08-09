@@ -115,10 +115,10 @@ const CodeSection = () => {
 
   useEffect(() => {
     const onBlur = () => {
-      alert(
-        "You have navigated from this screen. Therefore, your answer has been submitted. Here is the new Question ? "
-      );
-      autoSubmit();
+      // alert(
+      //   "You have navigated from this screen. Therefore, your answer has been submitted. Here is the new Question ? "
+      // );
+      // autoSubmit();
     };
     // window.addEventListener("focus", onFocus);
     window.addEventListener("blur", onBlur);
