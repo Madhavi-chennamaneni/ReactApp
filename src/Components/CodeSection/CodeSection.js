@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from "react";
+import "./editorPage.css";
 import CodeEditor from "./CodeEditor";
 import OutputWindow from "./OutputWindow";
 import Problems from "./Problems";
 import Split from "react-split";
-import { useNavigate } from "react-router-dom";
-import { httpCall } from "../../util";
+import { Link, useNavigate } from "react-router-dom";
 
 const CodeSection = () => {
+  /* Problems */
+
+  useEffect(() => {
+    fetch("https://62eb6772705264f263d7de1e.mockapi.io/problems")
+      .then((res) => res.json())
+      .then((json) => {
+        setProblems(json);
+      });
+  }, []);
+
+  /* Output */
   var [UserCode, SetUserCode] = useState(``);
   var [CodeOutput, SetCodeOutput] = useState(``);
 
   function codeChange(NewValue) {
     SetUserCode(NewValue);
-    console.log(UserCode);
   }
 
   function getOutput(language) {
@@ -39,7 +49,7 @@ const CodeSection = () => {
     return code;
   }
 
-  const [question, setQuestion] = useState([]);
+  const [problems, setProblems] = useState([]);
 
   useEffect(() => {
     fetch(
@@ -47,7 +57,7 @@ const CodeSection = () => {
     )
       .then((res) => res.json())
       .then((json) => {
-        setQuestion(json);
+        setProblems(json);
       });
   }, []);
 
@@ -101,7 +111,7 @@ const CodeSection = () => {
   };
 
   const autoSubmit = () => {
-    if (index < question.length - 1) {
+    if (index < problems.length - 1) {
       setIndex(index + 1);
     } else {
       alert("You have attended the maximum chances !");
@@ -133,18 +143,25 @@ const CodeSection = () => {
 
   return (
     <div>
-      {question.map((data) =>
-        index === question.indexOf(data) && index <= question.length - 1 ? (
+      {problems.map((data) =>
+        index === problems.indexOf(data) && index <= problems.length - 1 ? (
           <>
             <Split direction="horizontal" className="main-container">
-              <Problems question={question} index={index} data={data} />
+              <Problems data={data} />
               <CodeEditor
                 UserCode={UserCode}
+                SetUserCode={SetUserCode}
                 codeChange={codeChange}
                 getOutput={getOutput}
                 handleSubmit={handleSubmit}
+                data={data}
               />
-              <OutputWindow CodeOutput={CodeOutput} />
+              <OutputWindow
+                CodeOutput={CodeOutput}
+                problems={problems}
+                handleSubmit={handleSubmit}
+                data={data}
+              />
             </Split>
           </>
         ) : null

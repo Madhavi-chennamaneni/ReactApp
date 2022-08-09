@@ -24,6 +24,21 @@ function Section(props) {
   );
 }
 
+  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse(config);
+  return (
+    <div className="collapsible">
+      <div className="header" {...getToggleProps()}>
+        <div className="title">{props.title}</div>
+        <span className="date">{props.date}</span>
+        <div className="icon">{isExpanded ? "-" : "+"}</div>
+      </div>
+      <div {...getCollapseProps()}>
+        <div className="content">{props.children}</div>
+      </div>
+    </div>
+  );
+}
+
 export default function LearningPath() {
   const [module, setModule] = useState([]);
 
