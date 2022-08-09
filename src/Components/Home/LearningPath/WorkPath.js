@@ -16,6 +16,7 @@ let last = first + 6; // last day is the first day + 6
 
 let firstday = new Date(currentDate.setDate(first)).toDateString();
 let lastday = new Date(currentDate.setDate(last)).toDateString();
+let nextWeek = Math.ceil((first + 6 - new Date(first).getDay()) / 7)
 
 export default function WorkPath() {
     const [isOpen, setIsOpen] = useState(true);
@@ -28,10 +29,10 @@ export default function WorkPath() {
             .then((json) => {
                 setDatas(json)
             })
-           
+
     }, [])
-   
-   
+
+
     return (
         <div className='card-4'>
             <div className='card-5'>  <hr />
@@ -41,22 +42,18 @@ export default function WorkPath() {
                 </button>
                 {(isOpen === true) ? (
                     <>
-                        <div className='overDueSection'>
-                            <div className='overdueHead'>
-                                <h3 className='overDue'>Overdue</h3>
-                                <span class="badge">{datas.length} </span>
-                            </div><hr />
+                        <div className='overDueSection'> 
                             <div className='DueList'>
-                                {datas.map(data => ((Math.ceil((new Date(data.dueDate).getDate() + 6 - new Date(data.dueDate).getDay()) / 7)) === currentWeek) ? (
-                                    <div className='overDueList'> <FontAwesomeIcon className='icon' icon={faFileLines} /><OverDue data={data}  /></div>
-                                ) : (<div className=''>
+                                 <OverDue datas={datas} currentWeek={currentWeek}  FontAwesomeIcon={FontAwesomeIcon} faFileLines={faFileLines}/>
+                                <div className=''>
                                     <h3>{firstday} - {lastday}</h3><hr />
-                                    <div className='overDueList'> <FontAwesomeIcon className='icon' icon={faFileLines} /><WeekDue data={data} /></div>
-                                </div>))}
+                                    <WeekDue datas={datas} nextWeek={nextWeek} 
+                                     FontAwesomeIcon={FontAwesomeIcon} faFileLines={faFileLines} />
+                                </div>
+                                </div>
                             </div>
-                        </div>
-                    </>) : null}
-            </div>
+                        </>) : null}
+                    </div>
         </div>
-    )
+            )
 }
