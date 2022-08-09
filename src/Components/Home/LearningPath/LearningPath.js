@@ -5,6 +5,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus'
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
 import DataTable from 'react-data-table-component';
 import useCollapse from 'react-collapsed';
+import {Link} from 'react-router-dom'
 
 const columns = [
     {
@@ -50,7 +51,7 @@ const data = [
         name: "Data Structure 2",
         type: 'Coding',
         duration: '10 mins',
-        status: <button className='btn-due'> <a href='/codingsection' style={{color:'white', textDecoration:'none'}}> Due </a> </button>,
+        status: <button className='btn-due'> <Link to='/codingsection' style={{color:'white', textDecoration:'none'}}> Due </Link> </button>,
     },
 ]
 
@@ -137,10 +138,10 @@ export default function LearningPath() {
             <div className='module-2-content' {...getCollapseProps()}>
                 <DataTable columns={columns} data={data} customStyles = {customStyles}/>
             </div>
-            <button className='module-3'> 
+            {/* <button className='module-3'> 
                 <span className='module-2-name'> 3. Module 3 Name </span>
                 <span className='module-2-date'> Due by : Thursday, 22nd July </span>
-            </button>
+            </button> */}
     </div>
   )
 }
