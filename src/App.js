@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate,useNavigate} fro
 import CodeSection from './Components/CodeSection/CodeSection';
 import Home from './Components/Home/Home';
 import QuestionsEntry from  './QuestionsEntry'
-import Uploads from './uploads';
+// import Uploads from './uploads';
 //import executeCode from './util';
 
 function App() {
@@ -129,7 +129,7 @@ function App() {
             <Route path="/home" element={ <Home/>}/>
             <Route path="/codingsection" element={<CodeSection/>}/>
             <Route path="/questions" element={<QuestionsEntry/>}/>
-            <Route path="/uploads" element={<Uploads/>}/>
+            {/* <Route path="/uploads" element={<Uploads/>}/> */}
           </Routes>
 }
 </>

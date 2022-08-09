@@ -47,9 +47,9 @@ app.whenReady().then(() => {
 
     checkWindows(function (res) {
         if (res) {
-            checkUSB(function (usbres) {
-                console.log("chk usbbbb")
-                if (usbres) {
+            // checkUSB(function (usbres) {
+                // console.log("chk usbbbb")
+                // if (usbres) {
                     checkscreens(function (screenres) {
 
                         if (screenres) {
@@ -61,12 +61,12 @@ app.whenReady().then(() => {
                         }
                     })
 
-                }
-                else {
-                    mainWindow.loadFile('./src/error.html');
-                }
+                // }
+                // else {
+                    // mainWindow.loadFile('./src/error.html');
+                // }
 
-            })
+            // })
         } else {
             // mainWindow.loadURL("https://www.youtube.com/");
             mainWindow.loadFile('./src/error.html');

@@ -6,9 +6,11 @@ import WorkPath from './LearningPath/WorkPath'
 export default function Home() {
   return (
     <div>
-      <Alert> </Alert>
-      <LearningPath> </LearningPath>
-      <WorkPath> </WorkPath>
+      {/* <Alert/> */}
+      <div className='exerciseSection'>
+        <LearningPath/> 
+        <WorkPath/>
+      </div>
     </div>
   )
 }
