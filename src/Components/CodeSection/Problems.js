@@ -1,12 +1,14 @@
 import React from 'react'
 
-const Problems = () => {
-  return (
-    <div className='problem'>
-        <h2>Exercise 1</h2>
-        <p>Define a function called <code>sum</code> that takes two integers as arguments and returns their sum.</p>
-    </div>
-  )
+const Problems = ({data}) => {
+    return (
+        <div className='problem'>
+                    <h2>Exercise {data.id}</h2>
+                    <p className='question'>{data.problemstatement}</p>
+                    <h2>Example I/O</h2>
+                    <p className='question'>{data.exampleio}</p>   
+        </div>
+    )
 }
 
 export default Problems
