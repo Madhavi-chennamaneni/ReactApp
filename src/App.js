@@ -70,13 +70,11 @@ function App() {
     // }
   }, []);
 
-   async function executeCode(language,method,code)
-  {
-
-    await executeUserCode(language, method,code)
-    .then((result)=>{setCodeOutput(result)});
-
-  }
+  let executeCode = async (language, method, code) => {
+    executeUserCode(language, method, code).then((result) => {
+      setCodeOutput(result);
+    });
+  };
 
   function buildCodeForJava(UserCode) {
     var code = UserCode.split("\n");

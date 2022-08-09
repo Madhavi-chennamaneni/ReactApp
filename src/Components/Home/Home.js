@@ -1,16 +1,14 @@
 import React from 'react'
 import Alert from './Alert/Alert'
 import LearningPath from './LearningPath/LearningPath'
-import WorkPath from './LearningPath/WorkPath'
+import WorkPath from './WorkPath/WorkPath'
 
 export default function Home() {
   return (
-    <div>
-      {/* <Alert/> */}
-      <div className='exerciseSection'>
-        <LearningPath/> 
-        <WorkPath/>
-      </div>
+    <div style={{height:'740px'}}>
+      <Alert> </Alert>
+      <LearningPath> </LearningPath>
+      <WorkPath> </WorkPath>
     </div>
   )
 }

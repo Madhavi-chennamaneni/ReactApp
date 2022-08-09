@@ -1,6 +1,10 @@
 .card-4{
     background-color: #F8F9FA;
-    width: 30%;
+    width: 403px;
+    height: 565px;
+    position: relative;
+    top: -460px;
+    left: 883px;
     overflow-y:scroll;
 }
 .card-5{
@@ -15,6 +19,7 @@
     border: none;
     text-align: left;
     padding: 10px 0 ;
+    padding-left: 10px;
     font-family: 'Inter';
     font-size: 24px;
     font-weight: 750;
@@ -24,6 +29,7 @@
 .overdueHead{
    display: flex;
    justify-content: space-between;
+   padding-left: 10px;
 }
 
 .overDue{
@@ -46,10 +52,11 @@
 .overDueList{
     display: flex;
 }
-.icon{
+.fileIcon{
     font-size: 30px;
     color: rgb(145, 144, 144);
     margin-left: 20px;
+    margin-top: 10px;
 }
 
 .exerciseName{
@@ -71,4 +78,9 @@
 }
 .remainingDay{
     margin-left: 20px;
+}
+
+.week
+{
+    padding-left: 10px;
 }

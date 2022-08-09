@@ -1,0 +1,35 @@
+.btn-submit
+{
+    background-color: #28A745;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    padding: 4.5px 12.5px;
+    gap: 10px;
+    width: 85px;
+    height: 24px;
+    border-radius: 20px;
+    order: 1;
+    border: none;
+}
+
+.btn-due
+{
+    background-color: #DD3646;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    padding: 4.5px 12px;
+    gap: 10px;
+    width: 50px;
+    height: 24px;
+    border-radius: 20px;
+    border: none;
+}
+
+.dataTable
+{
+    max-width: 735px;
+    overflow-y: scroll;
+    max-height: 210px;
+}
