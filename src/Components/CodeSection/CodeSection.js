@@ -5,6 +5,7 @@ import OutputWindow from "./OutputWindow";
 import Problems from "./Problems";
 import Split from "react-split";
 import { Link, useNavigate } from "react-router-dom";
+import { httpCall } from "../../util";
 
 const CodeSection = () => {
   /* Problems */
@@ -125,10 +126,10 @@ const CodeSection = () => {
 
   useEffect(() => {
     const onBlur = () => {
-      // alert(
-      //   "You have navigated from this screen. Therefore, your answer has been submitted. Here is the new Question ? "
-      // );
-      // autoSubmit();
+      alert(
+        "You have navigated from this screen. Therefore, your answer has been submitted. Here is the new Question ? "
+      );
+      autoSubmit();
     };
     // window.addEventListener("focus", onFocus);
     window.addEventListener("blur", onBlur);
@@ -139,7 +140,7 @@ const CodeSection = () => {
       // window.removeEventListener("focus", onFocus);
       window.removeEventListener("blur", onBlur);
     };
-  });
+  },);
 
   return (
     <div>

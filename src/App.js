@@ -55,11 +55,11 @@ function App() {
       const responsePayload = jwt_decode(response.credential);
       console.log("ID: " + responsePayload.sub);
       console.log('Full Name: ' + responsePayload.name);
-      // document.getElementById("name").innerText = responsePayload.name;
+      document.getElementById("name").innerText = responsePayload.name;
       console.log('Given Name: ' + responsePayload.given_name);
       console.log('Family Name: ' + responsePayload.family_name);
       console.log("Image URL: " + responsePayload.picture);
-      //document.getElementById('profile').innerHTML = `<img src="${responsePayload.picture}" class="profile">`;
+      document.getElementById('profile').innerHTML = `<img src="${responsePayload.picture}" class="profile">`;
       console.log("Email: " + responsePayload.email);
       isAuthorizedUser(responsePayload.email);
     }
@@ -125,7 +125,7 @@ function App() {
           <Routes>
             <Route path="/" element={!Loginstatus && <LoginPage />} />         
             <Route path="/home" element={ <Home/>}/>
-            <Route path="/codingsection" element={<CodeSection/>}/>
+            <Route path="/coding" element={<CodeSection/>}/>
             <Route path="/questions" element={<QuestionsEntry/>}/>
             {/* <Route path="/uploads" element={<Uploads/>}/> */}
           </Routes>
