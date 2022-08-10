@@ -11,11 +11,11 @@ function Section(props) {
 
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse(config);
   return (
-    <div className="collapsible">
-      <div className="header" {...getToggleProps()}>
-        <div className="title">{props.title}</div>
-        <span className="date">{props.date}</span>
-        <div className="icon">{isExpanded ? "-" : "+"}</div>
+    <div className="">
+      <div className="lpModule" {...getToggleProps()}>
+        <div className="lpModuleTitle">{props.title}</div>
+        <div className="lpModuleDate">{props.date}
+        <span className="lpModuleDropdownIcon">{isExpanded ? "-" : "+"}</span></div>
       </div>
       <div {...getCollapseProps()}>
         <div className="content">{props.children}</div>
@@ -40,10 +40,10 @@ export default function LearningPath() {
   const currentDate = new Date();
 
   return (
-    <div className="card-3">
-      <span className="msg-2"> Learning Program Name </span>
+    <div className="learningPath">
+      <p className="lpTitle"> Learning Program Name </p>
       {module.map((data) => (
-        <div className="preferences">
+        <div className="lpModuleBody" key={data.id}>
           <Section
             title={data.id + "." + " " + data.module}
             date={

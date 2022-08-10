@@ -5,10 +5,12 @@ import WorkPath from './WorkPath/WorkPath'
 
 export default function Home() {
   return (
-    <div style={{height:'740px'}}>
+    <div className='homePage'>
       <Alert> </Alert>
-      <LearningPath> </LearningPath>
-      <WorkPath> </WorkPath>
+      <div className='lpPathSection'>
+        <LearningPath> </LearningPath>
+        <WorkPath> </WorkPath>
+      </div>
     </div>
   )
 }

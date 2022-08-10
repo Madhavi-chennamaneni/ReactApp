@@ -1,18 +1,9 @@
-.card-4{
-    background-color: #F8F9FA;
-    width: 403px;
-    height: 565px;
-    position: relative;
-    top: -460px;
-    left: 883px;
-    overflow-y:scroll;
-}
-.card-5{
-    min-height:100vh;
-    background:#fff;
-    text-align: left;
-    margin:10px;
-
+.workPath {
+    width: 25%;
+    max-height:calc(100vh - 33vh);
+    background: #F8F9FA;
+    box-shadow: 0px 1px 0px #EFF0F1;
+    overflow: auto;
 }
 .workToDoBtn{
     width: 100%;
@@ -21,22 +12,25 @@
     padding: 10px 0 ;
     padding-left: 10px;
     font-family: 'Inter';
-    font-size: 24px;
-    font-weight: 750;
+    font-size: 22px;
+    font-weight: 700;
     background:none;
     margin-top: -10px;
 }
-.overdueHead{
+.arrowIcon{
+    font-size: 18px;
+}
+.overdueSection{
    display: flex;
    justify-content: space-between;
    padding-left: 10px;
 }
 
-.overDue{
+.overDueHead{
     margin: 0;
     padding: 0;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 22px;
 }
 .badge{
     background-color: rgb(184, 118, 32);
@@ -64,13 +58,13 @@
     padding: 0;
     margin-left:20px;
     font-family: 'Inter';
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
 }
 .dueDate{
     display: flex;
-    margin-left: 20px;
-    margin-top: 5px;
+    margin-left: 65px;
+    margin-top: -10px;
     font-family: 'Inter';
     font-style: normal;
     font-size: 18px;
@@ -80,7 +74,10 @@
     margin-left: 20px;
 }
 
-.week
+.nextWeekDate
 {
-    padding-left: 10px;
+    padding-left: 0px;
+    font-size: 22px;
+    font-weight: 500;
+    color: #000000;
 }

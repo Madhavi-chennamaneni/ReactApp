@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 
 const OutputWindow = (Props) => {
   const [seconds, setSeconds] = useState(Props.data.maxtime);
-
+  console.log(Props.data.maxtime)
   useEffect(() => {
     const timer = setInterval(() => {
       if (seconds > 0) {
