@@ -19,7 +19,11 @@ const Header = (Props) => {
       <div className="logout">
         <span id="profile" onClick={() => setOnclick(!onclick)} ></span> &nbsp;
         <span id="name"></span>
-      {(localStorage.getItem("loggedin")==="true")&&  <a className="nav-link" onClick={()=>{localStorage.setItem('loggedin',"false");}} href="/">Logout</a>}
+      { onclick === true ? localStorage.getItem("loggedin")==="true" &&  (
+          <Link className="nav-link" to="/" onClick={()=>{localStorage.setItem('loggedin','false');}}>
+            Logout
+          </Link>
+        ): null}
       </div>
     </header>
   );
