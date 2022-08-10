@@ -14,27 +14,27 @@ export default function Table() {
     {
       name: "NAME",
       selector: (row) => row.name,
-      width: "179px",
+      width: "200px",
     },
     {
       name: "TYPE",
       selector: (row) => row.type,
-      width: "120px",
+      width: "135px",
     },
     {
       name: "DURATION",
       selector: (row) => row.duration,
-      width: "156px",
+      width: "169px",
     },
     {
       name: "STATUS",
       // selector: (row) => row.status,
       cell:(row) => <button className="btn-due">
-      <Link to="/coding" style={{ color: "white", textDecoration: "none" }}>
+      <Link to="/coding" style={{ color: "white", textDecoration: "none" ,textAlign:"center"}}>
         Due
       </Link>
     </button>,
-      width: "188px",
+      width: "197px",
     },
   ];
 

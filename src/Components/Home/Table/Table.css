@@ -1,3 +1,10 @@
+.dataTable
+{
+    max-width: 790px;
+    overflow: auto;
+    max-height: 210px;
+    margin-left: 50px;
+}
 .btn-submit
 {
     background-color: #28A745;
@@ -25,11 +32,4 @@
     height: 24px;
     border-radius: 20px;
     border: none;
-}
-
-.dataTable
-{
-    max-width: 735px;
-    overflow-y: scroll;
-    max-height: 210px;
 }
