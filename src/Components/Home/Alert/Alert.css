@@ -1,42 +1,27 @@
-.cardAlert
-{
+.lpAlert {
     background-color: #F8F9FA;
-    position: absolute;
-    width: 1231px;
-    height: 54px;
-    top: 77px;
-    left: 56px;
+    padding: 10px 0;
+    margin: 0 46px;
+    text-align: left;
     box-shadow: 0px 1px 0px #EFF0F1;
 }
 
-.cardLine
-{
-    background-color: #F55533;
-    position: absolute;
-    width: 49px;
-    left: -19px;
-    top: 24px;
-    border: 4px solid #F55533;
-    transform: rotate(90deg);
+.lpLine {
+    border: 2px solid #F55533;
+    padding: 13px 0;
 }
 
-.msg
-{
-    position: absolute;
-    width: 450px;
-    height: 26px;
-    left: -66px;
-    top: 18px;
-    font-family: 'Inter';
+.lpAlertMsg {
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
     line-height: 17px;
     color: #000000;
+    margin-left: 20px;
 }
 
-.dangerIcon
-{
+.dangerIcon {
     box-sizing: border-box;
     width: 22px;
     height: 22px;

@@ -1,38 +1,42 @@
 .workPath {
     width: 25%;
-    max-height:calc(100vh - 33vh);
+    max-height: calc(100vh - 33vh);
     background: #F8F9FA;
     box-shadow: 0px 1px 0px #EFF0F1;
     overflow: auto;
 }
-.workToDoBtn{
+
+.workToDoBtn {
     width: 100%;
     border: none;
     text-align: left;
-    padding: 10px 0 ;
+    padding: 10px 0;
     padding-left: 10px;
-    font-family: 'Inter';
+    font-family: 'Poppins';
     font-size: 22px;
     font-weight: 700;
-    background:none;
+    background: none;
     margin-top: -10px;
 }
-.arrowIcon{
+
+.arrowIcon {
     font-size: 18px;
 }
-.overdueSection{
-   display: flex;
-   justify-content: space-between;
-   padding-left: 10px;
+
+.overdueSection {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
 }
 
-.overDueHead{
+.overDueHead {
     margin: 0;
     padding: 0;
     font-weight: 600;
     font-size: 22px;
 }
-.badge{
+
+.badge {
     background-color: rgb(184, 118, 32);
     color: white;
     text-align: center;
@@ -43,39 +47,42 @@
     height: 25px;
     border-radius: 50px;
 }
-.overDueList{
+
+.overDueList {
     display: flex;
 }
-.fileIcon{
+
+.fileIcon {
     font-size: 30px;
     color: rgb(145, 144, 144);
     margin-left: 20px;
     margin-top: 10px;
 }
 
-.exerciseName{
+.exerciseName {
     margin: 0;
     padding: 0;
-    margin-left:20px;
-    font-family: 'Inter';
+    margin-left: 20px;
+    font-family: 'Poppins';
     font-size: 20px;
     font-weight: 700;
 }
-.dueDate{
+
+.dueDate {
     display: flex;
     margin-left: 65px;
     margin-top: -10px;
-    font-family: 'Inter';
+    font-family: 'Poppins';
     font-style: normal;
     font-size: 18px;
     font-weight: 500;
 }
-.remainingDay{
+
+.remainingDay {
     margin-left: 20px;
 }
 
-.nextWeekDate
-{
+.nextWeekDate {
     padding-left: 0px;
     font-size: 22px;
     font-weight: 500;

@@ -11,11 +11,13 @@ function Section(props) {
 
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse(config);
   return (
-    <div className="">
+    <div>
       <div className="lpModule" {...getToggleProps()}>
         <div className="lpModuleTitle">{props.title}</div>
-        <div className="lpModuleDate">{props.date}
-        <span className="lpModuleDropdownIcon">{isExpanded ? "-" : "+"}</span></div>
+        <div className="lpModuleDate">
+          {props.date}
+          <span className="lpModuleDropdownIcon">{isExpanded ? "-" : "+"}</span>
+        </div>
       </div>
       <div {...getCollapseProps()}>
         <div className="content">{props.children}</div>
@@ -24,8 +26,13 @@ function Section(props) {
   );
 }
 
-export default function LearningPath() {
+export default function LearningPath({ data, attendQuestion }) {
+  // console.log(Props.data);
   const [module, setModule] = useState([]);
+
+  function attendQuestion1(row) {
+    attendQuestion(row);
+  }
 
   useEffect(() => {
     fetch(
@@ -33,7 +40,7 @@ export default function LearningPath() {
     )
       .then((res) => res.json())
       .then((json) => {
-        setModule(json);
+        setModule(data);
       });
   }, []);
 
@@ -41,20 +48,32 @@ export default function LearningPath() {
 
   return (
     <div className="learningPath">
-      <p className="lpTitle"> Learning Program Name </p>
       {module.map((data) => (
-        <div className="lpModuleBody" key={data.id}>
-          <Section
-            title={data.id + "." + " " + data.module}
-            date={
-              new Date(data.duedate).getDate() - currentDate.getDate() >= 1
-                ? "Due Date : " + data.duedate
-                : "Due Date : " + "Late"
-            }
-          >
-            <Table /> <br />
-          </Section>
-        </div>
+        <>
+          <p className="lpTitle">{data.learning_path}</p>
+          <div className="lpModuleBody" key={data}>
+            {data.data.map((module) => (
+              <Section
+                title={module.id_module + "." + " " + module.module}
+                date={
+                  new Date(module.due_date).getDate() - currentDate.getDate() >=
+                  1
+                    ? "Due Date : " + module.due_date
+                    : "Due Date : " + "Late"
+                }
+              >
+                <Table
+                  complexity={module.complexity}
+                  attendQuestion={attendQuestion1}
+                />{" "}
+                <br />
+                {/* <Table questions = {module.complexity.map(complexity=>complexity.questions)}/> <br /> */}
+                {/* <Table module={module.complexity}/> <br /> */}
+                {/* <Table module={data}/> <br /> */}
+              </Section>
+            ))}
+          </div>
+        </>
       ))}
     </div>
   );

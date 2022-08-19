@@ -1,5 +1,4 @@
-.header
-{
+.header {
   position: fixed;
   background-color: #F8F9FA;
   top: 0;
@@ -7,40 +6,37 @@
   height: 50px;
 }
 
-.logo 
-{
+.logo {
   height: 26px;
   margin: 10px;
   float: left;
 }
 
-.logInProfile 
-{
-  border-radius: 50px; 
+.logInProfile {
+  border-radius: 50px;
   height: 35px;
   position: absolute;
   right: 75px;
-  top:7px
+  top: 7px
 }
 
-#logInName 
-{
+#logInName {
   color: black;
   font-size: 20px;
-  font-weight: bolder;
-  font-family: Inter;
+  font-weight: 600;
+  font-family: 'Poppins';
   position: absolute;
   right: 120px;
   top: 10px;
 }
 
-.logoutLink{
+.logoutLink {
   float: right;
   text-decoration: none;
-  margin:10px;
+  margin: 10px;
   font-weight: 500;
   font-size: 12px;
-  font-family: Inter;
+  font-family: 'Poppins';
   font-style: normal;
   font-size: larger;
   color: gray;
