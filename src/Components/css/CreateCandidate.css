@@ -1,0 +1,87 @@
+.totalContainer {
+    position:absolute;
+    overflow: hidden;
+    width: 36%;
+    min-width: 350px;
+    height: auto;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    float:right ;
+   top:30px;
+   right: 45px;
+   margin-right: 15px;
+  }
+  .modalContainer .title {
+    display: inline-block;
+    text-align: left;
+    margin-top: 0px;
+    font-size: 10px;
+    border-bottom:rgb(248, 246, 246) 2px solid;
+  }
+  .titleCloseBtn {
+ margin-top: 0px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0px;
+    
+  }
+  .autotextul{
+    overflow: auto;
+    max-height: 100px;
+  }
+  .btnclose{
+    border: none;
+    background-color: transparent;
+  }
+.candidateinput{
+    text-align: left;
+    
+}
+
+  .label{
+   
+    font-size: 15px;
+font-weight:600;
+
+  }
+  .candidateinputtext{
+    border: solid rgb(150, 148, 148) 1px;
+    border-radius: 3px;
+    width: 100%;
+    height: 20px;
+  }
+  .autotextli {
+    border: solid rgb(150, 148, 148) 1px;
+    border-radius: 10px;
+ 
+  }
+.footer {
+  display: flex;
+  padding-top: 25px;
+  justify-content: left;
+  align-items: center;
+}
+.btn-save-active{
+  background-color: red;
+  color:white;
+  border: solid red;
+  border-radius: 5%;
+
+}
+.btn-save-disbale{
+  border: 1px solid #e0e0e0;
+  background-color: #cccccc;
+  color: #666666;
+}
+.btn-cancel{
+  background: none;
+  border-radius: 5%;
+  margin-left: 5px;
+  border: solid gray 1px;
+  background-color: rgb(223, 219, 219);
+}
+

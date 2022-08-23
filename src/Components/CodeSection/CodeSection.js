@@ -8,7 +8,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { httpCall } from "../../util";
 
 const CodeSection = () => {
-  /* Problems */
+
+  var [UserCode, SetUserCode] = useState(``);
+  var [CodeOutput, SetCodeOutput] = useState(``);
+  var [Language, SetLanguage] = useState(``);
+  var [Id, SetId] = useState(0);
 
   useEffect(() => {
     fetch("https://62eb6772705264f263d7de1e.mockapi.io/problems")
@@ -18,15 +22,13 @@ const CodeSection = () => {
       });
   }, []);
 
-  /* Output */
-  var [UserCode, SetUserCode] = useState(``);
-  var [CodeOutput, SetCodeOutput] = useState(``);
+
 
   function codeChange(NewValue) {
     SetUserCode(NewValue);
   }
 
-  function getOutput(language) {
+  let getOutput=(language,id)=> {
     var code = UserCode.split("\n");
     var url = "";
     for (var i = 0; i < code.length; i++) {
@@ -36,7 +38,7 @@ const CodeSection = () => {
     code = code.join("");
 
     if (language === "JavaScript") {
-      url = "http://192.168.1.111:3005/api/runjavascript";
+      url = "http://192.168.1.112:3005/api/runjavascript";
     }
     if (language === "java") {
       url = "https://pk8eaiaa0h.execute-api.ap-south-1.amazonaws.com/beta";
@@ -45,6 +47,8 @@ const CodeSection = () => {
     if (language === "c/c++") {
       url = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
     }
+
+    console.log(url);
 
     makeHttpCall(url);
     return code;
@@ -65,11 +69,14 @@ const CodeSection = () => {
   const [index, setIndex] = useState(0);
   const navigate = useNavigate();
 
-  const handleSubmit = (language) => {
+  const handleSubmit = (language,id) => {
+    SetLanguage(language);
+    SetId(id);
+
     ////////////////////
     var url = "";
     if (language === "JavaScript") {
-      url = "http://192.168.1.111:3005/api/savequestion";
+      url = "http://192.168.1.111:3005/api/verifyusercode";
     }
     if (language === "Java") {
       url = "https://pk8eaiaa0h.execute-api.ap-south-1.amazonaws.com/beta";
@@ -99,7 +106,7 @@ const CodeSection = () => {
         "Content-Type": "text/plain",
       },
     };
-    payload.body = JSON.stringify({ code: UserCode });
+    payload.body = JSON.stringify({ code:UserCode,id:Id,language:Language });
     httpCall(url, payload)
       .then((result) => {
         console.log("result is   js  ", result);
@@ -125,20 +132,20 @@ const CodeSection = () => {
   };
 
   useEffect(() => {
-    const onBlur = () => {
-      alert(
-        "You have navigated from this screen. Therefore, your answer has been submitted. Here is the new Question ? "
-      );
-      autoSubmit();
-    };
+    // const onBlur = () => {
+      // alert(
+        // "You have navigated from this screen. Therefore, your answer has been submitted. Here is the new Question ? "
+      // );
+      // autoSubmit();
+    // };
     // window.addEventListener("focus", onFocus);
-    window.addEventListener("blur", onBlur);
+    // window.addEventListener("blur", onBlur);
 
-    onFocus();
+    // onFocus();
 
     return () => {
       // window.removeEventListener("focus", onFocus);
-      window.removeEventListener("blur", onBlur);
+      // window.removeEventListener("blur", onBlur);
     };
   },);
 

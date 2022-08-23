@@ -101,8 +101,8 @@ const CodeEditor = (Props) => {
           editorProps={{ $blockScrolling: true }}
         />
         <div className="btnDiv">
-          <button className="runBtn" onClick={Props.getOutput}>Run Code</button>
-          <button className="submitBtn" onClick={()=>{Props.handleSubmit()}}>Submit Code</button>
+          <button className="runBtn" onClick={()=>{Props.getOutput(language,Props.data.id)}}>Run Code</button>
+          <button className="submitBtn" onClick={()=>{Props.handleSubmit(language,Props.data.id)}}>Submit Code</button>
         </div>
         {/*  <div className="customInputArea">
           <label htmlFor="customInput" className="customInputLabel">Custom Input</label>

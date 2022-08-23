@@ -1,0 +1,16 @@
+.taketestbutton{
+    width: 81px;
+    height: 34px;
+    box-sizing: border-box;
+    background: #F55533;
+    border-radius: 4px;
+    font-family: 'Inter';
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    border-style: none;
+}
+
+table, th, td {
+    border: 1px solid black;
+  }

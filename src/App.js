@@ -9,7 +9,9 @@ import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate,useNavigate} from "react-router-dom";
 import CodeSection from './Components/CodeSection/CodeSection';
 import Home from './Components/Home/Home';
-import QuestionsEntry from  './QuestionsEntry'
+import QuestionsEntry from  './QuestionsEntry';
+import AdminHeader from './Components/AdminHeader';
+
 // import Uploads from './uploads';
 //import executeCode from './util';
 
@@ -19,19 +21,21 @@ function App() {
   var [UserCode, setUserCode] = useState(``);
   var [CodeOutput, setCodeOutput] = useState(``);
   const navigate=useNavigate()
+  const[UserType,setUserType]=useState("")
   // function codeChange(NewValue) {
   //   setUserCode(NewValue);
   // }
   // camera.startCamera();
   function isAuthorizedUser(email) {
-    //if (email == "msparth89@gmail.com") {
+    if (email == "msparth89@gmail.com") {
 
       localStorage.setItem('loggedin', "true");
     setLoginStatus(true);
+    setUserType("admin")
     // {Loginstatus&& <Navigate replace to="/home"/>}
    // if(Loginstatus){
       navigate('/home');
-    //}
+    }
    
     //  <Navigate  replace to="/" />
     //}
@@ -65,9 +69,7 @@ function App() {
     }
 
     }
-    // else{
-    //   navigate('/home');
-    // }
+
   }, []);
 
   let executeCode = async (language, method, code) => {
@@ -116,20 +118,28 @@ function App() {
 }
   return (
     <div className="App">
-     <Header/>
+      {/* <Header/> */}
+    
 
     { ((localStorage.getItem("loggedin")==="false")||(localStorage.getItem("loggedin")===null)) &&  <LoginPage />}
 
+    
+    {(UserType=="admin")&&<AdminHeader/>}
+
 <>
+
       { (localStorage.getItem("loggedin")==="true") && 
+        
           <Routes>
+            
             <Route path="/" element={!Loginstatus && <LoginPage />} />         
             <Route path="/home" element={ <Home/>}/>
             <Route path="/coding" element={<CodeSection/>}/>
             <Route path="/questions" element={<QuestionsEntry/>}/>
             {/* <Route path="/uploads" element={<Uploads/>}/> */}
           </Routes>
-}
+        }
+
 </>
    
 
