@@ -3,8 +3,7 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 
 const Header = (Props) => {
-
-  const [onclick, setOnclick] = useState (false);
+  const [onclick, setOnclick] = useState(false);
 
   return (
     <header className="header">
@@ -15,13 +14,20 @@ const Header = (Props) => {
           alt="Gradious"
         />
       </div>
-        <span id="logInProfile" onClick={() => setOnclick(!onclick)} ></span> &nbsp;
-        <span id="logInName"></span>
-      {  localStorage.getItem("loggedin")==="true" &&  (
-          <Link className="logoutLink" to="/" onClick={()=>{localStorage.setItem('loggedin','false');}}>
-            Logout
-          </Link>
-        )}
+      <span id="logInProfile" onClick={() => setOnclick(!onclick)}></span>{" "}
+      &nbsp;
+      <span id="logInName"></span>
+      {localStorage.getItem("loggedin") === "true" && (
+        <Link
+          className="logoutLink"
+          to="/"
+          onClick={() => {
+            localStorage.removeItem("loggedin");
+          }}
+        >
+          Logout
+        </Link>
+      )}
     </header>
   );
 };

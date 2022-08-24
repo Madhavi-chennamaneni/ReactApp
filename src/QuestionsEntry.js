@@ -5,8 +5,10 @@ import Io from './Components/testcases/io';
 import Qcodesdata from './Components/qcodes/languages';
 import Modules from './Components/modules/Modules';
 import Complexity from './Components/complexity/Complexity';
+import AdminHeader from './Components/AdminHeader';
+import FeatureComp from './Components/Featurecomponent';
 
-function QuestionsEntry() {
+function QuestionsEntry(Props) {
     let [UserInput, setuserinp] = useState({
         category: 1,
         autoevaluate: "no"
@@ -112,8 +114,7 @@ function QuestionsEntry() {
 
     return (
         <div>
-            <h2 >Add Questions To Database</h2>
-
+      
 
             <form >
                 {/* <fieldset> */}
@@ -185,8 +186,13 @@ function QuestionsEntry() {
                 <br />
 
                 <div class="col-auto my-1">
-                    <button type="button" onClick={() => { handleSubmit() }} class="btn btn-primary">Submit</button>
+                    <button type="button" onClick={() => { handleSubmit() }} class="btn btn-primary">Submit</button> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" onClick={() => { Props.showquestions() }} class="btn btn-primary">Close</button>
                 </div> 
+
+                {/* <div class="col-auto my-1">
+                    <button type="button" onClick={() => { Props.showquestions() }} class="btn btn-primary">Close</button>
+                </div>  */}
 
                 {/* </fieldset> */}
             </form>

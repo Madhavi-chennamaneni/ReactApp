@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-function Uploads() {
+import AdminHeader from './Components/AdminHeader';
+import download  from 'js-file-download'
+function Uploads(Props) {
 
     const [type, setType] = useState("");
     const [selectedFile, setSelectedFile] = useState(null);
@@ -11,11 +13,16 @@ function Uploads() {
         formData.append("file", selectedFile);
        let UPLOAD_URL="http://localhost:3005/api/uploads";
         axios
-          .post(UPLOAD_URL, formData)
+          .post(UPLOAD_URL, formData) 
+        
+        // .then(response => {
+        //     console.log(response)
+        // }).catch(error => {
+        //     console.log(error)
+        // })
           .then((res) => {
-            //console.log(res)
-               // console.log(res.body)
-            alert("File Upload success   "+res.data);
+            download(res.data, "processed_candidate_file.csv");
+              //  res.data.pipe(fs.createWriteStream("/temp/my.csv"));
           })
           .catch((err) => alert("File Upload Error"));
       };
@@ -31,6 +38,7 @@ let setRadio=(e)=>{
   return (
 
     <>
+s
     <div class="file_uploads">
       <h2>File Uploads</h2>
       <form>
@@ -54,8 +62,13 @@ Choose file type:
 </div>
 
 <div class="col-auto my-1">
-                        <button type="button" onClick={() => { handleSubmit() }} class="btn btn-primary">Submit</button>
+                        <button type="button" onClick={() => { handleSubmit() }} class="btn btn-primary">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" onClick={() => { Props.uploadQuestionCSV() }} class="btn btn-primary">Close</button>
                     </div>
+                    
+                {/* <div class="col-auto my-1">
+                    <button type="button" onClick={() => { Props.uploadQuestionCSV() }} class="btn btn-primary">Close</button>
+                </div>  */}
 
                     </form>
                     <br/>
@@ -67,13 +80,13 @@ Choose file type:
 
 <div>
 {/* <a href={require("./static/Learning_program.csv")} download="myFile"><button type="button">Download Questions Template</button></a> */}
-<a href="../../static/Learning_program.csv" download="Lp.csv"><button type="button">Download Questions Template</button></a>
+<a href="../../static/Questions.csv" download="Lp.csv"><button type="button">Download Questions Template</button></a>
 <br/>
 <br/>
-<a href="../../static/Modules.csv" download="Modules.csv"><button type="button">Download Modules Template</button></a>
+<a href="../../static/Candidate.csv" download="Modules.csv"><button type="button">Download Candidate Template</button></a>
 <br/>
 <br/>
-<a href="../../static/Questions.csv" download="Questions.csv"><button type="button" download>Download Learning Program Template</button></a>
+{/* <a href="../../static/Questions.csv" download="Questions.csv"><button type="button" download>Download Learning Program Template</button></a> */}
 <br/>
 </div>  
 

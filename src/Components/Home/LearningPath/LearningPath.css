@@ -5,40 +5,10 @@
     overflow: auto;
 }
 
-.lpAlert {
-    background-color: #F8F9FA;
-    padding: 10px 0;
-    margin: 0 46px;
-    text-align: left;
-    box-shadow: 0px 1px 0px #EFF0F1;
-}
-
-.lpLine {
-    border: 2px solid #F55533;
-    padding: 13px 0;
-}
-
-.lpAlertMsg {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 17px;
-    color: #000000;
-    margin-left: 20px;
-}
-
-.dangerIcon {
-    box-sizing: border-box;
-    width: 22px;
-    height: 22px;
-    color: #F30D0D;
-}
-
 .lpPathSection {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly   ;
+    justify-content: space-evenly;
     margin: 20px 0px;
     height: calc(100vh - 33vh)
 }
@@ -50,18 +20,20 @@
     width: 65%;
     text-align: left;
 }
-.lpTitle{
-    font-family: 'Inter';
+
+.lpTitle {
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
     font-size: 22px;
     line-height: 27px;
     color: #000000;
-    padding:10px;
+    padding: 10px;
     margin-left: 20px;
 }
-.lpModule{
-    padding:15px 6px;
+
+.lpModule {
+    padding: 15px 6px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -69,8 +41,9 @@
     margin: 0 27px 20px;
     box-shadow: 2px 5px 4px #EFF0F1;
 }
-.lpModuleTitle{
-    font-family: 'Inter';
+
+.lpModuleTitle {
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
     font-size: 22px;
@@ -79,8 +52,9 @@
     position: relative;
     left: 13px;
 }
-.lpModuleDate{
-    font-family: 'Inter';
+
+.lpModuleDate {
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -89,12 +63,13 @@
     position: relative;
     right: 60px;
 }
-.lpModuleDropdownIcon{
+
+.lpModuleDropdownIcon {
     font-size: 30px;
     font-weight: 700;
     font-style: normal;
-    font-family: Inter;
+    font-family: 'Poppins';
     position: relative;
     left: 20px;
-    top:3px
+    top: 3px
 }

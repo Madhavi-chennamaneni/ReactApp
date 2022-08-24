@@ -15,6 +15,7 @@
     "ace-builds": "^1.8.1",
     "axios": "^0.27.2",
     "electron": "^19.0.8",
+    "js-file-download": "^0.4.12",
     "react": "^18.2.0",
     "react-ace": "^10.1.0",
     "react-collapsed": "^3.3.2",

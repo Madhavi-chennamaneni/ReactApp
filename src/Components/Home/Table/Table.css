@@ -1,12 +1,13 @@
-.dataTable
-{
+.dataTable {
     max-width: 790px;
     overflow: auto;
+    font-family: 'Poppins';
+    font-style: normal;
     max-height: 210px;
     margin-left: 50px;
 }
-.btn-submit
-{
+
+.btn-submit {
     background-color: #28A745;
     color: white;
     justify-content: center;
@@ -20,8 +21,7 @@
     border: none;
 }
 
-.btn-due
-{
+.btn-due {
     background-color: #DD3646;
     color: white;
     justify-content: center;
