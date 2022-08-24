@@ -1,4 +1,5 @@
 import React from "react";
+import Moment from 'react-moment';
 
 const OverDue = ({ datas, currentWeek, FontAwesomeIcon, faFileLines }) => {
   // console.log(datas.data.map(module=>module.data.map(data=>data.module)));
@@ -33,11 +34,11 @@ const OverDue = ({ datas, currentWeek, FontAwesomeIcon, faFileLines }) => {
     <div>
       <div className="overdueSection">
         <h3 className="overdueHead">Overdue</h3>
-        <span className="badge">
+        <span className="overDuebadge">
           {filteredData.map((module) => module.length)}{" "}
         </span>
       </div>
-      <hr />
+      <hr className="hrLine"/>
       {filteredData.map((data) =>
         data.map((data) => (
           <>
@@ -49,11 +50,7 @@ const OverDue = ({ datas, currentWeek, FontAwesomeIcon, faFileLines }) => {
               <span className="">Due {data.due_date}</span>
               <li className="remainingDay">
                 {/*  {<Moment from={new Date()} ago>{new Date(data.dueDate)}</Moment>} to go */}
-                {new Date(data.due_date).getDate() - currentDate.getDate() >= 1
-                  ? `${
-                      new Date(data.due_date).getDate() - currentDate.getDate()
-                    } days to go`
-                  : `Late`}
+                {new Date(data.dueDate).getDate()>=currentDate.getDate()?(<Moment from={new Date()} ago>{new Date(data.dueDate)}</Moment>):'Late'}
               </li>
             </div>
           </>

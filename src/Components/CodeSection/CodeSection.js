@@ -6,9 +6,35 @@ import Problems from "./Problems";
 import Split from "react-split";
 import { useNavigate } from "react-router-dom";
 import { httpCall } from "../../util";
-import { require } from "ace-builds";
+import Modal from 'react-bootstrap/Modal';
+import Spinner from 'react-bootstrap/Spinner';
+
+const sample = require("../../model/sample.json");
+const data = sample.data.map((data) =>
+  data.complexity.map((complexity) =>
+    complexity.questions.map((questions) => questions)
+  )
+);
+// console.log(data);
+// console.log(data.map(data=>data.data.map(data=>data.complexity.map(complexity=>complexity.questions.map(questions=>questions.id)))));
 
 const CodeSection = (Props) => {
+  // const [status, setStatus] = useState(false);
+  const [clickRun, setClickRun] = useState(false);
+  const [alertBodyText, setAlertBodyText] = useState('');
+  // const [type, setType] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [quote, setQuote] = useState("");
+  /* Problems */
+
+  useEffect(() => {
+    fetch("https://62eb6772705264f263d7de1e.mockapi.io/problems")
+      .then((res) => res.json())
+      .then((json) => {
+        setProblems(json);
+      });
+  }, []);
+
   /* Output */
   var [UserCode, SetUserCode] = useState(``);
   var [language, SetLanguage] = useState(``);
@@ -41,7 +67,8 @@ const CodeSection = (Props) => {
     //   url = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
     // }
 
-    makeHttpCall(url, "run");
+    makeHttpCall(url);
+    setClickRun(true)
     return code;
   }
 
@@ -49,7 +76,7 @@ const CodeSection = (Props) => {
 
   useEffect(() => {
     fetch(
-      "https://62eb5d58ad295463259c700e.mockapi.io/api/dashboard/assignment/Question"
+      "https://62eb6772705264f263d7de1e.mockapi.io/problems"
     )
       .then((res) => res.json())
       .then((json) => {
@@ -112,57 +139,116 @@ const CodeSection = (Props) => {
     if (index < problems.length - 1) {
       setIndex(index + 1);
     } else {
-      alert("You have attended the maximum chances !");
       navigate("/home");
     }
   };
 
-  const onFocus = () => {
-    // window.confirm("If you navigate from this screen your will automatically submitted. Because, you are in onfocus!");
-  };
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+
+  useEffect(() => {
+    const alertLandOnCodeSection = () => {
+      alert('If You navigate from this page, the question will submit automatically and we give another question for you')
+    }
+    window.addEventListener('load', alertLandOnCodeSection);
+    return () => {
+      window.removeEventListener('focus', alertLandOnCodeSection)
+    }
+  })
 
   useEffect(() => {
     const onBlur = () => {
-      // alert(
-      //   "You have navigated from this screen. Therefore, your answer has been submitted. Here is the new Question ? "
-      // );
-      // autoSubmit();
+      setShow(true)
+      setAlertBodyText('You have navigated from this page.So, we give a another qns for you')
+      // setStatus(true);
+      // setType("warning");
+      // setTitle("Warning");
+      // setQuote("You have navigated from this page.So, we give a another qns for you");
+      autoSubmit();
     };
     // window.addEventListener("focus", onFocus);
     window.addEventListener("blur", onBlur);
-
-    onFocus();
 
     return () => {
       // window.removeEventListener("focus", onFocus);
       window.removeEventListener("blur", onBlur);
     };
   });
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (Props.seconds > 0) {
+        Props.setSeconds(Props.seconds - 1);
+      } else {
+        clearInterval(timer)
+        setShow(true);
+        setAlertBodyText('You have reached your timelimit')
+        autoSubmit();
+        /*  setStatus(true);
+         setType("warning");
+         setTitle("Alert");
+         setQuote("You have reached your time limit") */
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [Props.seconds]);
+
+
 
   return (
     <div>
-      <>
-        <Split direction="horizontal" className="main-container">
-          <Problems data={Props.question} />
-          <CodeEditor
-            UserCode={UserCode}
-            SetUserCode={SetUserCode}
-            codeChange={codeChange}
-            getOutput={getOutput}
-            custominput={custominput}
-            handleSubmit={handleSubmit}
-            data={Props.question}
-          />
-          <OutputWindow
-            CodeOutput={CodeOutput}
-            problems={problems}
-            handleSubmit={handleSubmit}
-            data={Props.question}
-          />
-        </Split>
-      </>
+      <Modal show={show} onHide={handleClose} size="mg"
+        aria-labelledby="contained-modal-title-vcenter"
+      >
+        <Modal.Header closeButton className="warning">
+          <Modal.Title>Warning!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="warning">{alertBodyText}</Modal.Body>
+      </Modal>
+      {(clickRun === true) ? (
+        <>
+          <Split direction="horizontal" className="main-container" >
+            <Problems data={Props.question} />
+            <CodeEditor
+              UserCode={UserCode}
+              SetUserCode={SetUserCode}
+              codeChange={codeChange}
+              getOutput={getOutput}
+              handleSubmit={handleSubmit}
+              data={Props.question}
+              setClickRun={setClickRun}
+            />
+            <OutputWindow
+              CodeOutput={CodeOutput}
+              problems={problems}
+              handleSubmit={handleSubmit}
+              data={Props.question}
+            // setStatus={setStatus}
+            // setType={setType}
+            // setTitle={setTitle}
+            // setQuote={setQuote}
+            />
+          </Split>
+        </>
+      ) : (<> <Split direction="horizontal" className="main-container">
+        <Problems data={Props.question} />
+        <CodeEditor
+          UserCode={UserCode}
+          SetUserCode={SetUserCode}
+          codeChange={codeChange}
+          custominput={custominput}
+          getOutput={getOutput}
+          handleSubmit={handleSubmit}
+          data={Props.question}
+        />
+      </Split>
+      </>)}
     </div>
-  );
+  )
 };
 
 export default CodeSection;
