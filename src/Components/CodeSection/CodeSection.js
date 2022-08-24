@@ -7,17 +7,8 @@ import Split from "react-split";
 import { useNavigate } from "react-router-dom";
 import { httpCall } from "../../util";
 import { require } from "ace-builds";
-const sample = require("../../model/sample.json");
-const data = sample.data.map((data) =>
-  data.complexity.map((complexity) =>
-    complexity.questions.map((questions) => questions)
-  )
-);
-// console.log(data);
-// console.log(data.map(data=>data.data.map(data=>data.complexity.map(complexity=>complexity.questions.map(questions=>questions.id)))));
 
 const CodeSection = (Props) => {
-
   /* Output */
   var [UserCode, SetUserCode] = useState(``);
   var [language, SetLanguage] = useState(``);
@@ -40,7 +31,7 @@ const CodeSection = (Props) => {
     code = code.join("");
 
     if (language === "JavaScript") {
-      url = "http://192.168.1.112:3005/api/runjavascript";
+      url = "http://192.168.1.111:3005/api/submitusercode";
     }
     if (language === "Java") {
       url = "https://pk8eaiaa0h.execute-api.ap-south-1.amazonaws.com/beta";
@@ -50,7 +41,7 @@ const CodeSection = (Props) => {
     //   url = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
     // }
 
-    makeHttpCall(url);
+    makeHttpCall(url, "run");
     return code;
   }
 
@@ -68,11 +59,16 @@ const CodeSection = (Props) => {
 
   const [index, setIndex] = useState(0);
   const navigate = useNavigate();
+  const [custominp, setcustominp] = useState("");
+
+  const custominput = (text) => {
+    setcustominp(text);
+  };
 
   const handleSubmit = (language, id) => {
     var url = "";
     if (language === "JavaScript") {
-      url = "http://192.168.1.112:3005/api/verifyusercode";
+      url = "http://192.168.1.111:3005/api/submitusercode";
     }
     if (language === "Java") {
       url = "https://pk8eaiaa0h.execute-api.ap-south-1.amazonaws.com/beta";
@@ -82,11 +78,11 @@ const CodeSection = (Props) => {
     //   url = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
     // }
 
-    makeHttpCall(url);
+    makeHttpCall(url, "submit");
     autoSubmit();
   };
 
-  let makeHttpCall = (url) => {
+  let makeHttpCall = (url, type) => {
     const payload = {
       method: "post",
       headers: {
@@ -97,6 +93,8 @@ const CodeSection = (Props) => {
       code: UserCode,
       language: language,
       questionid: QuestionId,
+      custominput: custominp,
+      hittype: type,
     });
     httpCall(url, payload)
       .then((result) => {
@@ -143,17 +141,15 @@ const CodeSection = (Props) => {
 
   return (
     <div>
-      {/* {problems.map((data) => */}
-      {/* index === problems.indexOf(data) && index <= problems.length - 1 ? ( */}
       <>
         <Split direction="horizontal" className="main-container">
-          {/* <Problems data={data} /> */}
           <Problems data={Props.question} />
           <CodeEditor
             UserCode={UserCode}
             SetUserCode={SetUserCode}
             codeChange={codeChange}
             getOutput={getOutput}
+            custominput={custominput}
             handleSubmit={handleSubmit}
             data={Props.question}
           />
@@ -165,8 +161,6 @@ const CodeSection = (Props) => {
           />
         </Split>
       </>
-      {/* ) : null */}
-      {/* // )} */}
     </div>
   );
 };

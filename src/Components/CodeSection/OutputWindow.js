@@ -9,8 +9,8 @@ const OutputWindow = (Props) => {
         setSeconds(seconds - 1);
       } else if (seconds === 0) {
         clearInterval(timer);
-        alert("you have reached your time limit");
-        Props.handleSubmit();
+        // alert("you have reached your time limit");
+        // Props.handleSubmit();
       }
     }, 1000);
 

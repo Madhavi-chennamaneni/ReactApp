@@ -1,10 +1,10 @@
 .dataTable {
-    max-width: 790px;
+    max-width: 810px;
     overflow: auto;
     font-family: 'Poppins';
     font-style: normal;
     max-height: 210px;
-    margin-left: 50px;
+    margin-left: 32px;
 }
 
 .btn-submit {
@@ -26,7 +26,7 @@
     color: white;
     justify-content: center;
     align-items: center;
-    padding: 4.5px 12px;
+    text-align: center;
     gap: 10px;
     width: 55px;
     height: 24px;
