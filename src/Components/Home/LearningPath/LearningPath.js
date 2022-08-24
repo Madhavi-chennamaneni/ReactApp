@@ -31,8 +31,19 @@ export default function LearningPath({ data, attendQuestion }) {
   const [module, setModule] = useState([]);
 
   function attendQuestion1(row) {
-    attendQuestion(row);
+    console.log(row)
+    for (let rowData in row) {
+      console.log(row[rowData])
+      if(typeof(row[rowData]==Array)){
+        for(let data in row[rowData]){
+          console.log(row[rowData][data].timelimit)
+          attendQuestion(row,row[rowData][data].timelimit);
+        }
+      }
+      
+    }
   }
+
 
   useEffect(() => {
     fetch(
@@ -57,7 +68,7 @@ export default function LearningPath({ data, attendQuestion }) {
                 title={module.id_module + "." + " " + module.module}
                 date={
                   new Date(module.due_date).getDate() - currentDate.getDate() >=
-                  1
+                    1
                     ? "Due Date : " + module.due_date
                     : "Due Date : " + "Late"
                 }

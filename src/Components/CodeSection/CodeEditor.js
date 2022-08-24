@@ -79,7 +79,7 @@ const CodeEditor = (Props) => {
 
   return (
     <>
-      <div className="codeEditor">
+      <div className="codeEditor" >
         <div className="selector">
           <div className="selectTheme">
             <label>Change Theme</label>&nbsp;&nbsp;
@@ -108,8 +108,10 @@ const CodeEditor = (Props) => {
           theme={theme}
           value={value}
           onChange={onChange}
+          wrapEnabled={true}
+          showPrintMargin={false}
           name="UNIQUE_ID_OF_DIV"
-          editorProps={{ $blockScrolling: true }}
+          editorProps={{ $blockScrolling:false}}
         />
         <div className="btnDiv">
           <button className="runBtn" onClick={() => Props.getOutput(language)}>
@@ -117,7 +119,7 @@ const CodeEditor = (Props) => {
           </button>
           <button
             className="submitBtn"
-            onClick={() => Props.handleSubmit(language, Props.data.id)}
+            onClick={() => {Props.handleSubmit(language, Props.data.id);Props.setClickRun(false)}}
           >
             Submit Code
           </button>

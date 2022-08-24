@@ -1,7 +1,7 @@
-import React from "react";
-import "./Alert.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons/faTriangleExclamation";
+import React from 'react'
+import './Alert.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons/faTriangleExclamation'
 
 export default function Alert(data) {
   data = data.data.map((module) => module.data);
