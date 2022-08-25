@@ -21,7 +21,6 @@ const data = sample.data.map((data) =>
 const CodeSection = (Props) => {
   // const [status, setStatus] = useState(false);
   const [clickRun, setClickRun] = useState(false);
-  const [alertBodyText, setAlertBodyText] = useState('');
   // const [type, setType] = useState("");
   // const [title, setTitle] = useState("");
   // const [quote, setQuote] = useState("");
@@ -143,25 +142,12 @@ const CodeSection = (Props) => {
     }
   };
 
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-
-  useEffect(() => {
-    const alertLandOnCodeSection = () => {
-      alert('If You navigate from this page, the question will submit automatically and we give another question for you')
-    }
-    window.addEventListener('load', alertLandOnCodeSection);
-    return () => {
-      window.removeEventListener('focus', alertLandOnCodeSection)
-    }
-  })
+  const handleClose = () => Props.setShow(false);
 
   useEffect(() => {
     const onBlur = () => {
-      setShow(true)
-      setAlertBodyText('You have navigated from this page.So, we give a another qns for you')
+      Props.setShow(true)
+      Props.setAlertBodyText('You have navigated from this page.So, we give a another qns for you')
       // setStatus(true);
       // setType("warning");
       // setTitle("Warning");
@@ -182,8 +168,8 @@ const CodeSection = (Props) => {
         Props.setSeconds(Props.seconds - 1);
       } else {
         clearInterval(timer)
-        setShow(true);
-        setAlertBodyText('You have reached your timelimit')
+        Props.setShow(true);
+        Props.setAlertBodyText('You have reached your timelimit')
         autoSubmit();
         /*  setStatus(true);
          setType("warning");
@@ -201,13 +187,13 @@ const CodeSection = (Props) => {
 
   return (
     <div>
-      <Modal show={show} onHide={handleClose} size="mg"
+      <Modal show={Props.show} onHide={handleClose} size="mg"
         aria-labelledby="contained-modal-title-vcenter"
       >
         <Modal.Header closeButton className="warning">
           <Modal.Title>Warning!</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="warning">{alertBodyText}</Modal.Body>
+        <Modal.Body className="warning">{Props.alertBodyText}</Modal.Body>
       </Modal>
       {(clickRun === true) ? (
         <>

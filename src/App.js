@@ -31,9 +31,13 @@ function App() {
     navigate("/home");
   }
   let [attedingquestion, setAttendingQuestion] = useState({});
+  const [show, setShow] = useState(false);
+  const [alertBodyText, setAlertBodyText] = useState('');
   function attendQuestion(row,time) {
-    setSeconds(time)
+    setSeconds(time*60)
     setAttendingQuestion(row);
+    setShow(true);
+    setAlertBodyText('If You navigate from this page, the question will submit automatically and we give another question for you')
    // alert('If You navigate from this page, the question will submit automatically and we give another question for you')
     navigate('/coding')  
     
@@ -144,7 +148,7 @@ function App() {
             />
             <Route
               path="/coding"
-              element={<CodeSection question={attedingquestion} seconds={seconds} setSeconds={setSeconds} />}
+              element={<CodeSection question={attedingquestion} seconds={seconds} setSeconds={setSeconds} show={show} setShow={setShow} alertBodyText={alertBodyText} setAlertBodyText={setAlertBodyText} />}
             />
             <Route path="/questions" element={<QuestionsEntry />} />
             <Route path="/uploads" element={<Uploads />} />
