@@ -11,9 +11,16 @@ body {
   margin: 67px 10px 0
 }
 
+/* .warning{
+  background-color: #f0ad4e;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+} */
 .problem {
   min-width: 10%;
-  width: 100%;
+  width:30%;
   background-color: #F8F9FA;
   text-align: left;
   font-family: 'Poppins';
@@ -53,7 +60,7 @@ body {
 
 .codeEditor {
   min-width: 20%;
-  width: 100%;
+  width:70%;
   height: calc(100vh - 20vh);
   display: flex;
   flex-direction: column;
@@ -117,6 +124,7 @@ body {
 
 .outputWindow {
   min-width: 20%;
+  width: 20%;
   background-color: #F8F9FA;
   color: #202020;
   text-align: left;
@@ -129,13 +137,15 @@ body {
   overflow-y: auto;
 }
 
-.timer {
+.outputHead {
   display: flex;
   justify-content: space-between;
   background: rgb(145, 144, 144);
+  padding-bottom: 7px;
+  text-align: center;
 }
 
-.outputHead {
+.outputHeadText {
   color: #fff;
   font-family: 'Poppins';
   font-style: normal;

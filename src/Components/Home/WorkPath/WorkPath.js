@@ -56,7 +56,7 @@ export default function WorkPath(data) {
                 <h3 className="nextWeekDate">
                   {firstday} - {lastday}
                 </h3>
-                <hr />
+                <hr  className="hrLine"/>
                 <WeekDue
                   datas={data}
                   nextWeek={nextWeek}

@@ -26,6 +26,7 @@ function App() {
   const [Gotres, setGotres] = useState(false);
   var [UserCode, setUserCode] = useState(``);
   var [CodeOutput, setCodeOutput] = useState(``);
+  const [seconds, setSeconds] = useState(null);
   const navigate = useNavigate();
   const [Isadmin , setIsadmin]=useState(false);
   
@@ -53,24 +54,25 @@ function App() {
   }
 
   let [attedingquestion, setAttendingQuestion] = useState({});
-  function attendQuestion(row) {
+  function attendQuestion(row,time) {
+    setSeconds(time)
     setAttendingQuestion(row);
-    navigate("/coding");
+   // alert('If You navigate from this page, the question will submit automatically and we give another question for you')
+    navigate('/coding')  
+    
   }
+
   useEffect(() => {
-    if (
-      localStorage.getItem("loggedin") === "false" ||
-      localStorage.getItem("loggedin") === null
-    ) {
+    if ((localStorage.getItem("loggedin") === "false") || (localStorage.getItem("loggedin") === null)) {
+
       /* global google*/
       google.accounts.id.initialize({
-        client_id:
-          "197504797372-j73fmcvfadrrqokndu07vat9eobuh6sj.apps.googleusercontent.com",
-        callback: handleCredentialResponse,
+        client_id: "197504797372-j73fmcvfadrrqokndu07vat9eobuh6sj.apps.googleusercontent.com",
+        callback: handleCredentialResponse
       });
       google.accounts.id.renderButton(
         document.getElementById("signInBtn"),
-        { theme: "outline", size: "large" } // customization attributes
+        { theme: "outline", size: "large" }  // customization attributes
       );
       google.accounts.id.prompt(); // also display the One Tap dialog
       function handleCredentialResponse(response) {
@@ -78,19 +80,19 @@ function App() {
         /*global jwt_decode*/
         const responsePayload = jwt_decode(response.credential);
         console.log("ID: " + responsePayload.sub);
-        console.log("Full Name: " + responsePayload.name);
+        console.log('Full Name: ' + responsePayload.name);
         document.getElementById("logInName").innerText = responsePayload.name;
-        console.log("Given Name: " + responsePayload.given_name);
-        console.log("Family Name: " + responsePayload.family_name);
+        console.log('Given Name: ' + responsePayload.given_name);
+        console.log('Family Name: ' + responsePayload.family_name);
         console.log("Image URL: " + responsePayload.picture);
-        document.getElementById(
-          "logInProfile"
-        ).innerHTML = `<img src="${responsePayload.picture}" class="logInProfile">`;
+        document.getElementById('logInProfile').innerHTML = `<img src="${responsePayload.picture}" class="logInProfile">`;
         console.log("Email: " + responsePayload.email);
         isAuthorizedUser(responsePayload.email);
       }
     }
   }, []);
+
+
 
   let executeCode = async (language, method, code) => {
     executeUserCode(language, method, code).then((result) => {
@@ -151,7 +153,7 @@ function App() {
   }
   return (
     <div className="App">
-      
+      <Header seconds={seconds} setSeconds={setSeconds} question={attedingquestion} />
       {(localStorage.getItem("loggedin") === "false" ||
         localStorage.getItem("loggedin") === null) && <LoginPage />}
 

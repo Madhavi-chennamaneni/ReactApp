@@ -1,5 +1,6 @@
-import React from "react";
-// filteredData.map(data=>data.map((data)
+import React from 'react'
+import Moment from 'react-moment';
+
 const WeekDue = ({ datas, nextWeek, FontAwesomeIcon, faFileLines }) => {
   const data = datas.data.map((module) => module.data);
   // console.log(data.map(data=>data.map(data=>data.due_date)));

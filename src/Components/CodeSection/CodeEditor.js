@@ -23,12 +23,7 @@ const CodeEditor = (Props) => {
   const [theme, setTheme] = useState("github");
   const [language, setLanguage] = useState("");
   const [value, setValue] = useState("");
-
-  // useEffect(() => {
-  //   setValue(templatecode.map(templatecode=>templatecode.code));
-  //   // console.log(Props.data.language);
-  //   setLanguage(templatecode.map(templatecode=>templatecode.langname));
-  // }, []);
+  const [customInput, setCustomInput] = useState("");
 
   const changeTheme = () => {
     let themeOption = document.getElementById("theme").value;
@@ -41,18 +36,32 @@ const CodeEditor = (Props) => {
     }
   };
 
+  let getTemplatecode = (language) => {
+    let languagedata = templatecode.filter(
+      (question) => question.langname == language
+    );
+    if (languagedata.length >= 1) {
+      setLanguage(languagedata[0].langname);
+      setValue(languagedata[0].code);
+    } else {
+      setLanguage(languagedata.langname);
+      setValue(languagedata.code);
+    }
+  };
+
   const changeLanguage = () => {
     let languageOption = document.getElementById("language").value;
-    if (languageOption === templatecode[0].langname) {
-      setLanguage(templatecode[0].langname);
-      setValue(templatecode[0].code);
-    } else if (languageOption === templatecode[1].langname) {
-      setLanguage(templatecode[1].langname);
-      setValue(templatecode[1].code);
-    } else {
-      // setLanguage("python");
-      // setValue("");
-    }
+    getTemplatecode(languageOption);
+  };
+
+  useEffect(() => {
+    let languageOption = document.getElementById("language").value;
+    getTemplatecode(languageOption);
+  });
+
+  const changeCustomInput = (e) => {
+    setCustomInput(e.target.value);
+    Props.custominput(e.target.value);
   };
 
   // const customInputArea = () => {
@@ -70,7 +79,7 @@ const CodeEditor = (Props) => {
 
   return (
     <>
-      <div className="codeEditor">
+      <div className="codeEditor" >
         <div className="selector">
           <div className="selectTheme">
             <label>Change Theme</label>&nbsp;&nbsp;
@@ -83,9 +92,11 @@ const CodeEditor = (Props) => {
           <div className="selectLanguage">
             <label>Languages</label>&nbsp;&nbsp;
             <select id="language" value={language} onChange={changeLanguage}>
-              <option>{templatecode[0].langname}</option>
-              <option>{templatecode[1].langname}</option>
-              {/* <option>Python</option> */}
+              {templatecode.map((templatecode) => (
+                <>
+                  <option>{templatecode.langname}</option>
+                </>
+              ))}
             </select>
           </div>
         </div>
@@ -97,8 +108,10 @@ const CodeEditor = (Props) => {
           theme={theme}
           value={value}
           onChange={onChange}
+          wrapEnabled={true}
+          showPrintMargin={false}
           name="UNIQUE_ID_OF_DIV"
-          editorProps={{ $blockScrolling: true }}
+          editorProps={{ $blockScrolling:false}}
         />
         <div className="btnDiv">
           <button className="runBtn" onClick={() => Props.getOutput(language)}>
@@ -106,15 +119,17 @@ const CodeEditor = (Props) => {
           </button>
           <button
             className="submitBtn"
-            onClick={() => Props.handleSubmit(language, Props.data.id)}
+            onClick={() => {Props.handleSubmit(language, Props.data.id);Props.setClickRun(false)}}
           >
             Submit Code
           </button>
         </div>
-        {/*  <div className="customInputArea">
-          <label htmlFor="customInput" className="customInputLabel">Custom Input</label>
-          <textarea id="customInput"/>
-        </div> */}
+        <div className="customInputArea">
+          <label htmlFor="customInput" className="customInputLabel">
+            Custom Input
+          </label>
+          <textarea id="customInput" onChange={changeCustomInput} />
+        </div>
       </div>
     </>
   );

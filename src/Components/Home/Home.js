@@ -8,8 +8,8 @@ const sample = require("../../model/sample.json");
 export default function Home(Props) {
   const data = [sample].map((data) => data);
 
-  function attendQuestion(row) {
-    Props.attendQuestion(row);
+  function attendQuestion(row,time) {
+    Props.attendQuestion(row,time);
   }
   // console.log(data);
   return (

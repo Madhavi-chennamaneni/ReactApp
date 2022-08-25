@@ -29,26 +29,29 @@
     padding-left: 10px;
 }
 
-.overDueHead {
+.overdueHead {
     margin: 0;
     padding: 0;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 27px;
 }
 
-.badge {
-    /* background-color: rgb(184, 118, 32); */
+.overDuebadge {
+    background-color: rgb(184, 118, 32);
     color: white;
     text-align: center;
+    margin-top: 3px;
     margin-right: 10px;
-    padding: 3px;
+    padding: 0px;
     font-size: 18px;
     width: 25px;
     height: 25px;
     border-radius: 50px;
 }
-
-.overDueList {
+.hrLine{
+    margin-top: 0;
+}
+.overDueList{
     display: flex;
 }
 
@@ -84,7 +87,7 @@
 
 .nextWeekDate {
     padding-left: 0px;
-    font-size: 22px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 700;
     color: #000000;
 }

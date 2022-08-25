@@ -14,8 +14,12 @@ const Header = (Props) => {
           alt="Gradious"
         />
       </div>
-      <span id="logInProfile" onClick={() => setOnclick(!onclick)}></span>{" "}
-      &nbsp;
+
+      {(Props.seconds !== null) ? (<span className="timer">  {`Time Left :${Math.floor(Props.seconds / 3600)}h:${Math.floor(
+        (Props.seconds % 3600) / 60
+      )}m:${Math.floor((Props.seconds % 3600) % 60)}s`}</span>) : null}
+      
+      <span id="logInProfile" onClick={() => setOnclick(!onclick)} ></span> &nbsp;
       <span id="logInName"></span>
       {localStorage.getItem("loggedin") === "true" && (
         <Link

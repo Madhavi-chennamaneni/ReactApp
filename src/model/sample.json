@@ -43,8 +43,8 @@
           "questions": [
             {
               "id": 2,
-              "shortdesc": "EASY duplicate characters from a string",
-              "longdesc": "print duplicate characters from a string",
+              "shortdesc": "Missing number in a given integer array",
+              "longdesc": "print missing number in a given integer array",
               "categoryid": 1,
               "moduleid": 1,
               "templatecode": [
@@ -61,7 +61,7 @@
               ],
               "exampleinput": "hello",
               "exampleoutput": "l",
-              "complexityid": 1,
+              "complexityid": 2,
               "autoevaluate": 1,
               "marks": 10,
               "timelimit": 5
@@ -92,7 +92,7 @@
               ],
               "exampleinput": "hello",
               "exampleoutput": "l",
-              "complexityid": 1,
+              "complexityid": 3,
               "autoevaluate": 1,
               "marks": 10,
               "timelimit": 5
@@ -161,7 +161,7 @@
               ],
               "exampleinput": "hello",
               "exampleoutput": "l",
-              "complexityid": 1,
+              "complexityid": 2,
               "autoevaluate": 1,
               "marks": 10,
               "timelimit": 5
@@ -192,7 +192,7 @@
               ],
               "exampleinput": "hello",
               "exampleoutput": "l",
-              "complexityid": 1,
+              "complexityid": 3,
               "autoevaluate": 1,
               "marks": 10,
               "timelimit": 5
@@ -261,7 +261,7 @@
               ],
               "exampleinput": "hello",
               "exampleoutput": "l",
-              "complexityid": 1,
+              "complexityid": 2,
               "autoevaluate": 1,
               "marks": 10,
               "timelimit": 5
@@ -292,7 +292,7 @@
               ],
               "exampleinput": "hello",
               "exampleoutput": "l",
-              "complexityid": 1,
+              "complexityid": 3,
               "autoevaluate": 1,
               "marks": 10,
               "timelimit": 5
