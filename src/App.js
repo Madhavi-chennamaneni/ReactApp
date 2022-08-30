@@ -18,6 +18,7 @@ import CodeSection from "./Components/CodeSection/CodeSection";
 import Home from "./Components/Home/Home";
 import QuestionsEntry from "./QuestionsEntry";
 import Uploads from "./uploads";
+import Report from "./Components/Report/Report";
 //import executeCode from './util';
 
 function App() {
@@ -72,14 +73,12 @@ function App() {
         /*global jwt_decode*/
         const responsePayload = jwt_decode(response.credential);
         console.log("ID: " + responsePayload.sub);
-        console.log("Full Name: " + responsePayload.name);
+        console.log('Full Name: ' + responsePayload.name);
         document.getElementById("logInName").innerText = responsePayload.name;
-        console.log("Given Name: " + responsePayload.given_name);
-        console.log("Family Name: " + responsePayload.family_name);
+        console.log('Given Name: ' + responsePayload.given_name);
+        console.log('Family Name: ' + responsePayload.family_name);
         console.log("Image URL: " + responsePayload.picture);
-        document.getElementById(
-          "logInProfile"
-        ).innerHTML = `<img src="${responsePayload.picture}" class="logInProfile">`;
+        document.getElementById('logInProfile').innerHTML = `<img src="${responsePayload.picture}" class="logInProfile">`;
         console.log("Email: " + responsePayload.email);
         isAuthorizedUser(responsePayload.email);
       }
@@ -146,11 +145,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header
-        seconds={seconds}
-        setSeconds={setSeconds}
-        question={attedingquestion}
-      />
+      <Header seconds={seconds} setSeconds={setSeconds} question={attedingquestion} hideTimer={["/coding"]} />
       {(localStorage.getItem("loggedin") === "false" ||
         localStorage.getItem("loggedin") === null) && <LoginPage />}
 
@@ -178,6 +173,7 @@ function App() {
             />
             <Route path="/questions" element={<QuestionsEntry />} />
             <Route path="/uploads" element={<Uploads />} />
+            <Route path="/report" element={<Report />} />
           </Routes>
         )}
       </>
