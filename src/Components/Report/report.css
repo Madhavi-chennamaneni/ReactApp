@@ -1,0 +1,17 @@
+.container-fluid{
+    margin-top: 100px;
+    font-family: 'Poppins';
+}
+.select-module{
+    border: none;
+    outline: none;
+    font-size: 20px;
+    letter-spacing: 1.2px;
+}
+.report-btn{
+    display: flex;
+    justify-content: flex-end;
+}
+a{
+    cursor: pointer;
+}

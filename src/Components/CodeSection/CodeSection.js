@@ -82,12 +82,12 @@ const CodeSection = (Props) => {
     // autoSubmit();
   };
 
-  let makeHttpCall = (url, type) => {
+  let makeHttpCall = (url) => {
     const payload = {
       method: "post",
       mode: "no-cors",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "text/plain",
       },
     };
     UserCode = UserCode.replace(/(?:\\[rn]|[\r\n]+)+/g, "");
@@ -187,10 +187,6 @@ const CodeSection = (Props) => {
         Props.setShow(true);
         Props.setAlertBodyText("You have reached your timelimit");
         // autoSubmit();
-        /*  setStatus(true);
-         setType("warning");
-         setTitle("Alert");
-         setQuote("You have reached your time limit") */
       }
     }, 1000);
 
@@ -201,17 +197,17 @@ const CodeSection = (Props) => {
 
   return (
     <div>
-      {/* <Modal
+      <Modal
         show={Props.show}
         onHide={handleClose}
-        size="mg"
+        backdrop="static" size="mg"
         aria-labelledby="contained-modal-title-vcenter"
       >
         <Modal.Header closeButton className="warning">
           <Modal.Title>Warning!</Modal.Title>
         </Modal.Header>
         <Modal.Body className="warning">{Props.alertBodyText}</Modal.Body>
-      </Modal> */}
+      </Modal>
       {clickRun === true ? (
         <>
           <Split direction="horizontal" className="main-container">
@@ -230,10 +226,6 @@ const CodeSection = (Props) => {
               CodeOutput={CodeOutput}
               handleSubmit={handleSubmit}
               data={Props.question}
-              // setStatus={setStatus}
-              // setType={setType}
-              // setTitle={setTitle}
-              // setQuote={setQuote}
             />
           </Split>
         </>
