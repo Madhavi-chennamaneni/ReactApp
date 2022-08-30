@@ -106,18 +106,6 @@ export default function Table(Props) {
     },
   };
 
-  // const [assignment, setAssignment] = useState([]);
-
-  // useEffect(() => {
-  //   fetch(
-  //     "https://62eb5d58ad295463259c700e.mockapi.io/api/dashboard/assignment/assignment"
-  //   )
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       setAssignment(json);
-  //     });
-  // }, []);
-
   return (
     <div className="dataTable">
       <DataTable

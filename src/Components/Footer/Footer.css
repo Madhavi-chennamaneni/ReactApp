@@ -16,7 +16,10 @@ footer {
   top: 20px
 }
 
-a {
+a:link {
   text-decoration: none;
+  color: #5F6368;
+}
+a:visited {
   color: #5F6368;
 }

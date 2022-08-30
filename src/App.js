@@ -2,15 +2,22 @@ import { httpCall } from "./util";
 import "./App.css";
 import camera from "./Camera";
 import React, { useState, useEffect } from "react";
-import Header from './Components/Header/Header';
-import LoginPage from './Components/LoginPage/LoginPage';
-import Footer from './Components/Footer/Footer'
-import axios from 'axios';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate, useNavigate } from "react-router-dom";
-import CodeSection from './Components/CodeSection/CodeSection';
-import Home from './Components/Home/Home';
-import QuestionsEntry from './QuestionsEntry'
-import Uploads from './uploads';
+import Header from "./Components/Header/Header";
+import LoginPage from "./Components/LoginPage/LoginPage";
+import Footer from "./Components/Footer/Footer";
+import axios from "axios";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
+import CodeSection from "./Components/CodeSection/CodeSection";
+import Home from "./Components/Home/Home";
+import QuestionsEntry from "./QuestionsEntry";
+import Uploads from "./uploads";
 //import executeCode from './util';
 
 function App() {
@@ -32,28 +39,32 @@ function App() {
   }
   let [attedingquestion, setAttendingQuestion] = useState({});
   const [show, setShow] = useState(false);
-  const [alertBodyText, setAlertBodyText] = useState('');
-  function attendQuestion(row,time) {
-    setSeconds(time*60)
+  const [alertBodyText, setAlertBodyText] = useState("");
+  function attendQuestion(row, time) {
+    setSeconds(time * 60);
     setAttendingQuestion(row);
     setShow(true);
-    setAlertBodyText('If You navigate from this page, the question will submit automatically and we give another question for you')
-   // alert('If You navigate from this page, the question will submit automatically and we give another question for you')
-    navigate('/coding')  
-    
+    setAlertBodyText(
+      "If You navigate from this page, the question will submit automatically and we give another question for you"
+    );
+    // alert('If You navigate from this page, the question will submit automatically and we give another question for you')
+    navigate("/coding");
   }
 
   useEffect(() => {
-    if ((localStorage.getItem("loggedin") === "false") || (localStorage.getItem("loggedin") === null)) {
-
+    if (
+      localStorage.getItem("loggedin") === "false" ||
+      localStorage.getItem("loggedin") === null
+    ) {
       /* global google*/
       google.accounts.id.initialize({
-        client_id: "197504797372-j73fmcvfadrrqokndu07vat9eobuh6sj.apps.googleusercontent.com",
-        callback: handleCredentialResponse
+        client_id:
+          "197504797372-j73fmcvfadrrqokndu07vat9eobuh6sj.apps.googleusercontent.com",
+        callback: handleCredentialResponse,
       });
       google.accounts.id.renderButton(
         document.getElementById("signInBtn"),
-        { theme: "outline", size: "large" }  // customization attributes
+        { theme: "outline", size: "large" } // customization attributes
       );
       google.accounts.id.prompt(); // also display the One Tap dialog
       function handleCredentialResponse(response) {
@@ -61,19 +72,19 @@ function App() {
         /*global jwt_decode*/
         const responsePayload = jwt_decode(response.credential);
         console.log("ID: " + responsePayload.sub);
-        console.log('Full Name: ' + responsePayload.name);
+        console.log("Full Name: " + responsePayload.name);
         document.getElementById("logInName").innerText = responsePayload.name;
-        console.log('Given Name: ' + responsePayload.given_name);
-        console.log('Family Name: ' + responsePayload.family_name);
+        console.log("Given Name: " + responsePayload.given_name);
+        console.log("Family Name: " + responsePayload.family_name);
         console.log("Image URL: " + responsePayload.picture);
-        document.getElementById('logInProfile').innerHTML = `<img src="${responsePayload.picture}" class="logInProfile">`;
+        document.getElementById(
+          "logInProfile"
+        ).innerHTML = `<img src="${responsePayload.picture}" class="logInProfile">`;
         console.log("Email: " + responsePayload.email);
         isAuthorizedUser(responsePayload.email);
       }
     }
   }, []);
-
-
 
   let executeCode = async (language, method, code) => {
     executeUserCode(language, method, code).then((result) => {
@@ -95,23 +106,23 @@ function App() {
     const payload = {
       method: method,
       headers: {
-        "Content-Type": "text/plain",
+        "Content-Type": "application/json",
       },
     };
-    if (language === "java") {
+    if (language === "Java") {
       //var javacode = buildCodeForJava(code);
       payload.body = JSON.stringify({ code: buildCodeForJava(code) });
       return new Promise((resolve, reject) => {
         httpCall(
-          "https://pk8eaiaa0h.execute-api.ap-south-1.amazonaws.com/beta",
+          "https://pk7vnfha6d.execute-api.ap-south-1.amazonaws.com/dev/learner/evaluate/run",
           payload
         )
           .then((result) => {
-            console.log("result is    java " + result);
+            console.log("result is java " + result);
             resolve(result.body);
           })
           .catch((result) => {
-            console.log("result is    java  " + result);
+            console.log("result is java  " + result);
             resolve(result.body);
           });
       });
@@ -122,19 +133,24 @@ function App() {
       return new Promise((resolve, reject) => {
         httpCall("http://localhost:3005/api/javascript", payload)
           .then((result) => {
-            console.log("result is   js  " + result);
+            console.log("result is js  " + result);
             resolve(result.body);
           })
           .catch((result) => {
-            console.log("result is  js   " + result);
+            console.log("result is js   " + result);
             resolve(result.body);
           });
       });
     }
   }
+
   return (
     <div className="App">
-      <Header seconds={seconds} setSeconds={setSeconds} question={attedingquestion} />
+      <Header
+        seconds={seconds}
+        setSeconds={setSeconds}
+        question={attedingquestion}
+      />
       {(localStorage.getItem("loggedin") === "false" ||
         localStorage.getItem("loggedin") === null) && <LoginPage />}
 
@@ -148,7 +164,17 @@ function App() {
             />
             <Route
               path="/coding"
-              element={<CodeSection question={attedingquestion} seconds={seconds} setSeconds={setSeconds} show={show} setShow={setShow} alertBodyText={alertBodyText} setAlertBodyText={setAlertBodyText} />}
+              element={
+                <CodeSection
+                  question={attedingquestion}
+                  seconds={seconds}
+                  setSeconds={setSeconds}
+                  show={show}
+                  setShow={setShow}
+                  alertBodyText={alertBodyText}
+                  setAlertBodyText={setAlertBodyText}
+                />
+              }
             />
             <Route path="/questions" element={<QuestionsEntry />} />
             <Route path="/uploads" element={<Uploads />} />

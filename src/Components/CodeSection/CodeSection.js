@@ -6,17 +6,10 @@ import Problems from "./Problems";
 import Split from "react-split";
 import { useNavigate } from "react-router-dom";
 import { httpCall } from "../../util";
-import Modal from 'react-bootstrap/Modal';
-import Spinner from 'react-bootstrap/Spinner';
-
-const sample = require("../../model/sample.json");
-const data = sample.data.map((data) =>
-  data.complexity.map((complexity) =>
-    complexity.questions.map((questions) => questions)
-  )
-);
-// console.log(data);
-// console.log(data.map(data=>data.data.map(data=>data.complexity.map(complexity=>complexity.questions.map(questions=>questions.id)))));
+import { httpCallSubmit } from "../../util";
+import Modal from "react-bootstrap/Modal";
+import axios from "axios";
+import Spinner from "react-bootstrap/Spinner";
 
 const CodeSection = (Props) => {
   // const [status, setStatus] = useState(false);
@@ -24,15 +17,6 @@ const CodeSection = (Props) => {
   // const [type, setType] = useState("");
   // const [title, setTitle] = useState("");
   // const [quote, setQuote] = useState("");
-  /* Problems */
-
-  useEffect(() => {
-    fetch("https://62eb6772705264f263d7de1e.mockapi.io/problems")
-      .then((res) => res.json())
-      .then((json) => {
-        setProblems(json);
-      });
-  }, []);
 
   /* Output */
   var [UserCode, SetUserCode] = useState(``);
@@ -46,7 +30,7 @@ const CodeSection = (Props) => {
     SetLanguage(language);
   }
 
-  function getOutput(language) {
+  function runCode(language) {
     var code = UserCode.split("\n");
     var url = "";
     for (var i = 0; i < code.length; i++) {
@@ -59,29 +43,18 @@ const CodeSection = (Props) => {
       url = "http://192.168.1.111:3005/api/submitusercode";
     }
     if (language === "Java") {
-      url = "https://pk8eaiaa0h.execute-api.ap-south-1.amazonaws.com/beta";
+      url =
+        "https://pk7vnfha6d.execute-api.ap-south-1.amazonaws.com/dev/learner/evaluate/run";
     }
 
     // if (language === "c/c++") {
     //   url = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
     // }
 
-    makeHttpCall(url);
-    setClickRun(true)
+    makeHttpCall(url, "run");
+    setClickRun(true);
     return code;
   }
-
-  const [problems, setProblems] = useState([]);
-
-  useEffect(() => {
-    fetch(
-      "https://62eb6772705264f263d7de1e.mockapi.io/problems"
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setProblems(json);
-      });
-  }, []);
 
   const [index, setIndex] = useState(0);
   const navigate = useNavigate();
@@ -92,67 +65,110 @@ const CodeSection = (Props) => {
   };
 
   const handleSubmit = (language, id) => {
-    var url = "";
+    var submiturl = "";
     if (language === "JavaScript") {
-      url = "http://192.168.1.111:3005/api/submitusercode";
+      submiturl = "http://192.168.1.111:3005/api/submitusercode";
     }
     if (language === "Java") {
-      url = "https://pk8eaiaa0h.execute-api.ap-south-1.amazonaws.com/beta";
+      submiturl =
+        "https://pk7vnfha6d.execute-api.ap-south-1.amazonaws.com/dev/learner/evaluate/submit";
     }
 
     // if (language === "c/c++") {
     //   url = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
     // }
 
-    makeHttpCall(url, "submit");
-    autoSubmit();
+    // makeHttpCallSubmit(submiturl, "submit");
+    // autoSubmit();
   };
 
   let makeHttpCall = (url, type) => {
     const payload = {
       method: "post",
+      mode: "no-cors",
       headers: {
-        "Content-Type": "text/plain",
+        "Content-Type": "application/json",
       },
     };
-    payload.body = JSON.stringify({
-      code: UserCode,
-      language: language,
-      questionid: QuestionId,
-      custominput: custominp,
-      hittype: type,
-    });
+    UserCode = UserCode.replace(/(?:\\[rn]|[\r\n]+)+/g, "");
+    UserCode = UserCode.replaceAll('""', `\\'\\'`);
+    UserCode = UserCode.replaceAll("\t", ``);
+    payload.body = {
+      body: {
+        code: UserCode,
+        language: language,
+        questionid: QuestionId,
+        custominput: custominp,
+      },
+    };
+
+    console.log(payload.body);
+
+    //console.log("AFTER REMOVING SPECIALCHARS"+payload.body);
     httpCall(url, payload)
       .then((result) => {
-        // console.log("result is   js  ", result);
-        // console.log(result);
+        console.log("result is   js  ", result);
+        // console.log("RESULT OF TESTCODE" + JSON.stringify(result));
+        console.log(result);
         SetCodeOutput(result.body);
       })
       .catch((result) => {
-        // console.log("result is  js   ", result);
-        SetCodeOutput(result.body);
+        console.log("result is  js   ", result);
+        // SetCodeOutput(result.body);
       });
   };
 
-  const autoSubmit = () => {
-    if (index < problems.length - 1) {
-      setIndex(index + 1);
-    } else {
-      navigate("/home");
-    }
-  };
+  // let makeHttpCallSubmit = (submiturl, type) => {
+  //   const payload = {
+  //     method: "put",
+  //     mode: "no-cors",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
+  //   payload.body = {
+  //     body: {
+  //       code: UserCode,
+  //       language: language,
+  //       questionid: QuestionId,
+  //       custominput: custominp
+  //     },
+  //   };
+
+  //   httpCallSubmit(submiturl, payload)
+  //     .then((result) => {
+  //       // console.log("result is   js  ", result);
+  //       console.log(result);
+
+  //       SetCodeOutput(result.body);
+  //     })
+  //     .catch((result) => {
+  //       // console.log("result is  js   ", result);
+  //       SetCodeOutput(result.body);
+  //     });
+  // };
+
+  // const autoSubmit = () => {
+  //   if (index < Props.question.length - 1) {
+  //     setIndex(index + 1);
+  //   } else {
+  //     navigate("/home");
+  //   }
+  // };
 
   const handleClose = () => Props.setShow(false);
 
   useEffect(() => {
     const onBlur = () => {
-      Props.setShow(true)
-      Props.setAlertBodyText('You have navigated from this page.So, we give a another qns for you')
+      Props.setShow(true);
+      Props.setAlertBodyText(
+        "You have navigated from this page.So, we will give another qns for you"
+      );
       // setStatus(true);
       // setType("warning");
       // setTitle("Warning");
       // setQuote("You have navigated from this page.So, we give a another qns for you");
-      autoSubmit();
+      // autoSubmit();
     };
     // window.addEventListener("focus", onFocus);
     window.addEventListener("blur", onBlur);
@@ -167,10 +183,10 @@ const CodeSection = (Props) => {
       if (Props.seconds > 0) {
         Props.setSeconds(Props.seconds - 1);
       } else {
-        clearInterval(timer)
+        clearInterval(timer);
         Props.setShow(true);
-        Props.setAlertBodyText('You have reached your timelimit')
-        autoSubmit();
+        Props.setAlertBodyText("You have reached your timelimit");
+        // autoSubmit();
         /*  setStatus(true);
          setType("warning");
          setTitle("Alert");
@@ -183,58 +199,62 @@ const CodeSection = (Props) => {
     };
   }, [Props.seconds]);
 
-
-
   return (
     <div>
-      <Modal show={Props.show} onHide={handleClose} size="mg"
+      {/* <Modal
+        show={Props.show}
+        onHide={handleClose}
+        size="mg"
         aria-labelledby="contained-modal-title-vcenter"
       >
         <Modal.Header closeButton className="warning">
           <Modal.Title>Warning!</Modal.Title>
         </Modal.Header>
         <Modal.Body className="warning">{Props.alertBodyText}</Modal.Body>
-      </Modal>
-      {(clickRun === true) ? (
+      </Modal> */}
+      {clickRun === true ? (
         <>
-          <Split direction="horizontal" className="main-container" >
+          <Split direction="horizontal" className="main-container">
             <Problems data={Props.question} />
             <CodeEditor
               UserCode={UserCode}
               SetUserCode={SetUserCode}
               codeChange={codeChange}
-              getOutput={getOutput}
+              runCode={runCode}
+              custominput={custominput}
               handleSubmit={handleSubmit}
               data={Props.question}
               setClickRun={setClickRun}
             />
             <OutputWindow
               CodeOutput={CodeOutput}
-              problems={problems}
               handleSubmit={handleSubmit}
               data={Props.question}
-            // setStatus={setStatus}
-            // setType={setType}
-            // setTitle={setTitle}
-            // setQuote={setQuote}
+              // setStatus={setStatus}
+              // setType={setType}
+              // setTitle={setTitle}
+              // setQuote={setQuote}
             />
           </Split>
         </>
-      ) : (<> <Split direction="horizontal" className="main-container">
-        <Problems data={Props.question} />
-        <CodeEditor
-          UserCode={UserCode}
-          SetUserCode={SetUserCode}
-          codeChange={codeChange}
-          custominput={custominput}
-          getOutput={getOutput}
-          handleSubmit={handleSubmit}
-          data={Props.question}
-        />
-      </Split>
-      </>)}
+      ) : (
+        <>
+          <Split direction="horizontal" className="main-container">
+            <Problems data={Props.question} />
+            <CodeEditor
+              UserCode={UserCode}
+              SetUserCode={SetUserCode}
+              codeChange={codeChange}
+              custominput={custominput}
+              runCode={runCode}
+              handleSubmit={handleSubmit}
+              data={Props.question}
+            />
+          </Split>
+        </>
+      )}
     </div>
-  )
+  );
 };
 
 export default CodeSection;

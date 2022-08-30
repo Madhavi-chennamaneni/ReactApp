@@ -8,10 +8,11 @@ import OverDue from "./OverDue";
 import WeekDue from "./WeekDue";
 
 const currentDate = new Date();
-const currentWeek = Math.ceil(
-  (currentDate.getDate() + 6 - currentDate.getDay()) / 7
-);
 
+const startDate = new Date(currentDate.getFullYear(), 0, 1);
+const days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
+
+const currentWeek = Math.ceil(days / 7);
 let first = currentDate.getDate() - currentDate.getDay() + 7; // First day is the day of the month - the day of the week
 let last = first + 6; // last day is the first day + 6
 
@@ -20,17 +21,7 @@ let lastday = new Date(currentDate.setDate(last)).toDateString();
 let nextWeek = Math.ceil((first + 6 - new Date(first).getDay()) / 7);
 
 export default function WorkPath(data) {
-  // console.log(data);
   const [isOpen, setIsOpen] = useState(true);
-  const [assignmentDatas, setAssignmentDatas] = useState([]);
-
-  useEffect(() => {
-    fetch("https://62eb6772705264f263d7de1e.mockapi.io/assignment")
-      .then((res) => res.json())
-      .then((json) => {
-        setAssignmentDatas(data);
-      });
-  }, []);
 
   return (
     <div className="workPath">
@@ -47,7 +38,7 @@ export default function WorkPath(data) {
           <div className="overDueSection">
             <div className="DueList">
               <OverDue
-                datas={data}
+                data={data.data}
                 currentWeek={currentWeek}
                 FontAwesomeIcon={FontAwesomeIcon}
                 faFileLines={faFileLines}
@@ -56,9 +47,9 @@ export default function WorkPath(data) {
                 <h3 className="nextWeekDate">
                   {firstday} - {lastday}
                 </h3>
-                <hr  className="hrLine"/>
+                <hr className="hrLine" />
                 <WeekDue
-                  datas={data}
+                  data={data.data}
                   nextWeek={nextWeek}
                   FontAwesomeIcon={FontAwesomeIcon}
                   faFileLines={faFileLines}

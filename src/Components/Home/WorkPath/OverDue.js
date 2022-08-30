@@ -1,44 +1,36 @@
 import React from "react";
-import Moment from 'react-moment';
+import Moment from "react-moment";
 
-const OverDue = ({ datas, currentWeek, FontAwesomeIcon, faFileLines }) => {
-  // console.log(datas.data.map(module=>module.data.map(data=>data.module)));
-  // const data=datas.data.map(data=>data.data);
-  // data = data.data.map(data => data.module)
-  // console.log(data[0]);
-  // console.log(data[0].data[0].due_date)
+const OverDue = ({ data, currentWeek, FontAwesomeIcon, faFileLines }) => {
   const currentDate = new Date();
 
-  const filteredData = datas.data.map((module) =>
-    module.data.filter(
-      (data) =>
-        Math.ceil(
-          (new Date(data.due_date).getDate() +
-            6 -
-            new Date(data.due_date).getDay()) /
-            7
-        ) === currentWeek ||
-        Math.ceil(
-          (new Date(data.due_date).getDate() +
-            6 -
-            new Date(data.due_date).getDay()) /
-            7
-        ) ===
-          currentWeek - 1
-    )
+  const filteredData = data.filter(
+    (module) =>
+      Math.ceil(
+        Math.floor(
+          (new Date(module.duedate) -
+            new Date(currentDate.getFullYear(), 0, 1)) /
+            (24 * 60 * 60 * 1000)
+        ) / 7
+      ) === currentWeek ||
+      Math.ceil(
+        Math.floor(
+          (new Date(module.duedate) -
+            new Date(currentDate.getFullYear(), 0, 1)) /
+            (24 * 60 * 60 * 1000)
+        ) / 7
+      ) ===
+        currentWeek - 1
   );
-  // filteredData = filteredData.map(data=>data.map((data)));
-  // console.log(filteredData.map(module=>module.length));
-  // console.log(filteredData.map(data=>data.map(data=>data.module)));
+  console.log(filteredData);
+
   return (
     <div>
       <div className="overdueSection">
         <h3 className="overdueHead">Overdue</h3>
-        <span className="overDuebadge">
-          {filteredData.map((module) => module.length)}{" "}
-        </span>
+        <span className="overDuebadge">{filteredData.length}</span>
       </div>
-      <hr className="hrLine"/>
+      <hr className="hrLine" />
       {filteredData.map((data) =>
         data.map((data) => (
           <>
@@ -49,8 +41,14 @@ const OverDue = ({ datas, currentWeek, FontAwesomeIcon, faFileLines }) => {
             <div className="dueDate">
               <span className="">Due {data.due_date}</span>
               <li className="remainingDay">
-                {/*  {<Moment from={new Date()} ago>{new Date(data.dueDate)}</Moment>} to go */}
-                {new Date(data.dueDate).getDate()>=currentDate.getDate()?(<Moment from={new Date()} ago>{new Date(data.dueDate)}</Moment>):'Late'}
+                {/* {<Moment diff={new Date()} unit="days">{new Date(data.due_date)}</Moment>} to go */}
+                {new Date(data.dueDate).getDate() >= currentDate.getDate() ? (
+                  <Moment from={new Date()} ago>
+                    {new Date(data.dueDate)}
+                  </Moment>
+                ) : (
+                  "Late"
+                )}
               </li>
             </div>
           </>

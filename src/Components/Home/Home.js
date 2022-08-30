@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Alert from "./Alert/Alert";
 import LearningPath from "./LearningPath/LearningPath";
 import WorkPath from "./WorkPath/WorkPath";
-const sample = require("../../model/sample.json");
-export default function Home(Props) {
-  const data = [sample].map((data) => data);
+import axios from "axios";
 
-  function attendQuestion(row,time) {
-    Props.attendQuestion(row,time);
+export default function Home(Props) {
+  function attendQuestion(row, time) {
+    Props.attendQuestion(row, time);
   }
-  // console.log(data);
+
+  const [module, setModule] = useState([]);
+
+  useEffect(() => {
+    axios
+      .post(
+        "https://pk7vnfha6d.execute-api.ap-south-1.amazonaws.com/dev/learner/questions/get/all",
+        JSON.stringify({ learnerid: "1" }),
+        {
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+      .then((res) => setModule(JSON.parse(res.data.body)));
+  }, []);
+
+  console.log(module);
+
   return (
     <div className="homePage">
-      <Alert data={data} />
+      <Alert data={module.data} />
       <div className="lpPathSection">
-        <LearningPath data={data} attendQuestion={attendQuestion} />
-        <WorkPath data={data} />
+        <LearningPath data={module} attendQuestion={attendQuestion} />
+        <WorkPath data={module.data} />
       </div>
     </div>
   );

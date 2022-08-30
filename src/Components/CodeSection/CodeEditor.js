@@ -14,10 +14,10 @@ const CodeEditor = (Props) => {
   const templatecode = Props.data.questions[0].templatecode.map(
     (templatecode) => templatecode
   );
-  // console.log(templatecode.map(templatecode=>templatecode.code));
+
   function onChange(newValue) {
+    console.log(newValue);
     setValue(newValue);
-    // console.log("change", newValue);
     Props.codeChange(newValue, language, Props.data.questions[0].id);
   }
   const [theme, setTheme] = useState("github");
@@ -57,7 +57,7 @@ const CodeEditor = (Props) => {
   useEffect(() => {
     let languageOption = document.getElementById("language").value;
     getTemplatecode(languageOption);
-  });
+  }, []);
 
   const changeCustomInput = (e) => {
     setCustomInput(e.target.value);
@@ -79,7 +79,7 @@ const CodeEditor = (Props) => {
 
   return (
     <>
-      <div className="codeEditor" >
+      <div className="codeEditor">
         <div className="selector">
           <div className="selectTheme">
             <label>Change Theme</label>&nbsp;&nbsp;
@@ -111,15 +111,18 @@ const CodeEditor = (Props) => {
           wrapEnabled={true}
           showPrintMargin={false}
           name="UNIQUE_ID_OF_DIV"
-          editorProps={{ $blockScrolling:false}}
+          editorProps={{ $blockScrolling: false }}
         />
         <div className="btnDiv">
-          <button className="runBtn" onClick={() => Props.getOutput(language)}>
+          <button className="runBtn" onClick={() => Props.runCode(language)}>
             Run Code
           </button>
           <button
             className="submitBtn"
-            onClick={() => {Props.handleSubmit(language, Props.data.id);Props.setClickRun(false)}}
+            onClick={() => {
+              Props.handleSubmit(language, Props.data.id);
+              // Props.setClickRun(false);
+            }}
           >
             Submit Code
           </button>

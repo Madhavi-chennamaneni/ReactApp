@@ -1,9 +1,9 @@
 {
-  "learning_path": "Jumpstart",
   "data": [
     {
       "module": "Data Structures",
-      "due_date": "2022-08-20",
+      "duedate": "2022-08-20",
+      "priority": 1,
       "id_module": 1,
       "complexity": [
         {
@@ -11,29 +11,23 @@
           "id_complexity": 1,
           "questions": [
             {
-              "id": 1,
-              "shortdesc": "EASY duplicate characters from a string",
-              "longdesc": "Print duplicate characters from a string",
-              "categoryid": 1,
+              "id": 9,
+              "marks": 5,
+              "longdesc": "Write the pseudocode for String palindrome",
               "moduleid": 1,
+              "shortdesc": "String Palindrome ",
+              "timelimit": 10,
+              "categoryid": 1,
+              "complexityid": 1,
+              "exampleinput": "oppohockeyliril",
               "templatecode": [
                 {
+                  "code": "function main(a,b) {      //start your code here        }",
                   "langid": 1,
-                  "langname": "Java",
-                  "code": "public staticvoid main(){}"
-                },
-                {
-                  "langid": 2,
-                  "langname": "JavaScript",
-                  "code": "public staticvoid main(){console.log()}"
+                  "langname": "Java"
                 }
               ],
-              "exampleinput": "hello",
-              "exampleoutput": "l",
-              "complexityid": 1,
-              "autoevaluate": 1,
-              "marks": 10,
-              "timelimit": 5
+              "exampleoutput": "yesnoyes"
             }
           ]
         },
@@ -42,29 +36,23 @@
           "id_complexity": 2,
           "questions": [
             {
-              "id": 2,
-              "shortdesc": "Missing number in a given integer array",
-              "longdesc": "print missing number in a given integer array",
-              "categoryid": 1,
+              "id": 10,
+              "marks": 5,
+              "longdesc": "Write the pseudocode for String palindrome",
               "moduleid": 1,
+              "shortdesc": "MEDIUM String Palindrome ",
+              "timelimit": 10,
+              "categoryid": 1,
+              "complexityid": 2,
+              "exampleinput": "oppohockeyliril",
               "templatecode": [
                 {
+                  "code": "function main(a,b) {      //start your code here        }",
                   "langid": 1,
-                  "langname": "Java",
-                  "code": "public staticvoid main(){}"
-                },
-                {
-                  "langid": 2,
-                  "langname": "JavaScript",
-                  "code": "public staticvoid main(){console.log()}"
+                  "langname": "Java"
                 }
               ],
-              "exampleinput": "hello",
-              "exampleoutput": "l",
-              "complexityid": 2,
-              "autoevaluate": 1,
-              "marks": 10,
-              "timelimit": 5
+              "exampleoutput": "yesnoyes"
             }
           ]
         },
@@ -73,29 +61,23 @@
           "id_complexity": 3,
           "questions": [
             {
-              "id": 3,
-              "shortdesc": "EASY duplicate characters from a string",
-              "longdesc": "print duplicate characters from a string",
-              "categoryid": 1,
+              "id": 13,
+              "marks": 5,
+              "longdesc": "HIGH Write the pseudocode for String palindrome",
               "moduleid": 1,
+              "shortdesc": "HIGH String Palindrome ",
+              "timelimit": 10,
+              "categoryid": 1,
+              "complexityid": 3,
+              "exampleinput": "oppohockeyliril",
               "templatecode": [
                 {
+                  "code": "function main(a,b) {      //start your code here        }",
                   "langid": 1,
-                  "langname": "Java",
-                  "code": "public staticvoid main(){}"
-                },
-                {
-                  "langid": 2,
-                  "langname": "JavaScript",
-                  "code": "public staticvoid main(){console.log()}"
+                  "langname": "Java"
                 }
               ],
-              "exampleinput": "hello",
-              "exampleoutput": "l",
-              "complexityid": 3,
-              "autoevaluate": 1,
-              "marks": 10,
-              "timelimit": 5
+              "exampleoutput": "yesnoyes"
             }
           ]
         }
@@ -103,7 +85,8 @@
     },
     {
       "module": "String",
-      "due_date": "2022-08-15",
+      "duedate": "2022-08-20",
+      "priority": 2,
       "id_module": 2,
       "complexity": [
         {
@@ -111,99 +94,68 @@
           "id_complexity": 1,
           "questions": [
             {
-              "id": 1,
-              "shortdesc": "EASY duplicate characters from a string",
-              "longdesc": "print duplicate characters from a string",
-              "categoryid": 1,
+              "id": 6,
+              "marks": 5,
+              "longdesc": "Write the pseudocode for String palindrome",
               "moduleid": 2,
+              "shortdesc": "String Palindrome ",
+              "timelimit": 10,
+              "categoryid": 1,
+              "complexityid": 1,
+              "exampleinput": "oppohockeyliril",
               "templatecode": [
                 {
+                  "code": "function main(a,b) {      //start your code here        }",
                   "langid": 1,
-                  "langname": "Java",
-                  "code": "public staticvoid main(){}"
-                },
-                {
-                  "langid": 2,
-                  "langname": "JavaScript",
-                  "code": "public staticvoid main(){console.log()}"
+                  "langname": "Java"
                 }
               ],
-              "exampleinput": "hello",
-              "exampleoutput": "l",
-              "complexityid": 1,
-              "autoevaluate": 1,
-              "marks": 10,
-              "timelimit": 5
-            }
-          ]
-        },
-        {
-          "qncount": 2,
-          "id_complexity": 2,
-          "questions": [
+              "exampleoutput": "yesnoyes"
+            },
             {
               "id": 2,
-              "shortdesc": "EASY duplicate characters from a string",
+              "marks": 10,
               "longdesc": "print duplicate characters from a string",
-              "categoryid": 1,
               "moduleid": 2,
+              "shortdesc": "EASY duplicate characters from a string",
+              "timelimit": 5,
+              "categoryid": 1,
+              "complexityid": 1,
+              "exampleinput": "hello",
+              "templatecode": [
+                { "code": null, "langid": null, "langname": null }
+              ],
+              "exampleoutput": "l"
+            },
+            {
+              "id": 12,
+              "marks": 5,
+              "longdesc": "Write the pseudocode for String palindrome",
+              "moduleid": 2,
+              "shortdesc": "String Palindrome ",
+              "timelimit": 10,
+              "categoryid": 1,
+              "complexityid": 1,
+              "exampleinput": "oppohockeyliril",
               "templatecode": [
                 {
+                  "code": "function main(a,b) {      //start your code here        }",
                   "langid": 1,
-                  "langname": "Java",
-                  "code": "public staticvoid main(){}"
-                },
-                {
-                  "langid": 2,
-                  "langname": "JavaScript",
-                  "code": "public staticvoid main(){console.log()}"
+                  "langname": "Java"
                 }
               ],
-              "exampleinput": "hello",
-              "exampleoutput": "l",
-              "complexityid": 2,
-              "autoevaluate": 1,
-              "marks": 10,
-              "timelimit": 5
+              "exampleoutput": "yesnoyes"
             }
           ]
         },
-        {
-          "qncount": 1,
-          "id_complexity": 3,
-          "questions": [
-            {
-              "id": 3,
-              "shortdesc": "EASY duplicate characters from a string",
-              "longdesc": "print duplicate characters from a string",
-              "categoryid": 1,
-              "moduleid": 2,
-              "templatecode": [
-                {
-                  "langid": 1,
-                  "langname": "Java",
-                  "code": "public staticvoid main(){}"
-                },
-                {
-                  "langid": 2,
-                  "langname": "JavaScript",
-                  "code": "public staticvoid main(){console.log()}"
-                }
-              ],
-              "exampleinput": "hello",
-              "exampleoutput": "l",
-              "complexityid": 3,
-              "autoevaluate": 1,
-              "marks": 10,
-              "timelimit": 5
-            }
-          ]
-        }
+        { "qncount": 2, "id_complexity": 2, "questions": [] },
+        { "qncount": 1, "id_complexity": 3, "questions": [] }
       ]
     },
     {
       "module": "Arrays",
-      "due_date": "2022-08-20",
+      "duedate": "2022-08-20",
+      "priority": 3,
       "id_module": 3,
       "complexity": [
         {
@@ -212,98 +164,29 @@
           "questions": [
             {
               "id": 1,
-              "shortdesc": "EASY duplicate characters from a string",
-              "longdesc": "print duplicate characters from a string",
-              "categoryid": 1,
+              "marks": 10,
+              "longdesc": "find the missing number in a given integer array of 1 to 5",
               "moduleid": 3,
-              "templatecode": [
-                {
-                  "langid": 1,
-                  "langname": "Java",
-                  "code": "public staticvoid main(){}"
-                },
-                {
-                  "langid": 2,
-                  "langname": "JavaScript",
-                  "code": "public staticvoid main(){console.log()}"
-                }
-              ],
-              "exampleinput": "hello",
-              "exampleoutput": "l",
+              "shortdesc": " EASY missing number in a given integer array",
+              "timelimit": 5,
+              "categoryid": 1,
               "complexityid": 1,
-              "autoevaluate": 1,
-              "marks": 10,
-              "timelimit": 5
+              "exampleinput": "1,2,4,5",
+              "templatecode": [
+                { "code": null, "langid": null, "langname": null }
+              ],
+              "exampleoutput": "3"
             }
           ]
         },
-        {
-          "qncount": 1,
-          "id_complexity": 2,
-          "questions": [
-            {
-              "id": 2,
-              "shortdesc": "EASY duplicate characters from a string",
-              "longdesc": "print duplicate characters from a string",
-              "categoryid": 1,
-              "moduleid": 3,
-              "templatecode": [
-                {
-                  "langid": 1,
-                  "langname": "Java",
-                  "code": "public staticvoid main(){}"
-                },
-                {
-                  "langid": 2,
-                  "langname": "JavaScript",
-                  "code": "public staticvoid main(){console.log()}"
-                }
-              ],
-              "exampleinput": "hello",
-              "exampleoutput": "l",
-              "complexityid": 2,
-              "autoevaluate": 1,
-              "marks": 10,
-              "timelimit": 5
-            }
-          ]
-        },
-        {
-          "qncount": 1,
-          "id_complexity": 3,
-          "questions": [
-            {
-              "id": 3,
-              "shortdesc": "EASY duplicate characters from a string",
-              "longdesc": "print duplicate characters from a string",
-              "categoryid": 1,
-              "moduleid": 3,
-              "templatecode": [
-                {
-                  "langid": 1,
-                  "langname": "Java",
-                  "code": "public staticvoid main(){}"
-                },
-                {
-                  "langid": 2,
-                  "langname": "JavaScript",
-                  "code": "public staticvoid main(){console.log()}"
-                }
-              ],
-              "exampleinput": "hello",
-              "exampleoutput": "l",
-              "complexityid": 3,
-              "autoevaluate": 1,
-              "marks": 10,
-              "timelimit": 5
-            }
-          ]
-        }
+        { "qncount": 1, "id_complexity": 2, "questions": [] },
+        { "qncount": 1, "id_complexity": 3, "questions": [] }
       ]
     },
     {
       "module": "Patterns",
-      "due_date": "2022-08-22",
+      "duedate": "2022-08-10",
+      "priority": 4,
       "id_module": 4,
       "complexity": [
         {
@@ -311,33 +194,24 @@
           "id_complexity": 1,
           "questions": [
             {
-              "id": 1,
-              "shortdesc": "EASY Pyramid Program",
-              "longdesc": "taking the input of number of rows ",
-              "categoryid": 1,
-              "moduleid": 4,
-              "templatecode": [
-                {
-                  "langid": 1,
-                  "langname": "Java",
-                  "code": "public staticvoid main(){}"
-                },
-                {
-                  "langid": 2,
-                  "langname": "JavaScript",
-                  "code": "public class PrintPyramid{ public static void main(String args[]) {}} "
-                }
-              ],
-              "exampleinput": "5",
-              "exampleoutput": "**********\n***",
-              "complexityid": 1,
-              "autoevaluate": 1,
+              "id": 5,
               "marks": 20,
-              "timelimit": 5
+              "longdesc": "printing pyramid pattern with * character taking the input of number of rows ",
+              "moduleid": 4,
+              "shortdesc": "EASY Pyramid Program",
+              "timelimit": 5,
+              "categoryid": 1,
+              "complexityid": 1,
+              "exampleinput": "5",
+              "templatecode": [
+                { "code": null, "langid": null, "langname": null }
+              ],
+              "exampleoutput": "**********n***"
             }
           ]
         }
       ]
     }
-  ]
+  ],
+  "learning_path": "JumpStart"
 }
