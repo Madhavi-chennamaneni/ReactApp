@@ -32,3 +32,15 @@
     border-radius: 20px;
     border: none;
 }
+
+.btn-due:disabled {
+    background-color: grey;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 55px;
+    height: 24px;
+    border-radius: 20px;
+    border: none;
+}
