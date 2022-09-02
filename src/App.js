@@ -19,6 +19,7 @@ import Uploads from "./uploads";
 import AdminRoot from "./Components/Adminroot";
 import CandidateRoot from "./candidateroot";
 import QuestionLanding from "../src/Components/QuestionBody";
+import Report from '../src/Components/Report/Report'
 //import executeCode from './util';
 
 function App() {

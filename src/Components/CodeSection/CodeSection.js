@@ -127,13 +127,8 @@ const CodeSection = (Props) => {
 
     return () => {
       // window.removeEventListener("focus", onFocus);
-<<<<<<< HEAD
-      // window.removeEventListener("blur", onBlur);
-    };
-=======
       window.removeEventListener("blur", onBlur);
     };}
->>>>>>> b2efbf851c6a795303669635db670c342598b98f
   });
   useEffect(() => {
     if(!Props.isAdmin){
@@ -188,22 +183,6 @@ const CodeSection = (Props) => {
             />
           </Split>
         </>
-<<<<<<< HEAD
-      ) : (<> <Split direction="horizontal" className="main-container">
-        <Problems data={Props.question} />
-        <CodeEditor
-          UserCode={UserCode}
-          SetUserCode={SetUserCode}
-          codeChange={codeChange}
-          runUserCode={runUserCode}
-          custominput={custominput}
-          getOutput={apiCall}
-          handleSubmit={handleSubmit}
-          data={Props.question}
-        />
-      </Split>
-      </>)}
-=======
       ) : (
         <>
           <Split direction="horizontal" className="main-container">
@@ -213,7 +192,7 @@ const CodeSection = (Props) => {
               SetUserCode={SetUserCode}
               codeChange={codeChange}
               custominput={custominput}
-              runCode={runCode}
+              runCode={runUserCode}
               handleSubmit={handleSubmit}
               data={Props.question}
               isAdmin={Props.isAdmin}
@@ -222,7 +201,6 @@ const CodeSection = (Props) => {
           </Split>
         </>
       )}
->>>>>>> b2efbf851c6a795303669635db670c342598b98f
     </div>
   );
 };

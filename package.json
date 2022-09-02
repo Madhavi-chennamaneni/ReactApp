@@ -16,10 +16,7 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "electron": "^19.0.8",
-<<<<<<< HEAD
     "js-file-download": "^0.4.12",
-=======
->>>>>>> b2efbf851c6a795303669635db670c342598b98f
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-ace": "^10.1.0",
