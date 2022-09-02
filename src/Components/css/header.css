@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+div.Header{
+    position: sticky;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 50px;
+    left: 0px;
+    top: 0px;
+
+    /* Kora Grey / Grey Light 1 */
+
+    background: #F8F9FA;
+    box-shadow: 0px 1px 0px #EFF0F1;
+    
+}
+
+div>div>span#logoName{
+    position: absolute;
+    width: 89px;
+    height: 24px;
+    left: 45px;
+    top: 6px;
+    font-family: 'inter';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+}
+#logo{
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 10px;
+    top: 6px;
+}
+div.Pages{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    padding-left: 35%;
+}
+#home{
+    position:relative;
+    height: 14px;
+    top: 10px;
+    text-decoration-line: none;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height, or 117% */
+
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    
+
+    /* Kora Grey / Grey Dark 1 */
+
+    color: #202124;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+#questions{
+    position: relative;
+    height: 14px;
+    top: 10px;
+    text-decoration-line: none;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height, or 117% */
+
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #202124;
+
+    order: 1;
+    margin: 0px 30px;
+}
+#tests{
+    position: relative;
+    height: 14px;
+    top: 10px;
+    text-decoration-line: none;
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    color: #202124;
+    order: 2;
+}
+#candidate{
+    position: relative;
+    height: 14px;
+    top: 10px;
+    text-decoration-line: none;
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #202124;
+
+    order: 3;
+    margin: 0px 30px;
+}
+#live{
+    position: relative;
+    height: 14px;
+    top: 10px;
+    text-decoration-line: none;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #202124;
+
+    order: 4;
+    }
+#reports{
+    position: relative;
+    height: 14px;
+    top: 10px;
+    text-decoration-line: none;
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #202124;
+
+    order: 5;
+    margin: 0px 30px;
+}
+#profilepic{
+    position: absolute;
+    left: 95.61%;
+    right: 2.2%;
+    top: 15%;
+    bottom: 94.87%;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    border-width: 5px;
+    padding: 1px;
+}

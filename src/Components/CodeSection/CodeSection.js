@@ -5,11 +5,20 @@ import OutputWindow from "./OutputWindow";
 import Problems from "./Problems";
 import Split from "react-split";
 import { useNavigate } from "react-router-dom";
-import { httpCall } from "../../util";
-import { httpCallSubmit } from "../../util";
-import Modal from "react-bootstrap/Modal";
+import  apiCall  from "../../util";
+import Modal from 'react-bootstrap/Modal';
+import Spinner from 'react-bootstrap/Spinner';
 import axios from "axios";
-import Spinner from "react-bootstrap/Spinner";
+import { faUtensilSpoon } from "@fortawesome/free-solid-svg-icons";
+
+const sample = require("../../model/sample.json");
+const data = sample.data.map((data) =>
+  data.complexity.map((complexity) =>
+    complexity.questions.map((questions) => questions)
+  )
+);
+// console.log(data);
+// console.log(data.map(data=>data.data.map(data=>data.complexity.map(complexity=>complexity.questions.map(questions=>questions.id)))));
 
 const CodeSection = (Props) => {
   // const [status, setStatus] = useState(false);
@@ -17,6 +26,7 @@ const CodeSection = (Props) => {
   // const [type, setType] = useState("");
   // const [title, setTitle] = useState("");
   // const [quote, setQuote] = useState("");
+  /* Problems */
 
   /* Output */
   var [UserCode, SetUserCode] = useState(``);
@@ -30,32 +40,29 @@ const CodeSection = (Props) => {
     SetLanguage(language);
   }
 
-  function runCode(language) {
-    var code = UserCode.split("\n");
-    var url = "";
-    for (var i = 0; i < code.length; i++) {
-      code[i] = code[i].trim();
-      code[i] = code[i].replace("//start here", "");
+  let runUserCode=()=> {
+    setClickRun(true)
+    var specs={};
+    specs.method="post";
+    specs.api="runcode";
+    specs.language=language;
+    specs.body = {
+      code: UserCode,
+      language: language,
+      questionid: QuestionId,
+      custominput: custominp,
     }
-    code = code.join("");
-
-    if (language === "JavaScript") {
-      url = "http://192.168.1.111:3005/api/submitusercode";
-    }
-    if (language === "Java") {
-      url =
-        "https://pk7vnfha6d.execute-api.ap-south-1.amazonaws.com/dev/learner/evaluate/run";
-    }
-
-    // if (language === "c/c++") {
-    //   url = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
-    // }
-
-    makeHttpCall(url, "run");
-    setClickRun(true);
-    return code;
+    
+    apiCall(specs) 
+    // .then((result) => result.json())
+    .then(result=>{SetCodeOutput(result);console.log(result)})
+    .catch((error) => {
+      SetCodeOutput(error);
+    });
+   
   }
 
+  const [problems, setProblems] = useState([]);
   const [index, setIndex] = useState(0);
   const navigate = useNavigate();
   const [custominp, setcustominp] = useState("");
@@ -65,96 +72,36 @@ const CodeSection = (Props) => {
   };
 
   const handleSubmit = (language, id) => {
-    var submiturl = "";
-    if (language === "JavaScript") {
-      submiturl = "http://192.168.1.111:3005/api/submitusercode";
-    }
-    if (language === "Java") {
-      submiturl =
-        "https://pk7vnfha6d.execute-api.ap-south-1.amazonaws.com/dev/learner/evaluate/submit";
-    }
 
-    // if (language === "c/c++") {
-    //   url = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
-    // }
+    setClickRun(true)
+    var specs={};
+    specs.method="post";
+    specs.api="submitcode";
+    specs.language=language;
+    specs.body = {
+      code: UserCode,
+      language: language,
+      questionid: QuestionId,
+      custominput: custominp,
+    }
+    
+    apiCall(specs) 
+    // .then((result) => result.json())
+    .then(result=>{SetCodeOutput(result);console.log(result)})
+    .catch((error) => {
+      SetCodeOutput(error);
+    });
 
-    // makeHttpCallSubmit(submiturl, "submit");
-    // autoSubmit();
   };
 
-  let makeHttpCall = (url) => {
-    const payload = {
-      method: "post",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "text/plain",
-      },
-    };
-    UserCode = UserCode.replace(/(?:\\[rn]|[\r\n]+)+/g, "");
-    UserCode = UserCode.replaceAll('""', `\\'\\'`);
-    UserCode = UserCode.replaceAll("\t", ``);
-    payload.body = {
-      body: {
-        code: UserCode,
-        language: language,
-        questionid: QuestionId,
-        custominput: custominp,
-      },
-    };
 
-    console.log(payload.body);
-
-    //console.log("AFTER REMOVING SPECIALCHARS"+payload.body);
-    httpCall(url, payload)
-      .then((result) => {
-        console.log("result is   js  ", result);
-        // console.log("RESULT OF TESTCODE" + JSON.stringify(result));
-        console.log(result);
-        SetCodeOutput(result.body);
-      })
-      .catch((result) => {
-        console.log("result is  js   ", result);
-        // SetCodeOutput(result.body);
-      });
+  const autoSubmit = () => {
+    if (index < problems.length - 1) {
+      setIndex(index + 1);
+    } else {
+      navigate("/home");
+    }
   };
-
-  // let makeHttpCallSubmit = (submiturl, type) => {
-  //   const payload = {
-  //     method: "put",
-  //     mode: "no-cors",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   };
-  //   payload.body = {
-  //     body: {
-  //       code: UserCode,
-  //       language: language,
-  //       questionid: QuestionId,
-  //       custominput: custominp
-  //     },
-  //   };
-
-  //   httpCallSubmit(submiturl, payload)
-  //     .then((result) => {
-  //       // console.log("result is   js  ", result);
-  //       console.log(result);
-
-  //       SetCodeOutput(result.body);
-  //     })
-  //     .catch((result) => {
-  //       // console.log("result is  js   ", result);
-  //       SetCodeOutput(result.body);
-  //     });
-  // };
-
-  // const autoSubmit = () => {
-  //   if (index < Props.question.length - 1) {
-  //     setIndex(index + 1);
-  //   } else {
-  //     navigate("/home");
-  //   }
-  // };
 
   const handleClose = () => Props.setShow(false);
 
@@ -171,11 +118,11 @@ const CodeSection = (Props) => {
       // autoSubmit();
     };
     // window.addEventListener("focus", onFocus);
-    window.addEventListener("blur", onBlur);
+    // window.addEventListener("blur", onBlur);
 
     return () => {
       // window.removeEventListener("focus", onFocus);
-      window.removeEventListener("blur", onBlur);
+      // window.removeEventListener("blur", onBlur);
     };
   });
   useEffect(() => {
@@ -216,8 +163,7 @@ const CodeSection = (Props) => {
               UserCode={UserCode}
               SetUserCode={SetUserCode}
               codeChange={codeChange}
-              runCode={runCode}
-              custominput={custominput}
+              runUserCode={runUserCode}
               handleSubmit={handleSubmit}
               data={Props.question}
               setClickRun={setClickRun}
@@ -229,22 +175,20 @@ const CodeSection = (Props) => {
             />
           </Split>
         </>
-      ) : (
-        <>
-          <Split direction="horizontal" className="main-container">
-            <Problems data={Props.question} />
-            <CodeEditor
-              UserCode={UserCode}
-              SetUserCode={SetUserCode}
-              codeChange={codeChange}
-              custominput={custominput}
-              runCode={runCode}
-              handleSubmit={handleSubmit}
-              data={Props.question}
-            />
-          </Split>
-        </>
-      )}
+      ) : (<> <Split direction="horizontal" className="main-container">
+        <Problems data={Props.question} />
+        <CodeEditor
+          UserCode={UserCode}
+          SetUserCode={SetUserCode}
+          codeChange={codeChange}
+          runUserCode={runUserCode}
+          custominput={custominput}
+          getOutput={apiCall}
+          handleSubmit={handleSubmit}
+          data={Props.question}
+        />
+      </Split>
+      </>)}
     </div>
   );
 };

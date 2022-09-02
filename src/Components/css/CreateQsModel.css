@@ -1,0 +1,237 @@
+.modalContainer {
+    position:absolute;
+    overflow: hidden;
+    width: 400px;
+    height: auto;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    float:right ;
+    top:30px;
+    right: 5px;
+    margin-right: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+  }
+  .modalContainer .title {
+    display: inline-block;
+    text-align: left;
+    margin-top: 5px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    border-bottom:rgb(248, 246, 246) 2px solid;
+  }
+  .titleCloseBtn {
+    margin-top: 0px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0px;
+    
+  }
+  .autotextul{
+    overflow: auto;
+    max-height: 100px;
+  }
+  .btnclose{
+    border: none;
+    background-color: transparent;
+    margin-top: -15px;
+  }
+  .btclose:hover{
+    cursor: pointer;
+  }
+.Qstninput{
+    text-align: left;
+    
+}
+.opt:hover{
+  background-color: #ffffff;
+}
+  .Qustn_label{
+  margin-top:12px;
+  font-weight:600;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+  }
+  .Qstndropdown{
+    font-family: 'FontAwesome', 'Inter';
+    width: 370px;
+    height: 30px;
+    border: solid rgb(150, 148, 148) 1px;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: white
+  }
+  .Qstndropdown:hover{
+    background-color: #f0f0f0;
+  }
+  .Qstndropdown .opt{
+    margin-top: 10px;
+ 
+  } 
+  .Qstninputtext{
+    border: solid rgb(150, 148, 148) 1px;
+    border-radius: 3px;
+    width: 370px;
+    height: 35px;
+    padding: 15px;
+  }
+  .autotextli {
+    border: solid rgb(150, 148, 148) 1px;
+    border-radius: 10px; 
+  }
+  #titlehead{
+    margin-right:178px;
+    font-size:22px;
+  }
+  
+.qustlevel1{
+  display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 5px;
+position: static;
+left: 10px;
+top: 8px;
+font-size: large;
+background: #12a360;
+}
+.qustlevel2{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  position: static;
+  left: 10px;
+  top: 8px;
+  font-size: large;
+  background: #448af3;
+
+}
+.qustlevel3{
+  display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 5px;
+position: static;
+left: 10px;
+top: 8px;
+font-size:large ;
+background: #dd4857;
+}
+
+.footer {
+  display: flex;
+  padding-top: 25px;
+  justify-content: left;
+  align-items: center;
+}
+.btn-save-active{
+  background-color: #F55533;
+  color:white;
+  border: solid #F55533;
+  border-radius: 5%;
+
+}
+.btn-save-disbale{
+  border: 1px solid #e0e0e0;
+  background-color: #cccccc;
+  color: #666666;
+}
+.btn-cancel{
+  background: none;
+  border-radius: 5%;
+  margin-left: 5px;
+  border: solid gray 1px;
+  background-color: rgb(223, 219, 219);
+}
+
+.option{
+  border: solid gray 1px;
+}
+.dlticon{
+  float:right;
+margin-right: 10px;
+}
+
+#ansopt{
+  margin-left: 5px;
+  border-bottom: gray 1px solid;;
+}
+.optansradio{
+  font-family: 'FontAwesome', Arial;
+  padding: 3px;
+width: 20%;
+}
+.radiooptcontainer{
+padding: 0px;
+
+}
+.optiontype{
+  margin-left: -30px;
+  width: 100%;
+}
+.optionadd{
+  float: right;
+}
+
+.optionaddbutton{
+  background: none;
+  border: 1px solid rgb(80, 80, 80);
+  border-radius: 4px;
+  padding: 3px 3px;
+  width: 80px;
+  position: relative;
+  top: -25px;
+  right: 30px;
+  height: 23px;
+}
+.optionaddbutton:hover{
+  background-color: #cccccc;
+}
+
+.shorttxt{
+  width: 100%;
+}
+.shotanscontainer{
+ padding: 10px ;
+}
+
+.optionviewcontainer{
+   overflow: auto;
+   width: 90%;
+   font-family: 'FontAwesome', Arial;
+   padding-left: 5px;
+   max-height: 100px;
+   overflow-y: auto;
+}
+.optionpara{
+  font-family: 'FontAwesome', Arial;
+  margin-left: 2px;
+}
+
+.longtxt{
+  width: 90%;
+  height:70px ;
+border: gray solid 1px;
+}
+.longanscontainer{
+  padding:15px;
+  padding-right: 0px;
+}
+#autogroup{
+  width: 10px;
+}

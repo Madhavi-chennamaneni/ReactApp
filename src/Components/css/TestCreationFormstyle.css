@@ -1,0 +1,142 @@
+.TestmodalContainer {
+    position:absolute;
+    overflow: hidden;
+    width: 950px;
+    height: 587px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    float:right ;
+   top:73px;
+   right: -6px;
+   margin-right: 15px;
+  }
+  .TestmodalContainer .title {
+    display: inline-block;
+    text-align: left;
+    margin-top: 0px;
+    font-size: 10px;
+    border-bottom:rgb(248, 246, 246) 2px solid;
+  }
+  .titleCloseBtn {
+ margin-top: 0px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0px;
+    
+  }
+  .autotextul{
+    overflow: auto;
+    max-height: 100px;
+  }
+  .btnclose{
+    border: none;
+    background-color: transparent;
+  }
+.testinput{
+    text-align: left;
+    
+}
+
+  .test_label{
+   
+    font-size: 15px;
+font-weight:600;
+
+  }
+  .Qstndropdowntc{
+    font-family: 'FontAwesome', Arial;
+      width: 350px;
+      height: 20px;
+      border: solid rgb(150, 148, 148) 1px;
+      border-radius: 3px;
+     padding: auto;
+  }
+ 
+.btn-save-active{
+  background-color: red;
+  color:white;
+  border: solid red;
+  border-radius: 5%;
+
+}
+.btn-save-disbale{
+  border: 1px solid #e0e0e0;
+  background-color: #cccccc;
+  color: #666666;
+}
+.btn-cancel{
+  background: none;
+  border-radius: 5%;
+  margin-left: 5px;
+  border: solid gray 1px;
+  background-color: rgb(223, 219, 219);
+}
+
+.option{
+  border: solid gray 1px;
+}
+.dlticon{
+  float:right;
+margin-right: 10px;
+}
+
+#ansopt{
+  margin-left: 5px;
+  border-bottom: gray 1px solid;;
+}
+.optansradio{
+  font-family: 'FontAwesome', Arial;
+  padding: px;
+width: 20%;
+
+}
+.radiooptcontainer{
+padding: 0px;
+
+}
+.optiontype{
+  margin-left: 0px;
+  width: 100%;
+}
+.optionadd{
+float: right;
+}
+
+.optionaddbutton{
+border: none;
+background:none;
+}
+
+.shorttxt{
+  width: 100%;
+}
+.shotanscontainer{
+ padding: 10px ;
+}
+
+.optionviewcontainer{
+   overflow: auto;
+   width: 90%;
+   font-family: 'FontAwesome', Arial;
+   padding-left: 5px;
+   max-height: 100px;
+   overflow-y: auto;
+}
+.optionpara{
+  font-family: 'FontAwesome', Arial;
+  margin-left: 2px;
+}
+
+.longtxt{
+  width: 90%;
+  height:70px ;
+border: gray solid 1px;
+}
+.longanscontainer{
+  padding:15px;
+  padding-right: 0px;
+}

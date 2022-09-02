@@ -1,0 +1,108 @@
+.testpreviewhead{
+position: absolute;
+min-width: 1366px; 
+height: 150px;
+left: 0px;
+background: #F55533;
+}
+.Testviewcontainer{
+    display: flex;
+flex-direction: column;
+align-items: center;
+position: absolute;
+width: 540px;
+right: 400PX;
+top: 50px;
+min-height: 400px;
+background: #FFFFFF;
+/* Shadow Small */
+
+box-shadow: 0px 4px 8px rgba(32, 33, 36, 0.15);
+border-radius: 10px;
+}
+.testviewcontainerhead{
+
+  min-height: 150px;
+  height: auto;
+  width: 100%;
+ border-bottom: rgb(214, 213, 213) 1px solid;
+ margin-bottom: 0px;
+}
+.header{
+    font-size: 25px;
+    font-weight: 500;
+}
+.headercontainer{
+    
+margin-left: 25px;
+margin-right: 25px;
+}
+.Qstncontainer{
+    width: 500px; 
+ margin-top: 25px;
+ padding: 5px;
+min-height: 350px;
+border-bottom: rgb(214, 213, 213) 1px solid;
+    
+}
+.questionsection{
+width:500px ;
+text-align: start;
+}
+
+.questionoptn{
+    text-align: start;
+    margin-bottom: 5px;
+}
+
+.questionoptnans{
+    text-align: start;
+    margin-bottom: 5px;
+color: rgb(14, 148, 14);
+}
+.Shortanswercontainer{
+   text-align: start;
+overflow:auto;
+max-height: 250px;
+}
+
+.shortparapreview{
+    position: relative;
+  
+}
+.longanswercontainer{
+    text-align: start;
+ overflow:auto;
+ max-height: 250px;
+ }
+ 
+ .longparapreview{
+     position: relative;
+   
+ }
+
+ .btn-save-active{
+    background-color: red;
+    color:white;
+    border: solid red;
+    border-radius: 5%;
+    width:90px;
+    margin-right: 5px;
+  }
+
+  .btn-save-disbale{
+    border: 1px solid #e0e0e0;
+    background-color: #cccccc;
+    color: hsl(0, 0%, 40%);
+    width:90px;
+    margin-right: 5px;
+  }
+  .Qustionsavebtn{
+      margin-top: 10px;
+width: 500px;
+text-align: start;
+  }
+  .main{
+width: auto;
+height: auto;
+  }

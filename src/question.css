@@ -8,3 +8,20 @@ form{
     color: red;
     margin: 0px;
   } 
+
+  .io{
+    position:relative;
+    
+  }
+
+  .iotable{
+    position:relative;
+    left: 43%;
+    
+  }
+  body{
+    height:2000px;
+    overflow: scroll;
+    overflow-x: scroll;
+  }
+

@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import Alert from "./Alert/Alert";
 import LearningPath from "./LearningPath/LearningPath";
 import WorkPath from "./WorkPath/WorkPath";
-import axios from "axios";
+import Header from "../Header/Header";
+import axios from "axios";  
+const sample = require("../../model/sample.json");
 
 export default function Home(Props) {
   function attendQuestion(row, time) {
     Props.attendQuestion(row, time);
   }
 
+  const data = [sample].map((data) => data);
   const [module, setModule] = useState([]);
 
   useEffect(() => {
@@ -28,7 +31,8 @@ export default function Home(Props) {
 
   return (
     <div className="homePage">
-      <Alert data={module.data} />
+       {/* <Header/> */} 
+      <Alert data={data} />
       <div className="lpPathSection">
         <LearningPath data={module} attendQuestion={attendQuestion} />
         <WorkPath data={module.data} />

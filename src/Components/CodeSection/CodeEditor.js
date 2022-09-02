@@ -57,25 +57,25 @@ const CodeEditor = (Props) => {
   useEffect(() => {
     let languageOption = document.getElementById("language").value;
     getTemplatecode(languageOption);
-  }, []);
+  },[]);
 
   const changeCustomInput = (e) => {
     setCustomInput(e.target.value);
     Props.custominput(e.target.value);
   };
 
-  // const customInputArea = () => {
-  //   const checkBox = document.getElementById("checkBox");
-  //   const customInputArea = document.getElementById("customInputArea");
-  //   const textArea = document.createElement("textarea");
-  //   if (checkBox.checked === true) {
-  //     textArea.id = "textArea";
-  //     customInputArea.appendChild(textArea);
-  //   } else {
-  //     let removeElement = document.getElementById("textArea");
-  //     removeElement.remove();
-  //   }
-  // };
+  const customInputArea = () => {
+    const checkBox = document.getElementById("checkBox");
+    const customInputArea = document.getElementById("customInputArea");
+    const textArea = document.createElement("textarea");
+    if (checkBox.checked === true) {
+      textArea.id = "textArea";
+      customInputArea.appendChild(textArea);
+    } else {
+      let removeElement = document.getElementById("textArea");
+      removeElement.remove();
+    }
+  };
 
   return (
     <>
@@ -114,7 +114,7 @@ const CodeEditor = (Props) => {
           editorProps={{ $blockScrolling: false }}
         />
         <div className="btnDiv">
-          <button className="runBtn" onClick={() => Props.runCode(language)}>
+          <button className="runBtn" onClick={() => Props.runUserCode(language)}>
             Run Code
           </button>
           <button

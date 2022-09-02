@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 const Header = (Props) => {
   const [onclick, setOnclick] = useState(false);
@@ -23,15 +24,15 @@ const Header = (Props) => {
       <span id="logInProfile" onClick={() => setOnclick(!onclick)} ></span> &nbsp;
       <span id="logInName"></span>
       {localStorage.getItem("loggedin") === "true" && (
-        <a
+        <Link
           className="logoutLink"
-          href="/"
+          to="/"
           onClick={() => {
-            localStorage.setItem("loggedin", "false");
+            localStorage.removeItem("loggedin");
           }}
         >
           Logout
-        </a>
+        </Link>
       )}
     </header>
   );
