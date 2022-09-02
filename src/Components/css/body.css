@@ -46,6 +46,7 @@ p#light-info{
 }
 .questionTable{
     margin-top: 10px;
+    /* position: fixed; */
 }
 .questionHeader {
     display: flex;

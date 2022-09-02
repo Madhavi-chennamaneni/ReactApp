@@ -14,7 +14,7 @@ export default function Home(Props) {
   // console.log(data);
   return (
     <div className="homePage">
-       <Header/>
+       {/* <Header/> */} 
       <Alert data={data} />
       <div className="lpPathSection">
         <LearningPath data={data} attendQuestion={attendQuestion} />

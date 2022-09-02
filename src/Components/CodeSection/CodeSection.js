@@ -5,9 +5,11 @@ import OutputWindow from "./OutputWindow";
 import Problems from "./Problems";
 import Split from "react-split";
 import { useNavigate } from "react-router-dom";
-import { httpCall } from "../../util";
+import  apiCall  from "../../util";
 import Modal from 'react-bootstrap/Modal';
 import Spinner from 'react-bootstrap/Spinner';
+import axios from "axios";
+import { faUtensilSpoon } from "@fortawesome/free-solid-svg-icons";
 
 const sample = require("../../model/sample.json");
 const data = sample.data.map((data) =>
@@ -21,19 +23,10 @@ const data = sample.data.map((data) =>
 const CodeSection = (Props) => {
   // const [status, setStatus] = useState(false);
   const [clickRun, setClickRun] = useState(false);
-  const [alertBodyText, setAlertBodyText] = useState('');
   // const [type, setType] = useState("");
   // const [title, setTitle] = useState("");
   // const [quote, setQuote] = useState("");
   /* Problems */
-
-  useEffect(() => {
-    fetch("https://62eb6772705264f263d7de1e.mockapi.io/problems")
-      .then((res) => res.json())
-      .then((json) => {
-        setProblems(json);
-      });
-  }, []);
 
   /* Output */
   var [UserCode, SetUserCode] = useState(``);
@@ -47,45 +40,29 @@ const CodeSection = (Props) => {
     SetLanguage(language);
   }
 
-  let getOutput=(language,id)=> {
-    var code = UserCode.split("\n");
-    var url = "";
-    for (var i = 0; i < code.length; i++) {
-      code[i] = code[i].trim();
-      code[i] = code[i].replace("//start here", "");
-    }
-    code = code.join("");
-
-    if (language === "JavaScript") {
-      url = "http://192.168.1.111:3005/api/submitusercode";
-    }
-    if (language === "Java") {
-      url = "https://pk8eaiaa0h.execute-api.ap-south-1.amazonaws.com/beta";
-    }
-
-    // if (language === "c/c++") {
-    //   url = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
-    // }
-
-    console.log(url);
-
-    makeHttpCall(url);
+  let runUserCode=()=> {
     setClickRun(true)
-    return code;
+    var specs={};
+    specs.method="post";
+    specs.api="runcode";
+    specs.language=language;
+    specs.body = {
+      code: UserCode,
+      language: language,
+      questionid: QuestionId,
+      custominput: custominp,
+    }
+    
+    apiCall(specs) 
+    // .then((result) => result.json())
+    .then(result=>{SetCodeOutput(result);console.log(result)})
+    .catch((error) => {
+      SetCodeOutput(error);
+    });
+   
   }
 
   const [problems, setProblems] = useState([]);
-
-  useEffect(() => {
-    fetch(
-      "https://62eb6772705264f263d7de1e.mockapi.io/problems"
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setProblems(json);
-      });
-  }, []);
-
   const [index, setIndex] = useState(0);
   const navigate = useNavigate();
   const [custominp, setcustominp] = useState("");
@@ -95,47 +72,28 @@ const CodeSection = (Props) => {
   };
 
   const handleSubmit = (language, id) => {
-    var url = "";
-    if (language === "JavaScript") {
-      url = "http://192.168.1.111:3005/api/submitusercode";
-    }
-    if (language === "Java") {
-      url = "https://pk8eaiaa0h.execute-api.ap-south-1.amazonaws.com/beta";
-    }
 
-    // if (language === "c/c++") {
-    //   url = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
-    // }
-
-    makeHttpCall(url, "submit");
-    autoSubmit();
-  };
-
-  let makeHttpCall = (url, type) => {
-    const payload = {
-      method: "post",
-      headers: {
-        "Content-Type": "text/plain",
-      },
-    };
-    payload.body = JSON.stringify({
+    setClickRun(true)
+    var specs={};
+    specs.method="post";
+    specs.api="submitcode";
+    specs.language=language;
+    specs.body = {
       code: UserCode,
       language: language,
       questionid: QuestionId,
       custominput: custominp,
-      hittype: type,
+    }
+    
+    apiCall(specs) 
+    // .then((result) => result.json())
+    .then(result=>{SetCodeOutput(result);console.log(result)})
+    .catch((error) => {
+      SetCodeOutput(error);
     });
-    httpCall(url, payload)
-      .then((result) => {
-        // console.log("result is   js  ", result);
-        // console.log(result);
-        SetCodeOutput(result.body);
-      })
-      .catch((result) => {
-        // console.log("result is  js   ", result);
-        SetCodeOutput(result.body);
-      });
+
   };
+
 
   const autoSubmit = () => {
     if (index < problems.length - 1) {
@@ -145,25 +103,12 @@ const CodeSection = (Props) => {
     }
   };
 
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-
-  useEffect(() => {
-    const alertLandOnCodeSection = () => {
-      alert('If You navigate from this page, the question will submit automatically and we give another question for you')
-    }
-    window.addEventListener('load', alertLandOnCodeSection);
-    return () => {
-      window.removeEventListener('focus', alertLandOnCodeSection)
-    }
-  })
+  const handleClose = () => Props.setShow(false);
 
   useEffect(() => {
     const onBlur = () => {
-      setShow(true)
-      setAlertBodyText('You have navigated from this page.So, we give a another qns for you')
+      Props.setShow(true)
+      Props.setAlertBodyText('You have navigated from this page.So, we give a another qns for you')
       // setStatus(true);
       // setType("warning");
       // setTitle("Warning");
@@ -184,8 +129,8 @@ const CodeSection = (Props) => {
         Props.setSeconds(Props.seconds - 1);
       } else {
         clearInterval(timer)
-        setShow(true);
-        setAlertBodyText('You have reached your timelimit')
+        Props.setShow(true);
+        Props.setAlertBodyText('You have reached your timelimit')
         autoSubmit();
         /*  setStatus(true);
          setType("warning");
@@ -203,13 +148,13 @@ const CodeSection = (Props) => {
 
   return (
     <div>
-      <Modal show={show} onHide={handleClose} size="mg"
+      <Modal show={Props.show} onHide={handleClose} size="mg"
         aria-labelledby="contained-modal-title-vcenter"
       >
         <Modal.Header closeButton className="warning">
           <Modal.Title>Warning!</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="warning">{alertBodyText}</Modal.Body>
+        <Modal.Body className="warning">{Props.alertBodyText}</Modal.Body>
       </Modal>
       {(clickRun === true) ? (
         <>
@@ -219,7 +164,7 @@ const CodeSection = (Props) => {
               UserCode={UserCode}
               SetUserCode={SetUserCode}
               codeChange={codeChange}
-              getOutput={getOutput}
+              runUserCode={runUserCode}
               handleSubmit={handleSubmit}
               data={Props.question}
               setClickRun={setClickRun}
@@ -242,8 +187,9 @@ const CodeSection = (Props) => {
           UserCode={UserCode}
           SetUserCode={SetUserCode}
           codeChange={codeChange}
+          runUserCode={runUserCode}
           custominput={custominput}
-          getOutput={getOutput}
+          getOutput={apiCall}
           handleSubmit={handleSubmit}
           data={Props.question}
         />

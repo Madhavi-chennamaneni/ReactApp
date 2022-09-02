@@ -9,24 +9,30 @@ const EditableRow = ({
   return (
     <tr>
       <td>
-        <input
-          type="text"
+        {/* <input */}
+          // type="text"
+         < textarea
           required="required"
           placeholder="Enter a input..."
           name="input"
           value={editFormData.input}
           onChange={handleEditFormChange}
-        ></input>
+        />
+
+        {/* </input> */}
       </td>
       <td>
-        <input
-          type="text"
+        {/* <input */}
+          // type="text"
+          < textarea
           required="required"
           placeholder="Enter an output..."
           name="output"
           value={editFormData.output}
           onChange={handleEditFormChange}
-        ></input>
+        />
+
+        {/* </input> */}
       </td>
       <td>
         <button type="button" onClick={handleEditFormSubmit}>Save</button>

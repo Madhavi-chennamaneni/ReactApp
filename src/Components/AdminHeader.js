@@ -38,6 +38,7 @@ function AdminHeader () {
                     </div> */}
 
                     <span id="logInName"></span>
+                    
 
       {localStorage.getItem("loggedin") === "true" && (
         <Link

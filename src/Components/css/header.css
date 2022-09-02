@@ -12,6 +12,7 @@ div.Header{
 
     background: #F8F9FA;
     box-shadow: 0px 1px 0px #EFF0F1;
+    
 }
 
 div>div>span#logoName{
@@ -37,7 +38,7 @@ div.Pages{
     display: flex;
     flex-direction: row;
     position: absolute;
-    padding-left: 22%;
+    padding-left: 35%;
 }
 #home{
     position:relative;

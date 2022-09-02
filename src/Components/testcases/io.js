@@ -121,22 +121,24 @@ const Io = (Props) => {
         <p style={{ color: "red" }}>{Errors}</p>
         <h6><b>Add a Test Case</b></h6>
         {/* <form > */}
-          <input
-            type="text"
+          {/* <input */}
+            {/* type="text" */}
+            <textarea
             name="input"
             required="required"
             placeholder="Enter a input..."
             onChange={handleAddFormChange}
           />
-          <input
-            type="text"
+          {/* <input */}
+            {/* type="text" */}
+            <textarea
             name="output"
             required="required"
             placeholder="Enter an output..."
             onChange={handleAddFormChange}
           />
 
-          <button type="button" onClick={handleAddFormSubmit} >Add</button>
+          <button type="button" style={{position:"relative", bottom:"20px"}} onClick={handleAddFormSubmit} >Add</button>
 
         {/* </form> */}
         <div>

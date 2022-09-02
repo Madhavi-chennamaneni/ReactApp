@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 const LoginPage = () => {
   return (
     <>
-    <Header />
+    
     <form className="loginForm">
       <div className="tabs">Sign In</div>
       <div className="signInForm">

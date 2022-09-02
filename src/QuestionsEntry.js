@@ -77,7 +77,7 @@ function QuestionsEntry(Props) {
         else {
 
             var questionsdata = JSON.stringify({ qdata: UserInput, qcodes: QuestionCodes, io: iodata });
-            axios.post("http://localhost:3005/api/savequestion", questionsdata,
+            axios.post("https://pk7vnfha6d.execute-api.ap-south-1.amazonaws.com/dev/admin/question/add", questionsdata,
                 { headers: { 'Content-Type': 'text/plain' } })
                 .then(res => {
                     console.log("", res.data.body);

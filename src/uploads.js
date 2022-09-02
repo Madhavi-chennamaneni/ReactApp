@@ -21,7 +21,7 @@ function Uploads(Props) {
         //     console.log(error)
         // })
           .then((res) => {
-            download(res.data, "processed_candidate_file.csv");
+            download(res.data, "processed_file.csv");
               //  res.data.pipe(fs.createWriteStream("/temp/my.csv"));
           })
           .catch((err) => alert("File Upload Error"));
@@ -29,6 +29,7 @@ function Uploads(Props) {
 
 
 let setRadio=(e)=>{
+  // e.preventdefault()
     setType(e.target.value);
 }
 
@@ -38,7 +39,7 @@ let setRadio=(e)=>{
   return (
 
     <>
-s
+
     <div class="file_uploads">
       <h2>File Uploads</h2>
       <form>
@@ -47,18 +48,37 @@ s
   <label class="input-group-text" for="inputGroupFile02">Upload</label>
 </div>
 
-Choose file type:
-<div class="form-check form-check-inline" >
-  <input class="form-check-input" type="radio" name="uploads" id="que" value="Questions" onChange={setRadio} checked={type==="Questions"}/>
-  <label class="form-check-label" for="language_java">Question</label>
+Choose file type:&nbsp;&nbsp;
+{/* <div class="form-check form-check-inline" >
+  <input class="form-check-input" type="radio" name="uploads" id="questions" value="questions" onChange={setRadio} checked={type==="questions"}/>
+  <label class="form-check-label" for="questions">Questions</label>
+</div> */}
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="uploads" id="modules" value="modules" onChange={setRadio} checked={type==="modules"}/>
+  <label class="form-check-label" for="modules">Modules</label>
+</div>
+
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="uploads" id="institute" value="institute" onChange={setRadio} checked={type==="institute"}/>
+  <label class="form-check-label" for="institute">Institute</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="uploads" id="language_JavaScript" value="Modules" onChange={setRadio} checked={type==="Modules"}/>
-  <label class="form-check-label" for="language_JavaScript">Modules</label>
+  <input class="form-check-input" type="radio" name="uploads" id="candidates" value="candidates" onChange={setRadio} checked={type==="candidates"}/>
+  <label class="form-check-label" for="candidates">Candidates</label>
+</div>
+
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="uploads" id="batch" value="batch" onChange={setRadio} checked={type==="batch"}/>
+  <label class="form-check-label" for="batch">batch</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="uploads" id="language_C_CPP" value="learningprogram" onChange={setRadio} checked={type==="learningprogram"}/>
-  <label class="form-check-label" for="language_C_CPP">Learning Programs</label>
+  <input class="form-check-input" type="radio" name="uploads" id="learningpathmodule" value="learningpathmodule" onChange={setRadio} checked={type==="learningpathmodule"}/>
+  <label class="form-check-label" for="learningpathmodule">learning path module</label>
+</div>
+
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="uploads" id="batchmoduleconfig" value="batchmoduleconfig" onChange={setRadio} checked={type==="batchmoduleconfig"}/>
+  <label class="form-check-label" for="batchmoduleconfig">Batch Module Config</label>
 </div>
 
 <div class="col-auto my-1">
@@ -80,15 +100,34 @@ Choose file type:
 
 <div>
 {/* <a href={require("./static/Learning_program.csv")} download="myFile"><button type="button">Download Questions Template</button></a> */}
-<a href="../../static/Questions.csv" download="Lp.csv"><button type="button">Download Questions Template</button></a>
+{/* <a href="../../static/Questions.csv" download="Lp.csv"><button type="button">Download Questions Template</button></a> */}
 <br/>
 <br/>
-<a href="../../static/Candidate.csv" download="Modules.csv"><button type="button">Download Candidate Template</button></a>
+<a href="../../static/Candidate.csv" download="candidate_template.csv"><button type="button">Download Candidate Template</button></a>
 <br/>
 <br/>
-{/* <a href="../../static/Questions.csv" download="Questions.csv"><button type="button" download>Download Learning Program Template</button></a> */}
+<a href="../../static/institite_template.csv" download="institite_template.csv"><button type="button">Download Institute Template</button></a>
 <br/>
-</div>  
+<br/>
+<a href="../../static/batch_template.csv" download="batch_template.csv"><button type="button" download>Download batch Template</button></a>
+<br/>
+</div>
+<div>
+<br/>
+<a href="../../static/learningpathmodule_template.csv" download="learningpathmodule_template.csv"><button type="button" download>Download Learningpath module Template</button></a>
+<br/>
+</div>
+<div>
+<br/>
+<a href="../../static/modules_template.csv" download="modules_template.csv"><button type="button" download>Download modules Template</button></a>
+<br/>
+</div>
+<div>
+<br/>
+<a href="../../static/batchmoduleconfig_template.csv" download="batch_module_config_template.csv"><button type="button" download>Batch Module Config template</button></a>
+<br/>
+</div>
+
 
 
 </>
