@@ -1,26 +1,12 @@
 import React from "react";
-import Moment from "react-moment";
+import moment from "moment";
 
-const OverDue = ({ data, currentWeek, FontAwesomeIcon, faFileLines }) => {
-  const currentDate = new Date();
+const OverDue = ({ data, currentWeeknumber, FontAwesomeIcon, faFileLines }) => {
 
   const filteredData = data.filter(
     (module) =>
-      Math.ceil(
-        Math.floor(
-          (new Date(module.duedate) -
-            new Date(currentDate.getFullYear(), 0, 1)) /
-            (24 * 60 * 60 * 1000)
-        ) / 7
-      ) === currentWeek ||
-      Math.ceil(
-        Math.floor(
-          (new Date(module.duedate) -
-            new Date(currentDate.getFullYear(), 0, 1)) /
-            (24 * 60 * 60 * 1000)
-        ) / 7
-      ) ===
-        currentWeek - 1
+    // console.log(module.duedate)
+    moment(module.duedate, "YYYY-MM-DD").week() <= currentWeeknumber
   );
 
   // console.log(filteredData.map(data=>data.module));
@@ -34,30 +20,52 @@ const OverDue = ({ data, currentWeek, FontAwesomeIcon, faFileLines }) => {
         <span className="overDuebadge">{filteredData.length}</span>
       </div>
       <hr className="hrLine" />
-      {filteredData.map((data) => (
-        <>
-          <div className="overDueList">
-            <FontAwesomeIcon className="fileIcon" icon={faFileLines} />
-            <h4 className="exerciseName">{data.module}</h4>
-          </div>
-          <div className="dueDate">
-            <span className="">Due {data.due_date}</span>
-            <li className="remainingDay">
-              {/* {<Moment diff={new Date()} unit="days">{new Date(data.due_date)}</Moment>} to go */}
-              {new Date(data.dueDate).getDate() >= currentDate.getDate() ? (
-                <Moment from={new Date()} ago>
-                  {new Date(data.dueDate)}
-                </Moment>
-              ) : (
-                "Late"
-              )}
-            </li>
-          </div>
-        </>
-      ))}
+      {filteredData.map((data) =>
+       
+          <>
+            <div className="overDueList">
+              <FontAwesomeIcon className="fileIcon" icon={faFileLines} />
+              <h4 className="exerciseName">{data.module}</h4>
+            </div>
+            <div className="dueDate">
+              <span className="">Due {data.duedate}</span>
+              <li className="remainingDay">
+                {/* {<Moment diff={new Date()} unit="days">{new Date(data.due_date)}</Moment>} to go */}
+                {/* {new Date(data.dueDate).getDate() >= currentDate.getDate() ? (
+                  <Moment from={new Date()} ago>
+                    {new Date(data.dueDate)}
+                  </Moment>
+                ) : (
+                  "Late"
+                )} */}
+                 <span>{getDiff(data.duedate)}</span>
+              </li>
+              
+            </div>
+          </>
+        )}
       <br />
     </div>
   );
+
+  function getDiff(date)
+  {
+    var currentDate = moment(new Date());
+    var dueDate = moment(new Date(date));
+    var diff= dueDate.diff(currentDate, 'days');
+   if( diff<0 )
+   {
+    return "late";
+   }else if(diff==0){
+    return  '1 day to go' ;
+   }
+   else
+   {
+    return diff + 'days to go' ;
+   }
+
+
+  }
 
   //  Fetching with API
 

@@ -30,14 +30,14 @@ export default function LearningPath({ data, attendQuestion }) {
   function attendQuestion1(row) {
     // console.log(row)
     for (let rowData in row) {
-      // console.log(row[rowData]);
-      if (typeof (row[rowData] == Array)) {
-        for (let data in row[rowData]) {
+      // // console.log(row[rowData]);
+      // if (typeof (row[rowData] == Array)) {
+      //   for (let data in row[rowData]) {
           // console.log(row[rowData][data].timelimit)
-          attendQuestion(row, row[rowData][data].timelimit);
+          attendQuestion(row, row[rowData].timelimit);
         }
-      }
-    }
+    //   }
+    // }
   }
 
   // const priority = data.data.map((priority) => priority.priority);
