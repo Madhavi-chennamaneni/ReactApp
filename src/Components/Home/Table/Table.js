@@ -105,7 +105,7 @@ export default function Table(Props) {
         <button
           className="btn-due"
           onClick={() => {
-            attendQuestion(row);
+            attendQuestion(row.questions);
           }}
           disabled={!disabled}
           // onChange={() => handleChange(priority)}

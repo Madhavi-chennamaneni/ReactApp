@@ -4,21 +4,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
 import { faFileLines } from "@fortawesome/free-solid-svg-icons/faFileLines";
+import moment from "moment";
 import OverDue from "./OverDue";
 import WeekDue from "./WeekDue";
 
 const currentDate = new Date();
+let currentWeeknumber = moment(currentDate, "YYYY-MM-DD").week();
+console.log(currentWeeknumber) 
 
-const startDate = new Date(currentDate.getFullYear(), 0, 1);
-const days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
-
-const currentWeek = Math.ceil(days / 7);
 let first = currentDate.getDate() - currentDate.getDay() + 7; // First day is the day of the month - the day of the week
 let last = first + 6; // last day is the first day + 6
 
 let firstday = new Date(currentDate.setDate(first)).toDateString();
+console.log(firstday)
 let lastday = new Date(currentDate.setDate(last)).toDateString();
-let nextWeek = Math.ceil((first + 6 - new Date(first).getDay()) / 7);
+let nextWeekNumber = moment(new Date(firstday), "YYYY-MM-DD").week();
+console.log(nextWeekNumber)
 
 export default function WorkPath(data) {
   const [isOpen, setIsOpen] = useState(true);
@@ -39,7 +40,7 @@ export default function WorkPath(data) {
             <div className="DueList">
               <OverDue
                 data={data.data}
-                currentWeek={currentWeek}
+                currentWeeknumber={currentWeeknumber}
                 FontAwesomeIcon={FontAwesomeIcon}
                 faFileLines={faFileLines}
               />
@@ -50,7 +51,7 @@ export default function WorkPath(data) {
                 <hr className="hrLine" />
                 <WeekDue
                   data={data.data}
-                  nextWeek={nextWeek}
+                  nextWeekNumber={nextWeekNumber}
                   FontAwesomeIcon={FontAwesomeIcon}
                   faFileLines={faFileLines}
                 />

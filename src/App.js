@@ -40,16 +40,24 @@ function App() {
   }
   let [attedingquestion, setAttendingQuestion] = useState({});
   const [show, setShow] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [alertBodyText, setAlertBodyText] = useState("");
+  const [grade,setGrade] = useState(0)
   function attendQuestion(row, time) {
-    setSeconds(time * 60);
     setAttendingQuestion(row);
-    setShow(true);
-    setAlertBodyText(
-      "If You navigate from this page, the question will submit automatically and we give another question for you"
-    );
+    
+      setSeconds(time * 60);
+      setShow(true);
+      setAlertBodyText(
+        "If You navigate from this page, the question will submit automatically and we give another question for you"
+      );
+    
     // alert('If You navigate from this page, the question will submit automatically and we give another question for you')
     navigate("/coding");
+  }
+  const addGrades = (score)=>{
+    setGrade(score)
+    navigate("/report");
   }
 
   useEffect(() => {
@@ -145,7 +153,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header seconds={seconds} setSeconds={setSeconds} question={attedingquestion} hideTimer={["/coding"]} />
+      <Header seconds={seconds} setSeconds={setSeconds} question={attedingquestion} hideTimer={["/coding"]} isAdmin={isAdmin} />
       {(localStorage.getItem("loggedin") === "false" ||
         localStorage.getItem("loggedin") === null) && <LoginPage />}
 
@@ -168,12 +176,14 @@ function App() {
                   setShow={setShow}
                   alertBodyText={alertBodyText}
                   setAlertBodyText={setAlertBodyText}
+                  isAdmin={isAdmin}
+                  addGrades={addGrades}
                 />
               }
             />
             <Route path="/questions" element={<QuestionsEntry />} />
             <Route path="/uploads" element={<Uploads />} />
-            <Route path="/report" element={<Report />} />
+            <Route path="/report" element={<Report setIsAdmin={setIsAdmin} attendQuestion={attendQuestion} grade={grade}/>} />
           </Routes>
         )}
       </>

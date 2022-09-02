@@ -103,6 +103,34 @@ body {
   border: none;
 }
 
+.addGradeBtn{
+  margin: 10px 8px;
+  align-items: center;
+  padding: 8px 12.5px;
+  background:#0275d8;
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  outline: none;
+  border: none;
+}
+.grade{
+  width: 20px;
+  height: 20px;
+  border: none;
+}
+.reSubmissionBtn{
+  margin: 10px 8px;
+  align-items: center;
+  padding: 8px 12.5px;
+  background:#d9534f;
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  outline: none;
+  border: none;
+}
+
 .customInputArea {
   display: flex;
   padding-bottom: 10px;
