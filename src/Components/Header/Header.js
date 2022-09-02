@@ -17,7 +17,7 @@ const Header = (Props) => {
         />
       </div>
 
-      {(Props.hideTimer.includes(pathname) ) && (<span className="timer">  {`Time Left :${Math.floor(Props.seconds / 3600)}h:${Math.floor(
+      {(Props.hideTimer.includes(pathname) ) && !Props.isAdmin&& (<span className="timer">  {`Time Left :${Math.floor(Props.seconds / 3600)}h:${Math.floor(
         (Props.seconds % 3600) / 60
       )}m:${Math.floor((Props.seconds % 3600) % 60)}s`}</span>)}
       

@@ -55,15 +55,25 @@ function App() {
 
   let [attedingquestion, setAttendingQuestion] = useState({});
   const [show, setShow] = useState(false);
-  const [alertBodyText, setAlertBodyText] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [alertBodyText, setAlertBodyText] = useState("");
+  const [grade,setGrade] = useState(0)
   function attendQuestion(row, time) {
-    setSeconds(time * 60)
     setAttendingQuestion(row);
-    setShow(true);
-    setAlertBodyText('If You navigate from this page, the question will submit automatically and we give another question for you')
+    
+      setSeconds(time * 60);
+      setShow(true);
+      setAlertBodyText(
+        "If You navigate from this page, the question will submit automatically and we give another question for you"
+      );
+    
     // alert('If You navigate from this page, the question will submit automatically and we give another question for you')
     navigate('/coding')
 
+  }
+  const addGrades = (score)=>{
+    setGrade(score)
+    navigate("/report");
   }
 
   useEffect(() => {
@@ -110,7 +120,7 @@ function App() {
 
   return (
     <div className="App">
-
+      <Header seconds={seconds} setSeconds={setSeconds} question={attedingquestion} hideTimer={["/coding"]} isAdmin={isAdmin} />
       {(localStorage.getItem("loggedin") === "false" ||
         localStorage.getItem("loggedin") === null) && <><Header seconds={seconds} setSeconds={setSeconds} question={attedingquestion} /><LoginPage /></>}
 
@@ -118,19 +128,29 @@ function App() {
         {localStorage.getItem("loggedin") === "true" && (localStorage.getItem("isadmin") === null) && (
           <Routes>
             <Route path="/" element={!Loginstatus && <LoginPage />} />
-            <Route path="/home" element={<><Header seconds={seconds} setSeconds={setSeconds} question={attedingquestion} /><Home attendQuestion={attendQuestion} /></>} />
-            <Route path="/coding" element={<><Header seconds={seconds} setSeconds={setSeconds} question={attedingquestion} /><CodeSection question={attedingquestion} seconds={seconds} setSeconds={setSeconds} show={show} setShow={setShow} alertBodyText={alertBodyText} setAlertBodyText={setAlertBodyText} />
-            </>} />
-          </Routes>
-        )}
-
-        {(localStorage.getItem("loggedin") === "true") && (localStorage.getItem("isadmin") === "true") && (
-
-          <Routes>
-            <Route path="/" element={<AdminRoot />} />
-            <Route path="/questions" element={<><AdminRoot /> <QuestionLanding /></>} />
-            <Route path="/uploads" element={<><AdminRoot /> <Uploads /></>} />
-
+            <Route
+              path="/home"
+              element={<Home attendQuestion={attendQuestion} />}
+            />
+            <Route
+              path="/coding"
+              element={
+                <CodeSection
+                  question={attedingquestion}
+                  seconds={seconds}
+                  setSeconds={setSeconds}
+                  show={show}
+                  setShow={setShow}
+                  alertBodyText={alertBodyText}
+                  setAlertBodyText={setAlertBodyText}
+                  isAdmin={isAdmin}
+                  addGrades={addGrades}
+                />
+              }
+            />
+            <Route path="/questions" element={<QuestionsEntry />} />
+            <Route path="/uploads" element={<Uploads />} />
+            <Route path="/report" element={<Report setIsAdmin={setIsAdmin} attendQuestion={attendQuestion} grade={grade}/>} />
           </Routes>
         )}
       </>

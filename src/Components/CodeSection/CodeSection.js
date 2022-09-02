@@ -34,6 +34,10 @@ const CodeSection = (Props) => {
   var [QuestionId, SetQuestionId] = useState(``);
   var [CodeOutput, SetCodeOutput] = useState(``);
 
+  const addGrade = (score)=>{
+    Props.addGrades(score)
+  }
+
   function codeChange(NewValue, language, id) {
     SetUserCode(NewValue);
     SetQuestionId(id);
@@ -106,6 +110,7 @@ const CodeSection = (Props) => {
   const handleClose = () => Props.setShow(false);
 
   useEffect(() => {
+    if(!Props.isAdmin){
     const onBlur = () => {
       Props.setShow(true);
       Props.setAlertBodyText(
@@ -122,10 +127,16 @@ const CodeSection = (Props) => {
 
     return () => {
       // window.removeEventListener("focus", onFocus);
+<<<<<<< HEAD
       // window.removeEventListener("blur", onBlur);
     };
+=======
+      window.removeEventListener("blur", onBlur);
+    };}
+>>>>>>> b2efbf851c6a795303669635db670c342598b98f
   });
   useEffect(() => {
+    if(!Props.isAdmin){
     const timer = setInterval(() => {
       if (Props.seconds > 0) {
         Props.setSeconds(Props.seconds - 1);
@@ -139,12 +150,12 @@ const CodeSection = (Props) => {
 
     return () => {
       clearInterval(timer);
-    };
+    };}
   }, [Props.seconds]);
 
   return (
     <div>
-      <Modal
+      {!Props.isAdmin&&<Modal
         show={Props.show}
         onHide={handleClose}
         backdrop="static" size="mg"
@@ -154,7 +165,7 @@ const CodeSection = (Props) => {
           <Modal.Title>Warning!</Modal.Title>
         </Modal.Header>
         <Modal.Body className="warning">{Props.alertBodyText}</Modal.Body>
-      </Modal>
+      </Modal>}
       {clickRun === true ? (
         <>
           <Split direction="horizontal" className="main-container">
@@ -167,6 +178,8 @@ const CodeSection = (Props) => {
               handleSubmit={handleSubmit}
               data={Props.question}
               setClickRun={setClickRun}
+              isAdmin={Props.isAdmin}
+              addGrade={addGrade}
             />
             <OutputWindow
               CodeOutput={CodeOutput}
@@ -175,6 +188,7 @@ const CodeSection = (Props) => {
             />
           </Split>
         </>
+<<<<<<< HEAD
       ) : (<> <Split direction="horizontal" className="main-container">
         <Problems data={Props.question} />
         <CodeEditor
@@ -189,6 +203,26 @@ const CodeSection = (Props) => {
         />
       </Split>
       </>)}
+=======
+      ) : (
+        <>
+          <Split direction="horizontal" className="main-container">
+            <Problems data={Props.question} />
+            <CodeEditor
+              UserCode={UserCode}
+              SetUserCode={SetUserCode}
+              codeChange={codeChange}
+              custominput={custominput}
+              runCode={runCode}
+              handleSubmit={handleSubmit}
+              data={Props.question}
+              isAdmin={Props.isAdmin}
+              addGrade={addGrade}
+            />
+          </Split>
+        </>
+      )}
+>>>>>>> b2efbf851c6a795303669635db670c342598b98f
     </div>
   );
 };

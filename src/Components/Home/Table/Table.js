@@ -1,16 +1,30 @@
 import React, { useState, useEffect } from "react";
 import "./Table.css";
 import DataTable from "react-data-table-component";
+import sample from '../../../model/sample.json'
 
 export default function Table(Props) {
   const complexity = Props.complexity.filter(
     (questions) => questions.questions.length >= 1
   );
+  // const complexity = sample.data.map(complexity=>complexity.complexity);
+  // console.log(complexity.map(complexity=>complexity.map(questions=>questions)));
+  // console.log(complexity);
+
   const [state, setState] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   let attendQuestion = (row) => {
     Props.attendQuestion(row);
   };
+
+  // const handleChange = (priority) => {
+  //   if (priority == 1) {
+  //     setDisabled(true);
+  //   } else {
+  //     setDisabled(false);
+  //   }
+  // };
 
   const columns = [
     {
@@ -41,10 +55,7 @@ export default function Table(Props) {
     {
       name: "DIFFICULTY",
       selector: (row) => {
-        const difficulty = row.questions.map(
-          (questions) => questions.complexityid
-        );
-        switch (difficulty[0]) {
+        switch (row.id_complexity) {
           case 1:
             return "Easy";
             break;
@@ -60,6 +71,28 @@ export default function Table(Props) {
       },
       width: "125px",
     },
+    // {
+    //   name: "DIFFICULTY",
+    //   selector: (row) => {
+    //     const difficulty = row.questions.map(
+    //       (questions) => questions.complexityid
+    //     );
+    //     switch (difficulty[0]) {
+    //       case 1:
+    //         return "Easy";
+    //         break;
+    //       case 2:
+    //         return "Medium";
+    //         break;
+    //       case 3:
+    //         return "Hard";
+    //         break;
+    //       default:
+    //         return null;
+    //     }
+    //   },
+    //   width: "125px",
+    // },
     {
       name: "DURATION",
       selector: (row) =>
@@ -69,7 +102,14 @@ export default function Table(Props) {
     {
       name: "STATUS",
       cell: (row) => (
-        <button className="btn-due" onClick={() => attendQuestion(row)}>
+        <button
+          className="btn-due"
+          onClick={() => {
+            attendQuestion(row.questions);
+          }}
+          disabled={!disabled}
+          // onChange={() => handleChange(priority)}
+        >
           Due
         </button>
       ),
@@ -112,6 +152,7 @@ export default function Table(Props) {
         onChange={(e) => setState({ value: e.target.value })}
         value={state.value}
         columns={columns}
+        // data={complexity.map(complexity=>complexity.map(questions=>questions))}
         data={complexity}
         customStyles={customStyles}
       />

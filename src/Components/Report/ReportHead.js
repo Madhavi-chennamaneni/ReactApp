@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap';
 import Popup from './Popup'
 
-const ReportHead = ({ reportData }) => {
+const ReportHead = ({ reportData,attendQuestion1, grade}) => {
     const [show, setShow] = useState(false);
     const [reportQuestions, setReportQuestions] = useState([]);
+
+    const attendQuestion=(question)=>{
+        attendQuestion1(question)
+    }
 
     const handleClose = () => setShow(false);
 
@@ -60,7 +64,7 @@ const ReportHead = ({ reportData }) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <Popup questions={reportQuestions} />
+                                    <Popup questions={reportQuestions} attendQuestion={attendQuestion} grade={grade} />
                                 </tbody>
                             </table>
                         </Modal.Body>

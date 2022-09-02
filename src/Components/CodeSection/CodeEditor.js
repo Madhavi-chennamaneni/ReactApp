@@ -1,6 +1,8 @@
 import React from "react";
 import AceEditor from "react-ace";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import Overlay from 'react-bootstrap/Overlay';
+import Popover from 'react-bootstrap/Popover';
 
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/mode-javascript";
@@ -11,9 +13,12 @@ import "ace-builds/src-noconflict/theme-gruvbox_dark_hard";
 import "ace-builds/src-noconflict/ext-language_tools";
 
 const CodeEditor = (Props) => {
-  const templatecode = Props.data.questions[0].templatecode.map(
-    (templatecode) => templatecode
-  );
+
+  let templatecode = null;
+  if (!Props.isAdmin) {
+    templatecode = Props.data[0].templatecode.map(
+      (templatecode) => templatecode);
+  }
 
   function onChange(newValue) {
     console.log(newValue);
@@ -24,6 +29,23 @@ const CodeEditor = (Props) => {
   const [language, setLanguage] = useState("");
   const [value, setValue] = useState("");
   const [customInput, setCustomInput] = useState("");
+  const [show, setShow] = useState(false);
+  const [target, setTarget] = useState(null);
+  const ref = useRef(null);
+  const [score,setScore] =useState(Props.data[0].score)
+
+  const handleClick = (event) => {
+    setShow(!show);
+    setTarget(event.target);
+  };
+  const changeScore = (e)=>{
+    console.log(e.target.value)
+    setScore(e.target.value)
+  }
+
+  const addGrade = (score)=>{
+    Props.addGrade(score)
+  }
 
   const changeTheme = () => {
     let themeOption = document.getElementById("theme").value;
@@ -37,15 +59,17 @@ const CodeEditor = (Props) => {
   };
 
   let getTemplatecode = (language) => {
-    let languagedata = templatecode.filter(
-      (question) => question.langname == language
-    );
-    if (languagedata.length >= 1) {
-      setLanguage(languagedata[0].langname);
-      setValue(languagedata[0].code);
-    } else {
-      setLanguage(languagedata.langname);
-      setValue(languagedata.code);
+    if (!Props.isAdmin) {
+      let languagedata = templatecode.filter(
+        (question) => question.langname == language
+      );
+      if (languagedata.length >= 1) {
+        setLanguage(languagedata[0].langname);
+        setValue(languagedata[0].code);
+      } else {
+        setLanguage(languagedata.langname);
+        setValue(languagedata.code);
+      }
     }
   };
 
@@ -57,7 +81,10 @@ const CodeEditor = (Props) => {
   useEffect(() => {
     let languageOption = document.getElementById("language").value;
     getTemplatecode(languageOption);
-  },[]);
+    if (Props.isAdmin) {
+      setValue(Props.data[0].answer)
+    }
+  }, []);
 
   const changeCustomInput = (e) => {
     setCustomInput(e.target.value);
@@ -92,7 +119,7 @@ const CodeEditor = (Props) => {
           <div className="selectLanguage">
             <label>Languages</label>&nbsp;&nbsp;
             <select id="language" value={language} onChange={changeLanguage}>
-              {templatecode.map((templatecode) => (
+              {!Props.isAdmin && templatecode.map((templatecode) => (
                 <>
                   <option>{templatecode.langname}</option>
                 </>
@@ -117,7 +144,7 @@ const CodeEditor = (Props) => {
           <button className="runBtn" onClick={() => Props.runUserCode(language)}>
             Run Code
           </button>
-          <button
+          {!Props.isAdmin && <button
             className="submitBtn"
             onClick={() => {
               Props.handleSubmit(language, Props.data.id);
@@ -125,7 +152,29 @@ const CodeEditor = (Props) => {
             }}
           >
             Submit Code
-          </button>
+          </button>}
+          {Props.isAdmin && (
+            <>
+              <div ref={ref}>
+                <button className="addGradeBtn" onClick={handleClick}>Add Grade</button>
+                <Overlay
+                  show={show}
+                  target={target}
+                  placement="right"
+                  container={ref}
+                  containerPadding={20}
+                >
+                  <Popover id="popover-contained">
+                    <Popover.Body style={{fontSize:'1.2rem',fontWeight:'500'}}>
+                      <input className="grade" value={score} onChange={changeScore}/>/<input className="grade" defaultValue={Props.data[0].marks}/>&nbsp; 
+                      <button className="btn btn-primary" onClick={()=>addGrade(score)}>Add</button>
+                    </Popover.Body>
+                  </Popover>
+                </Overlay>
+              </div>
+              <button className="reSubmissionBtn">Resubmission</button>
+            </>
+          )}
         </div>
         <div className="customInputArea">
           <label htmlFor="customInput" className="customInputLabel">
